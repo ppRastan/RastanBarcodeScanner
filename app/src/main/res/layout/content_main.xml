@@ -9,11 +9,51 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".presenter.MainActivity"
+    tools:context="com.example.parisarashidhi.fragmenttoolbar.MainActivity"
     tools:showIn="@layout/app_bar_main">
+    <include
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="55dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:id="@+id/checkbox_content_layout"
+        android:visibility="invisible"
+        android:layout_marginBottom="0dp">
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_share"
+            android:id="@+id/checkbox_content_layout_share_btn"
+            android:background="#7fe9d7"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="#7fe9d7"
+            android:id="@+id/checkbox_content_layout_select_all"
+            android:text="@string/selectAll"/>
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_delete"
+            android:id="@+id/checkbox_content_layout_delete_btn"
+            android:background="#7fe9d7"/>
+    </LinearLayout>
 </RelativeLayout>

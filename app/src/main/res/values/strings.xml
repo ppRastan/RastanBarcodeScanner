@@ -1,9 +1,29 @@
 <resources>
-    <string name="app_name">RastanBarcodeScanner</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_choose">ذخیره فایل</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">navigationDrawerOpen</string>
+    <string name="navigation_drawer_close">navigationDrawerClose</string>
+    <!--
+ navigationDrawers item
+-->
+    <string name="myFiles">فایل های من</string>
+    <string name="sentFiles">فایل های ارسال شده</string>
+    <string name="inside_payment">پرداخت درون برنامه ایی</string>
+    <string name="share_app">ارسال برنامه</string>
+    <!--
+    mainActivity items
+    -->
+    <string name="selectAll">انتخاب همه</string>
+    <string name="savethisBarcodes">ذخیره</string>
+    <string name="select">انتخاب</string>
+    <!--
+     actionbar titeles and activity names are here
+    -->
+    <string name="title_activity_display_barcode">بارکدهای اسکن شده</string>
+    <string name="app_name">بارکدخوان حرفه ایی</string>
+    <string name="title_activity_shered_files">فایل های ارسال شده</string>
+
+    <string name="allfiles">همه فایل ها</string>
+    <string name="showExcelFilesOnly">فایل های اکسل</string>
+    <string name="showTextFilesOnly">فایل های متنی</string>
+
 </resources>
