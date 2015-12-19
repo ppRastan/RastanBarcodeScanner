@@ -25,7 +25,9 @@ import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
-
+/*
+created by shayeste
+ */
 public class BarcodeReadingActivity extends Activity {
 
     private Camera mCamera;
