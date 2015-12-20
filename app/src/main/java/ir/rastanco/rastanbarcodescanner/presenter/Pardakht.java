@@ -10,7 +10,7 @@ import ir.rastanco.rastanbarcodescanner.R;
 
 /*
 created by parisaRashidi  on 94/9/27
-this class let user to pay for this application
+this class lets user to pay for this application
 
  */
 public class Pardakht extends Fragment {
