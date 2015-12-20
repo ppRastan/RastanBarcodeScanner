@@ -27,7 +27,7 @@ import ir.rastanco.rastanbarcodescanner.R;
 
 /*
 created by parisaRashidi  on 94/9/27
- this is MainActivity for RastanBarcodeScanner witch handele toolbars actions and displays stored files
+ this is MainActivity for RastanBarcodeScanner witch handele toolbars actions
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
