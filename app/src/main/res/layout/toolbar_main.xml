@@ -3,12 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/my_toolbar"
     android:minHeight="?attr/actionBarSize"
-    android:background="#bafff8"
+    android:background="#3e8d8f"
     android:layout_width="match_parent"
     android:layout_height="50dp"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    >
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +20,7 @@
             android:foregroundTint="@android:color/background_dark"
             android:id="@+id/checkbox_toolbar"
             android:src="@drawable/ic_checkbox"
-            android:background="#bafff8"
+            android:background="#3e8d8f"
             />
         <Button
             android:layout_width="0dp"
@@ -30,14 +29,14 @@
             android:padding="4dp"
             android:id="@+id/allfiles_toolbar"
             android:text="@string/allfiles"
-            android:textColor="#0b0b0b"
-            android:background="#bafff8"/>
+            android:textColor="#ffffff"
+            android:background="#3e8d8f"/>
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:src="@drawable/ic_sort_icon"
-            android:background="#bafff8"
+            android:background="#3e8d8f"
             android:foregroundTint="@android:color/background_dark"
             android:id="@+id/sort_toolbar"
             android:padding="4dp"/>
