@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,12 +17,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.R;
 
@@ -44,6 +52,8 @@ public class MainActivity extends AppCompatActivity
     private LinearLayout container;
     private LinearLayout temp_linear_for_checkbox;
     private Button select_all_checkboxes;
+    private ListView main_activity_list ;
+    private ArrayList<String> listview_content;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -62,11 +72,11 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//       fab.setBackgroundTintList(getColorStateList(R.color.colorLightBlue));
+        fab.setBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent iBarcodeReader=new Intent(MainActivity.this,BarcodeReadingActivity.class);
+                Intent iBarcodeReader = new Intent(MainActivity.this, BarcodeReadingActivity.class);
                 startActivity(iBarcodeReader);
                 //here
             }
@@ -78,7 +88,18 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        listview_content = new ArrayList<String>();
+        main_activity_list = (ListView)findViewById(R.id.main_activity_listview);
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
+        fillListViewDynamicly();
+        ArrayAdapter<String> arrayAdapter =
+                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, listview_content);
+        main_activity_list.setAdapter(arrayAdapter);
+        main_activity_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
+
+            }
+        });
         container = (LinearLayout) findViewById(R.id.fragment_container);
         share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
         delete_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_delete_btn);
@@ -168,6 +189,19 @@ public class MainActivity extends AppCompatActivity
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void fillListViewDynamicly() {
+        //listview_content.addAll();
+        listview_content.add("file 1");
+        listview_content.add("file 2");
+        listview_content.add("file 3");
+        listview_content.add("file 4");
+        listview_content.add("file 5");
+        listview_content.add("file 6");
+        listview_content.add("file 7");
+        listview_content.add("file 8");
+        listview_content.add("file 9");
     }
 
     @Override

@@ -1,3 +1,11 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res-auto"
+    android:background="#f7f9f7"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,4 +20,10 @@
     tools:context="com.example.parisarashidhi.fragmenttoolbar.DisplayBarcode"
     tools:showIn="@layout/activity_display_barcode"
     android:layout_marginTop="42dp">
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/barcode_displayer_listview">
+    </ListView>
 </LinearLayout>
+</ScrollView>
