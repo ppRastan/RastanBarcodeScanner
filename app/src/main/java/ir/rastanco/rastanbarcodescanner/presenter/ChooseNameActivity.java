@@ -46,6 +46,10 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
 
         dbHandler=new DataBaseHandler(this);
 
+        this.createPage();
+    }
+
+    private void createPage() {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +107,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
             }
         });
     }
+
     @Override
     public void onBackPressed()
     {
