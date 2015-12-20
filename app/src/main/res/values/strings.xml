@@ -7,7 +7,7 @@
 -->
     <string name="myFiles">فایل های من</string>
     <string name="sentFiles">فایل های ارسال شده</string>
-    <string name="inside_payment">پرداخت درون برنامه ایی</string>
+    <string name="inside_payment">پرداخت درون برنامه ای</string>
     <string name="share_app">ارسال برنامه</string>
     <!--
     mainActivity items
@@ -19,7 +19,7 @@
      actionbar titeles and activity names are here
     -->
     <string name="title_activity_display_barcode">بارکدهای اسکن شده</string>
-    <string name="app_name">بارکدخوان حرفه ایی</string>
+    <string name="app_name">بارکدخوان حرفه ای</string>
     <string name="title_activity_shered_files">فایل های ارسال شده</string>
 
     <string name="allfiles">همه فایل ها</string>
