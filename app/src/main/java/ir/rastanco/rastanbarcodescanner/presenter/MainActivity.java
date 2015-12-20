@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String state = "default";
+    private boolean sort_mode = true ;
     private Toolbar toolbar;
     private ImageButton sortFiles;
     private ImageButton change_image_sort;
@@ -109,14 +111,24 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 container.removeAllViewsInLayout();
-                change_image_sort = (ImageButton) findViewById(R.id.sort_toolbar);
-                change_image_sort.setImageResource(R.drawable.ic_sort_a_to_z);
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                SheredFiles sortAToZ = new SheredFiles();
-                fragmentTransaction.add(R.id.fragment_container, sortAToZ, "HELLO");
-                fragmentTransaction.commit();
-            }
+                if(sort_mode == true){
+                    change_image_sort = (ImageButton) findViewById(R.id.sort_toolbar);
+                    change_image_sort.setImageResource(R.drawable.ic_sort_a_to_z);
+                    change_image_sort.setColorFilter(Color.argb(0, 0, 0, 0));
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    SheredFiles sortAToZ = new SheredFiles();
+                    fragmentTransaction.add(R.id.fragment_container, sortAToZ, "HELLO");
+                    fragmentTransaction.commit();
+                    sort_mode = false ;
+
+                }
+                else if(sort_mode == false){
+
+                    change_image_sort.setImageResource(R.drawable.ic_sort_icon);
+                    sort_mode = true;
+                }
+                            }
         });
 
 

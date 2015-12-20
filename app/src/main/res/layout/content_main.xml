@@ -5,9 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.parisarashidhi.fragmenttoolbar.MainActivity"
     tools:showIn="@layout/app_bar_main">
@@ -15,10 +12,19 @@
         layout="@layout/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:id="@+id/include" />
+        />
 
     <LinearLayout
+        android:id="@+id/fragment_container"
         android:layout_width="fill_parent"
+        android:layout_marginTop="55dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:weightSum="4"
         android:orientation="horizontal"
@@ -30,13 +36,15 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:src="@drawable/ic_share"
+            android:foregroundTint="@android:color/background_dark"
             android:id="@+id/checkbox_content_layout_share_btn"
-            android:background="#7fe9d7"/>
+            android:background="#bafff8"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="#7fe9d7"
+            android:background="#bafff8"
+            android:textColor="#0b0b0b"
             android:id="@+id/checkbox_content_layout_select_all"
             android:text="@string/selectAll"/>
         <ImageButton
@@ -45,14 +53,7 @@
             android:layout_weight="1"
             android:src="@drawable/ic_delete"
             android:id="@+id/checkbox_content_layout_delete_btn"
-            android:background="#7fe9d7"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@+id/include">
+            android:foregroundTint="@android:color/background_dark"
+            android:background="#bafff8"/>
     </LinearLayout>
 </RelativeLayout>
