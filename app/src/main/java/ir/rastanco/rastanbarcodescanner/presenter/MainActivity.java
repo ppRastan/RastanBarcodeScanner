@@ -62,12 +62,12 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setBackgroundTintList(getColorStateList(R.color.colorLightBlue));
+       fab.setBackgroundTintList(getColorStateList(R.color.colorLightBlue));
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent iBarcodeReader=new Intent(MainActivity.this,BarcodeReadingActivity.class);
-                startActivity(iBarcodeReader);
+               // Intent iBarcodeReader=new Intent(MainActivity.this,BarcodeReadingActivity.class);
+                //startActivity(iBarcodeReader);
                 //here
             }
         });
