@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent iBarcodeReader=new Intent(MainActivity.this,BarcodeReadingActivity.class);
                 startActivity(iBarcodeReader);
+                //here
             }
         });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

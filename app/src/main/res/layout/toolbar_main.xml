@@ -20,8 +20,7 @@
             android:foregroundTint="@android:color/background_dark"
             android:id="@+id/checkbox_toolbar"
             android:src="@drawable/ic_checkbox"
-            android:background="#3e8d8f"
-            />
+            android:background="#3e8d8f" />
         <Button
             android:layout_width="0dp"
             android:layout_weight="2"
