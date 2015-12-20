@@ -115,7 +115,6 @@ public class MainActivity extends AppCompatActivity
                 if(sort_mode == true){
                     change_image_sort = (ImageButton) findViewById(R.id.sort_toolbar);
                     change_image_sort.setImageResource(R.drawable.ic_sort_a_to_z);
-                    change_image_sort.setColorFilter(Color.argb(0, 0, 0, 0));
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     SheredFiles sortAToZ = new SheredFiles();
