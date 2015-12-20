@@ -38,15 +38,16 @@
             android:src="@drawable/ic_share"
             android:foregroundTint="@android:color/background_dark"
             android:id="@+id/checkbox_content_layout_share_btn"
-            android:background="#bafff8"/>
+            android:background="#3e8d8f"/>
         <Button
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="2"
-            android:background="#bafff8"
-            android:textColor="#0b0b0b"
+            android:background="#3e8d8f"
+            android:textColor="#fffefe"
             android:id="@+id/checkbox_content_layout_select_all"
-            android:text="@string/selectAll"/>
+            android:text="@string/selectAll"
+            />
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="50dp"
@@ -54,6 +55,6 @@
             android:src="@drawable/ic_delete"
             android:id="@+id/checkbox_content_layout_delete_btn"
             android:foregroundTint="@android:color/background_dark"
-            android:background="#bafff8"/>
+            android:background="#3e8d8f"/>
     </LinearLayout>
 </RelativeLayout>
