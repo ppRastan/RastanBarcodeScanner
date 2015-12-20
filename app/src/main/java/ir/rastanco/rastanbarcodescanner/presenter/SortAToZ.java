@@ -10,7 +10,7 @@ import ir.rastanco.rastanbarcodescanner.R;
 
 /*
 created by parisaRashidi  on 94/9/27
-this class can sort list of files alphabeticly from a to z
+this class can sort list of files  from a to z
  */
 
 public class SortAToZ extends Fragment {
