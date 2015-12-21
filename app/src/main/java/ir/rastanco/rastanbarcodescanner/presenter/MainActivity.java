@@ -3,6 +3,7 @@ package ir.rastanco.rastanbarcodescanner.presenter;
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -17,20 +18,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 
+import Utility.ListViewArrayAdapter;
 import ir.rastanco.rastanbarcodescanner.R;
 
 /*
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String state = "default";
+    private Boolean isCheckBoxChecked = false;
     private boolean sort_mode = true ;
     private Toolbar toolbar;
     private ImageButton sortFiles;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity
     private Button select_all_checkboxes;
     private ListView main_activity_list ;
     private ArrayList<String> listview_content;
+    private ArrayAdapter<String> adapter ;
+    private CheckBox listViewItemCheckBox;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -89,17 +92,12 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         listview_content = new ArrayList<String>();
+        listViewItemCheckBox = (CheckBox)findViewById(R.id.checkbox);
         main_activity_list = (ListView)findViewById(R.id.main_activity_listview);
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
         fillListViewDynamicly();
-        ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, listview_content);
-        main_activity_list.setAdapter(arrayAdapter);
-        main_activity_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
-
-            }
-        });
+        adapter = new ListViewArrayAdapter(this,listview_content);
+        main_activity_list.setAdapter(adapter);
         container = (LinearLayout) findViewById(R.id.fragment_container);
         share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
         delete_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_delete_btn);
@@ -107,6 +105,7 @@ public class MainActivity extends AppCompatActivity
         checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
         sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
+
         share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +155,7 @@ public class MainActivity extends AppCompatActivity
         checkBox_toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isCheckBoxChecked = true ;
                 temp_linear_for_checkbox.setVisibility(View.VISIBLE);
 
             }
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity
 
     private void fillListViewDynamicly() {
         //listview_content.addAll();
-        listview_content.add("file 1");
+        listview_content.add("parisa");
         listview_content.add("file 2");
         listview_content.add("file 3");
         listview_content.add("file 4");
@@ -232,7 +232,8 @@ public class MainActivity extends AppCompatActivity
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 
-        } else if (id == R.id.nav_payment) { //TODO
+        } else if (id == R.id.nav_payment) {
+         //TODO
         }
 
 
