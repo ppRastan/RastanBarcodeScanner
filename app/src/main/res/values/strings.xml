@@ -31,4 +31,11 @@
     <string name="type_of_file">انتخاب نوع فایل</string>
     <string name="save_az_xls_file">ذخیره به صورت فایل متنی</string>
     <string name="save_az_txt_file">ذخیره به صورت فایل اکسل</string>
+    <!--
+     these strings are for ChooseNameActivity
+    -->
+    <string name="savingfile">ذخیره فایل</string>
+    <string name="display">نمایش دوباره</string>
+    <string name="confirm">تایید</string>
+    <string name="send">ارسال</string>
 </resources>

@@ -1,5 +1,7 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -103,7 +105,33 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
                         currentDateAndTime);
                 dbHandler.insertAFileInfo(fileInfoSave);
                 actvFileName.setText("");
+                //TODO add this alertDialog as btnSave ActionListener
+/*
+     AlertDialog.Builder builder = new AlertDialog.Builder(ChooseNameActivity.this);
+                builder.setTitle(getResources().getString(R.string.savingfile));
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setItems(new CharSequence[]
+                                {
+                                        getResources().getString(R.string.display),
+                                        getResources().getString(R.string.confirm),
+                                        getResources().getString(R.string.sent)},
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case 0:
+                                        startActivity(new Intent(ChooseNameActivity.this,ChooseNameActivity.class));
+                                    case 1:
+                                        //TODO dont show this file again and just save in database
+                                        break;
+                                    case 2:
+                                        //TODO share file
+                                        break;
+                                }
+                            }
+                        });
+                builder.create().show();
 
+ */
             }
         });
     }
