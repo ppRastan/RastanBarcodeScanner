@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity
         listview_content.add("file 10");
         listview_content.add("file 11");
         listview_content.add("file 12");
+        listview_content.add("file 13");
 
     }
 
