@@ -13,15 +13,9 @@
         android:id="@+id/barcode_number"
         android:textSize="10dp"
         android:textColor="@color/colorPrimaryDark"/>
-    <!--
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"/>
-    -->
 
     <TextView
-        android:id="@+id/label"
+        android:id="@+id/barcode_textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@+id/label"

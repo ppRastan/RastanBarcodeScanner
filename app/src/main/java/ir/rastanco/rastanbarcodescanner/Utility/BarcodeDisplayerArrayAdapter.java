@@ -31,9 +31,7 @@ public class BarcodeDisplayerArrayAdapter extends ArrayAdapter<String> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.listview_item, parent, false);
-        TextView textView = (TextView) rowView.findViewById(R.id.label);
-        CheckBox checkBox = (CheckBox)rowView.findViewById(R.id.checkbox);
-        checkBox.setVisibility(View.INVISIBLE);
+        TextView textView = (TextView) rowView.findViewById(R.id.barcode_textView);
         textView.setText(values.get(position));
         String s = values.get(position);
         System.out.println(s);
