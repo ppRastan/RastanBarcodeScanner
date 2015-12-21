@@ -13,12 +13,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.Utility.BarcodeDisplayerArrayAdapter;
 import ir.rastanco.rastanbarcodescanner.R;
+import ir.rastanco.rastanbarcodescanner.Utility.SwipeListViewActivity;
 
 /*
 created by parisaRashidi  on 94/9/27
@@ -26,11 +28,32 @@ this class displays all barcode that scanded
 you can remove theme and impact them to a folder
 
  */
-public class DisplayBarcode extends AppCompatActivity {
+public class DisplayBarcode extends SwipeListViewActivity {
     private Button save_barcodes_btn ;
     private ListView barcodeDisplayerListView ;
     private ArrayList<String> barcodeDisplayerArraylist;
     private ArrayAdapter<String> barcodeDisplayerAdapter;
+
+    @Override
+    public ListView getListView() {
+        return barcodeDisplayerListView;
+    }
+
+
+    @Override
+    public void getSwipeItem(boolean isRight, int position) {
+
+        if(isRight) {
+            String selectedItem = barcodeDisplayerArraylist.get(position);
+            barcodeDisplayerArraylist.remove(selectedItem);
+            barcodeDisplayerAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onItemClickListener(ListAdapter adapter, int position) {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
