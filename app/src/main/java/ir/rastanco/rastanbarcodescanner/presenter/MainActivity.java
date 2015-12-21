@@ -3,7 +3,6 @@ package ir.rastanco.rastanbarcodescanner.presenter;
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -20,9 +19,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.android.gms.appindexing.AppIndex;
@@ -30,14 +29,15 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 
-import Utility.ListViewArrayAdapter;
+import ir.rastanco.rastanbarcodescanner.Utility.ListViewArrayAdapter;
 import ir.rastanco.rastanbarcodescanner.R;
+import ir.rastanco.rastanbarcodescanner.Utility.SwipeListViewActivity;
 
 /*
 created by parisaRashidi  on 94/9/27
  this is MainActivity for RastanBarcodeScanner witch handele toolbars actions
  */
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends SwipeListViewActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String state = "default";
@@ -61,6 +61,26 @@ public class MainActivity extends AppCompatActivity
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+
+    @Override
+    public ListView getListView() {
+        return main_activity_list;
+    }
+
+    @Override
+    public void getSwipeItem(boolean isRight, int position) {
+
+        if(isRight) {
+            String selectedItem = listview_content.get(position);
+            listview_content.remove(selectedItem);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void onItemClickListener(ListAdapter adapter, int position) {
+
+    }
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
