@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String state = "default";
-    private Boolean isCheckBoxChecked = false;
     private boolean sort_mode = true ;
     private Toolbar toolbar;
     private ImageButton sortFiles;
@@ -55,8 +54,8 @@ public class MainActivity extends AppCompatActivity
     private Button select_all_checkboxes;
     private ListView main_activity_list ;
     private ArrayList<String> listview_content;
+
     private ArrayAdapter<String> adapter ;
-    private CheckBox listViewItemCheckBox;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -91,10 +90,10 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        listview_content = new ArrayList<String>();
-        listViewItemCheckBox = (CheckBox)findViewById(R.id.checkbox);
+        //listview_content = new ArrayList<String>();
         main_activity_list = (ListView)findViewById(R.id.main_activity_listview);
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
+        listview_content = new ArrayList<String>();
         fillListViewDynamicly();
         adapter = new ListViewArrayAdapter(this,listview_content);
         main_activity_list.setAdapter(adapter);
@@ -155,7 +154,6 @@ public class MainActivity extends AppCompatActivity
         checkBox_toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isCheckBoxChecked = true ;
                 temp_linear_for_checkbox.setVisibility(View.VISIBLE);
 
             }
@@ -191,23 +189,7 @@ public class MainActivity extends AppCompatActivity
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void fillListViewDynamicly() {
-        //listview_content.addAll();
-        listview_content.add("file 1");
-        listview_content.add("file 2");
-        listview_content.add("file 3");
-        listview_content.add("file 4");
-        listview_content.add("file 5");
-        listview_content.add("file 6");
-        listview_content.add("file 7");
-        listview_content.add("file 8");
-        listview_content.add("file 9");
-        listview_content.add("file 10");
-        listview_content.add("file 11");
-        listview_content.add("file 12");
-        listview_content.add("file 13");
 
-    }
 
     @Override
     public void onBackPressed() {
@@ -285,5 +267,22 @@ public class MainActivity extends AppCompatActivity
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();*/
+    }
+    private void fillListViewDynamicly() {
+        //listview_content.addAll();
+        listview_content.add("file 1");
+        listview_content.add("file 2");
+        listview_content.add("file 3");
+        listview_content.add("file 4");
+        listview_content.add("file 5");
+        listview_content.add("file 6");
+        listview_content.add("file 7");
+        listview_content.add("file 8");
+        listview_content.add("file 9");
+        listview_content.add("file 10");
+        listview_content.add("file 11");
+        listview_content.add("file 12");
+        listview_content.add("file 13");
+
     }
 }

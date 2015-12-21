@@ -14,11 +14,9 @@ import java.util.ArrayList;
 import ir.rastanco.rastanbarcodescanner.R;
 
 public class ListViewArrayAdapter extends ArrayAdapter<String> {
-    private final Context context;
-    private final ArrayList<String> values;
-    private CheckBox checkBox_listview_item;
-    private  TextView textView_listveiw_item;
-    public ListViewArrayAdapter(Context context, ArrayList<String> values) {
+    private  Context context;
+    private ArrayList<String> values;
+    public ListViewArrayAdapter(Context context,ArrayList<String >values) {
         super(context, R.layout.listview_item, values);
         this.context = context;
         this.values = values;
@@ -30,9 +28,11 @@ public class ListViewArrayAdapter extends ArrayAdapter<String> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View rowView = inflater.inflate(R.layout.listview_item, parent, false);
-        textView_listveiw_item = (TextView) rowView.findViewById(R.id.label);
-        checkBox_listview_item = (CheckBox)rowView.findViewById(R.id.checkbox);
+        TextView textView = (TextView) rowView.findViewById(R.id.label);
+       // CheckBox checkBox = (CheckBox)rowView.findViewById(R.id.checkbox);
+        textView.setText(values.get(position));
+        String s = values.get(position);
+        System.out.println(s);
         return rowView;
     }
-
 }
