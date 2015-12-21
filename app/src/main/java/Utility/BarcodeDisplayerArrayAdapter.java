@@ -1,5 +1,9 @@
 package Utility;
 
+/**
+ * Created by ParisaRashidhi on 21/12/2015.
+ */
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +17,11 @@ import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.R;
 
-public class ListViewArrayAdapter extends ArrayAdapter<String> {
+public class BarcodeDisplayerArrayAdapter extends ArrayAdapter<String> {
     private  Context context;
     private ArrayList<String> values;
-    public ListViewArrayAdapter(Context context,ArrayList<String >values) {
-        super(context, R.layout.listview_item, values);
+    public BarcodeDisplayerArrayAdapter(Context context,ArrayList<String >values) {
+        super(context, R.layout.activity_display_barcode, values);
         this.context = context;
         this.values = values;
     }

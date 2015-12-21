@@ -1,5 +1,6 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,10 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import Utility.BarcodeDisplayerArrayAdapter;
 import ir.rastanco.rastanbarcodescanner.R;
 
 /*
@@ -23,9 +26,10 @@ you can remove theme and impact them to a folder
 
  */
 public class DisplayBarcode extends AppCompatActivity {
-
-    ListView barcodeDisplayerListView ;
-    ArrayList<String> barcodeDisplayerArraylist;
+    private Button save_barcodes_btn ;
+    private ListView barcodeDisplayerListView ;
+    private ArrayList<String> barcodeDisplayerArraylist;
+    private ArrayAdapter<String> barcodeDisplayerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +43,22 @@ public class DisplayBarcode extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent iBarcodeReader = new Intent(DisplayBarcode.this, BarcodeReadingActivity.class);
+                startActivity(iBarcodeReader);
             }
         });
         barcodeDisplayerArraylist = new ArrayList<String>();
+        save_barcodes_btn = (Button)findViewById(R.id.button_save);
+        save_barcodes_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         barcodeDisplayerListView = (ListView)findViewById(R.id.barcode_displayer_listview);
         fillBarcodeDisplayerListViewDynamicly();
-        ArrayAdapter<String> arrayAdapter =
-                new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, barcodeDisplayerArraylist);
-        barcodeDisplayerListView.setAdapter(arrayAdapter);
+        barcodeDisplayerAdapter = new BarcodeDisplayerArrayAdapter(this,barcodeDisplayerArraylist);
+        barcodeDisplayerListView.setAdapter(barcodeDisplayerAdapter);
         barcodeDisplayerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
 
@@ -58,6 +68,7 @@ public class DisplayBarcode extends AppCompatActivity {
     }
 
     private void fillBarcodeDisplayerListViewDynamicly() {
+        //TODO fill this method by scanned barcodes
         //barcodeDisplayerArraylist.addAll();
         barcodeDisplayerArraylist.add("barcode 1");
         barcodeDisplayerArraylist.add("barcode 2");

@@ -14,7 +14,6 @@
     -->
     <string name="selectAll">انتخاب همه</string>
     <string name="savethisBarcodes">ذخیره</string>
-    <string name="select">انتخاب</string>
     <!--
      actionbar titeles and activity names are here
     -->
@@ -25,5 +24,6 @@
     <string name="allfiles">همه فایل ها</string>
     <string name="showExcelFilesOnly">فایل های اکسل</string>
     <string name="showTextFilesOnly">فایل های متنی</string>
+    
 
 </resources>
