@@ -24,6 +24,11 @@
     <string name="allfiles">همه فایل ها</string>
     <string name="showExcelFilesOnly">فایل های اکسل</string>
     <string name="showTextFilesOnly">فایل های متنی</string>
-    
 
+    <!--
+     these strings are for DisplayBarcodeActivity
+    -->
+    <string name="type_of_file">انتخاب نوع فایل</string>
+    <string name="save_az_xls_file">ذخیره به صورت فایل متنی</string>
+    <string name="save_az_txt_file">ذخیره به صورت فایل اکسل</string>
 </resources>

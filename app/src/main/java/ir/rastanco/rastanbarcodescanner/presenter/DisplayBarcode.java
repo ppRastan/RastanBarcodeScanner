@@ -1,5 +1,7 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -52,6 +54,24 @@ public class DisplayBarcode extends AppCompatActivity {
         save_barcodes_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(DisplayBarcode.this);
+                builder.setTitle(getResources().getString(R.string.type_of_file));
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setItems(new CharSequence[]
+                                {getResources().getString(R.string.save_az_xls_file),getResources().getString(R.string.save_az_txt_file)},
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case 0:
+                                        //TODO save file in xls mode and intent it
+                                    case 1:
+                                        //TODO save file in txt mode and intent it
+                                        //startActivity(new Intent(DisplayBarcode.this, XLSCreator.class));
+                                        break;
+                                }
+                            }
+                        });
+                builder.create().show();
 
             }
         });
