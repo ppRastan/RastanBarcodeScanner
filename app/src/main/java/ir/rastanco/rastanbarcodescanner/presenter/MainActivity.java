@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity
 
     private void fillListViewDynamicly() {
         //listview_content.addAll();
-        listview_content.add("parisa");
+        listview_content.add("file 1");
         listview_content.add("file 2");
         listview_content.add("file 3");
         listview_content.add("file 4");
@@ -202,6 +202,10 @@ public class MainActivity extends AppCompatActivity
         listview_content.add("file 7");
         listview_content.add("file 8");
         listview_content.add("file 9");
+        listview_content.add("file 10");
+        listview_content.add("file 11");
+        listview_content.add("file 12");
+
     }
 
     @Override
