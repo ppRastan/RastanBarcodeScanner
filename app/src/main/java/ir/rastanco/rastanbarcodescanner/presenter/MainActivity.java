@@ -270,6 +270,7 @@ public class MainActivity extends AppCompatActivity
     }
     private void fillListViewDynamicly() {
         //listview_content.addAll();
+        //TODO write correct file names that user created and saved in DB
         listview_content.add("file 1");
         listview_content.add("file 2");
         listview_content.add("file 3");
