@@ -13,13 +13,13 @@
         android:layout_height="50dp"
         />
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_marginTop="51dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -34,11 +34,10 @@
                 android:layout_height="match_parent"
                 android:animationCache="false"
                 android:scrollingCache="false"
-                android:smoothScrollbar="true" />
+                android:smoothScrollbar="true"
+                />
         </ScrollView>
-    </LinearLayout>
-
-
+    </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

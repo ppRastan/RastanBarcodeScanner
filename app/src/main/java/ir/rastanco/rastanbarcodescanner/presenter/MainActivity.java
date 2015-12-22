@@ -19,25 +19,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.util.ArrayList;
 
-import ir.rastanco.rastanbarcodescanner.Utility.ListViewArrayAdapter;
 import ir.rastanco.rastanbarcodescanner.R;
-import ir.rastanco.rastanbarcodescanner.Utility.SwipeListViewActivity;
 
 /*
 created by parisaRashidi  on 94/9/27
  this is MainActivity for RastanBarcodeScanner witch handele toolbars actions
  */
-public class MainActivity extends SwipeListViewActivity
+public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String state = "default";
@@ -49,38 +46,16 @@ public class MainActivity extends SwipeListViewActivity
     private ImageButton share_btn;
     private Button showFiles;
     private ImageButton checkBox_toolbar;
-    private LinearLayout container;
+    private FrameLayout container;
     private LinearLayout temp_linear_for_checkbox;
     private Button select_all_checkboxes;
-    private ListView main_activity_list ;
-    private ArrayList<String> listview_content;
-
-    private ArrayAdapter<String> adapter ;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
 
-    @Override
-    public ListView getListView() {
-        return main_activity_list;
-    }
 
-    @Override
-    public void getSwipeItem(boolean isRight, int position) {
-
-        if(isRight) {
-            String selectedItem = listview_content.get(position);
-            listview_content.remove(selectedItem);
-            adapter.notifyDataSetChanged();
-        }
-    }
-
-    @Override
-    public void onItemClickListener(ListAdapter adapter, int position) {
-
-    }
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -111,13 +86,8 @@ public class MainActivity extends SwipeListViewActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         //listview_content = new ArrayList<String>();
-        main_activity_list = (ListView)findViewById(R.id.main_activity_listview);
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
-        listview_content = new ArrayList<String>();
-        fillListViewDynamicly();
-        adapter = new ListViewArrayAdapter(this,listview_content);
-        main_activity_list.setAdapter(adapter);
-        container = (LinearLayout) findViewById(R.id.fragment_container);
+        container = (FrameLayout) findViewById(R.id.fragment_container);
         share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
         delete_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_delete_btn);
         select_all_checkboxes = (Button) findViewById(R.id.checkbox_content_layout_select_all);
@@ -288,22 +258,5 @@ public class MainActivity extends SwipeListViewActivity
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();*/
     }
-    private void fillListViewDynamicly() {
-        //listview_content.addAll();
-        //TODO write correct file names that user created and saved in DB
-        listview_content.add("file 1");
-        listview_content.add("file 2");
-        listview_content.add("file 3");
-        listview_content.add("file 4");
-        listview_content.add("file 5");
-        listview_content.add("file 6");
-        listview_content.add("file 7");
-        listview_content.add("file 8");
-        listview_content.add("file 9");
-        listview_content.add("file 10");
-        listview_content.add("file 11");
-        listview_content.add("file 12");
-        listview_content.add("file 13");
 
-    }
 }
