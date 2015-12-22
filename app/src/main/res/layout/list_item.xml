@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FrameLayout android:background="@color/gray_background"
+    android:id="@+id/lyt_container"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView android:background="@android:color/white" android:id="@+id/txt_data" android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingRight="@dimen/list_item_padding_sides"
+        android:paddingLeft="@dimen/list_item_padding_sides"
+        android:gravity="center_vertical"
+        android:height="@dimen/list_item_height"/>
+
+
+    <LinearLayout android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:paddingRight="@dimen/list_item_padding_sides"
+        android:paddingLeft="@dimen/list_item_padding_sides"
+        android:height="@dimen/list_item_height"
+        android:weightSum="4"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/txt_delete"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:hapticFeedbackEnabled="true"
+            android:layout_weight="2"
+            android:clickable="false"
+            android:text="@string/deleted"/>
+
+        <TextView android:id="@+id/txt_undo"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textColor="@color/yellow"
+            android:layout_weight="2"
+            android:clickable="false"
+            android:text="@string/undo"/>
+
+    </LinearLayout>
+
+</FrameLayout>
