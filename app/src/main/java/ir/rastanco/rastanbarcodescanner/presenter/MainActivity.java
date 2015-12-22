@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //listview_content = new ArrayList<String>();
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
         container = (FrameLayout) findViewById(R.id.fragment_container);
         share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
