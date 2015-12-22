@@ -38,4 +38,11 @@
     <string name="display">نمایش دوباره</string>
     <string name="confirm">تایید</string>
     <string name="send">ارسال</string>
+
+    <!--
+    these strings are for listviewItems
+    -->
+    <string name="deleted">Deleted</string>
+    <string name="undo">UNDO</string>
+
 </resources>
