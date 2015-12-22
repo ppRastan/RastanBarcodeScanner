@@ -42,7 +42,7 @@
     <!--
     these strings are for listviewItems
     -->
-    <string name="deleted">Deleted</string>
-    <string name="undo">UNDO</string>
+    <string name="deleted">حذف</string>
+    <string name="undo">انصراف</string>
 
 </resources>

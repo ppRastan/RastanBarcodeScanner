@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity
     private FrameLayout container;
     private LinearLayout temp_linear_for_checkbox;
     private Button select_all_checkboxes;
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    private MainFragmentHandeler imainFragmentHandler;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -85,6 +88,19 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        /*
+          *we have a mainFragment in this class called container and we will replace add fragments in it
+          * in fact the mainActivity contains all other fragments
+          * in this way we have one navigationDrawer and one Fab button
+          * just handle fragments by button actionlistener
+          * by default MainFragmentHandler take place of container
+         */
+        fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        imainFragmentHandler = new MainFragmentHandeler();
+        fragmentTransaction.add(R.id.fragment_container, imainFragmentHandler);
+        fragmentTransaction.commit();
+
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
         container = (FrameLayout) findViewById(R.id.fragment_container);
         share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
