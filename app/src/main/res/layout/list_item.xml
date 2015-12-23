@@ -4,13 +4,32 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <TextView android:background="@android:color/white" android:id="@+id/txt_data" android:layout_height="wrap_content"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="4">
+    <CheckBox
+        android:background="@android:color/white"
+        android:id="@+id/listview_checkbox"
+        android:layout_height="30dp"
         android:layout_width="match_parent"
         android:paddingRight="@dimen/list_item_padding_sides"
         android:paddingLeft="@dimen/list_item_padding_sides"
         android:gravity="center_vertical"
-        android:height="@dimen/list_item_height"/>
+        android:height="@dimen/list_item_height"
+        android:layout_weight="1"/>
+    <TextView android:background="@android:color/white"
+        android:id="@+id/txt_data"
+        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:paddingRight="@dimen/list_item_padding_sides"
+        android:paddingLeft="@dimen/list_item_padding_sides"
+        android:gravity="center_vertical"
+        android:height="@dimen/list_item_height"
+        android:layout_weight="3"/>
+
+</LinearLayout>
 
     <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"
