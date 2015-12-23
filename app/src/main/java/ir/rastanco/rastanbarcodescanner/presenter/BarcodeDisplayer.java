@@ -80,22 +80,22 @@ public class BarcodeDisplayer extends Fragment {
         private final List<String> mDataSet = new ArrayList<>();
 
         MyBaseAdapter() {
-            mDataSet.add("file 1");
-            mDataSet.add("file 2");
-            mDataSet.add("file 3");
-            mDataSet.add("file 4");
-            mDataSet.add("file 5");
-            mDataSet.add("file 6");
-            mDataSet.add("file 7");
-            mDataSet.add("file 8");
-            mDataSet.add("file 9");
-            mDataSet.add("file 10");
-            mDataSet.add("file 11");
-            mDataSet.add("file 12");
-            mDataSet.add("file 13");
-            mDataSet.add("file 14");
-            mDataSet.add("file 15");
-            mDataSet.add("file 16");
+            mDataSet.add("barcode 1");
+            mDataSet.add("barcode 2");
+            mDataSet.add("barcode 3");
+            mDataSet.add("barcode 4");
+            mDataSet.add("barcode 5");
+            mDataSet.add("barcode 6");
+            mDataSet.add("barcode 7");
+            mDataSet.add("barcode 8");
+            mDataSet.add("barcode 9");
+            mDataSet.add("barcode 10");
+            mDataSet.add("barcode 11");
+            mDataSet.add("barcode 12");
+            mDataSet.add("barcode 13");
+            mDataSet.add("barcode 14");
+            mDataSet.add("barcode 15");
+            mDataSet.add("barcode 16");
         }
 
         @Override
