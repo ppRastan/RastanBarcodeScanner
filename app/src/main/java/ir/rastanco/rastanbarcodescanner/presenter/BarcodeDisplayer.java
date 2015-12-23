@@ -2,6 +2,8 @@ package ir.rastanco.rastanbarcodescanner.presenter;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
+import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
 import ir.rastanco.rastanbarcodescanner.Utility.ListViewAdapter;
+import ir.rastanco.rastanbarcodescanner.Utility.OnItemClickListener;
+import ir.rastanco.rastanbarcodescanner.Utility.RecyclerViewAdapter;
 import ir.rastanco.rastanbarcodescanner.Utility.SwipeToDismissTouchListener;
+import ir.rastanco.rastanbarcodescanner.Utility.SwipeableItemClickListener;
 
 /**
  * Created by ParisaRashidhi on 22/12/2015.
@@ -24,112 +30,105 @@ import ir.rastanco.rastanbarcodescanner.Utility.SwipeToDismissTouchListener;
 public class BarcodeDisplayer extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.main_fragment_handler, null);
-        init((ListView) v.findViewById(R.id.list_view));
+        View v = inflater.inflate(R.layout.activity_recycler_view, null);
+        init((RecyclerView) v.findViewById(R.id.recycler_view));
         return v;
     }
-    private void init(ListView listView)
-    {
+    private void init(RecyclerView recyclerView) {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
+        recyclerView.setLayoutManager(mLayoutManager);
         final MyBaseAdapter adapter = new MyBaseAdapter();
-        listView.setAdapter(adapter);
-        final SwipeToDismissTouchListener<ListViewAdapter> touchListener =
+        recyclerView.setAdapter(adapter);
+        final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
                 new SwipeToDismissTouchListener<>(
-                        new ListViewAdapter(listView),
-                        new SwipeToDismissTouchListener.DismissCallbacks<ListViewAdapter>() {
+                        new RecyclerViewAdapter(recyclerView),
+                        new SwipeToDismissTouchListener.DismissCallbacks<RecyclerViewAdapter>() {
                             @Override
                             public boolean canDismiss(int position) {
                                 return true;
                             }
 
                             @Override
-                            public void onDismiss(ListViewAdapter view, int position) {
+                            public void onDismiss(RecyclerViewAdapter view, int position) {
                                 adapter.remove(position);
                             }
                         });
-        listView.setOnTouchListener(touchListener);
+
+        recyclerView.setOnTouchListener(touchListener);
         // Setting this scroll listener is required to ensure that during ListView scrolling,
         // we don't look for swipes.
-        listView.setOnScrollListener((AbsListView.OnScrollListener) touchListener.makeScrollListener());
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (touchListener.existPendingDismisses()) {
-                    touchListener.undoPendingDismiss();
-                }
-            }
-        });
+        recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
+        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(Configuration.activityContext,
+                new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        if (view.getId() == R.id.txt_delete) {
+                            touchListener.processPendingDismisses();
+                        } else if (view.getId() == R.id.txt_undo) {
+                            touchListener.undoPendingDismiss();
+                        } else { // R.id.txt_data
+
+                        }
+                    }
+                }));
     }
 
-    static class MyBaseAdapter extends BaseAdapter {
+    static class MyBaseAdapter extends RecyclerView.Adapter<MyBaseAdapter.MyViewHolder> {
 
         private static final int SIZE = 100;
 
         private final List<String> mDataSet = new ArrayList<>();
 
         MyBaseAdapter() {
-            //TODO add files from database to listview by mDataSet.addAll();
-            mDataSet.add("barcode 1");
-            mDataSet.add("barcode 2");
-            mDataSet.add("barcode 3");
-            mDataSet.add("barcode 4");
-            mDataSet.add("barcode 5");
-            mDataSet.add("barcode 6");
-            mDataSet.add("barcode 7");
-            mDataSet.add("barcode 8");
-            mDataSet.add("barcode 9");
-            mDataSet.add("barcode 10");
-            mDataSet.add("barcode 11");
-            mDataSet.add("barcode 12");
-            mDataSet.add("barcode 13");
-            mDataSet.add("barcode 14");
-            mDataSet.add("barcode 15");
-            mDataSet.add("barcode 16");
-            mDataSet.add("barcode 17");
-            mDataSet.add("barcode 18");
-            mDataSet.add("barcode 19");
-            mDataSet.add("barcode 20");
-            mDataSet.add("barcode 21");
+            mDataSet.add("file 1");
+            mDataSet.add("file 2");
+            mDataSet.add("file 3");
+            mDataSet.add("file 4");
+            mDataSet.add("file 5");
+            mDataSet.add("file 6");
+            mDataSet.add("file 7");
+            mDataSet.add("file 8");
+            mDataSet.add("file 9");
+            mDataSet.add("file 10");
+            mDataSet.add("file 11");
+            mDataSet.add("file 12");
+            mDataSet.add("file 13");
+            mDataSet.add("file 14");
+            mDataSet.add("file 15");
+            mDataSet.add("file 16");
         }
 
         @Override
-        public int getCount() {
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int position) {
+            return new MyViewHolder(LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.list_item, parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(MyViewHolder holder, int position) {
+            holder.dataTextView.setText(mDataSet.get(position));
+        }
+
+        @Override
+        public int getItemCount() {
             return mDataSet.size();
-        }
-
-        @Override
-        public String getItem(int position) {
-            return mDataSet.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
         }
 
         public void remove(int position) {
             mDataSet.remove(position);
-            notifyDataSetChanged();
+            notifyItemRemoved(position);
         }
 
-        static class ViewHolder {
+        static class MyViewHolder extends RecyclerView.ViewHolder {
+
             TextView dataTextView;
-            ViewHolder(View view) {
+            MyViewHolder(View view) {
+                super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
-                view.setTag(this);
             }
         }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            ViewHolder viewHolder = convertView == null
-                    ? new ViewHolder(convertView = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.list_item, parent, false))
-                    : (ViewHolder) convertView.getTag();
-
-            viewHolder.dataTextView.setText(mDataSet.get(position));
-            return convertView;
-        }
     }
+
 }
+
 

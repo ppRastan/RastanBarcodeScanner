@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private MainFragmentHandler mainFragmentHandler;
+    private BarcodeDisplayer barcodeDisplayer;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -101,6 +102,12 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
         fragmentTransaction.commit();
 
+      /*  fragmentManager = getFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        barcodeDisplayer = new BarcodeDisplayer();
+        fragmentTransaction.add(R.id.fragment_container,barcodeDisplayer);
+        fragmentTransaction.commit();
+*/
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
         container = (FrameLayout) findViewById(R.id.fragment_container);
         share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
