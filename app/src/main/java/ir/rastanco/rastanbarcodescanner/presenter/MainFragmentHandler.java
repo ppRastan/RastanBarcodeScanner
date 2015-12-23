@@ -1,8 +1,6 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
-import android.annotation.TargetApi;
 import android.app.Fragment;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +14,10 @@ import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
+import ir.rastanco.rastanbarcodescanner.Utility.OnItemClickListener;
+import ir.rastanco.rastanbarcodescanner.Utility.RecyclerViewAdapter;
+import ir.rastanco.rastanbarcodescanner.Utility.SwipeToDismissTouchListener;
+import ir.rastanco.rastanbarcodescanner.Utility.SwipeableItemClickListener;
 
 /**
  * Created by ParisaRashidhi on 23/12/2015.

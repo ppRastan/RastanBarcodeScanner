@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
+import ir.rastanco.rastanbarcodescanner.Utility.ListViewAdapter;
+import ir.rastanco.rastanbarcodescanner.Utility.SwipeToDismissTouchListener;
 
 /**
  * Created by ParisaRashidhi on 22/12/2015.

@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter;
+package ir.rastanco.rastanbarcodescanner.Utility;
 
 import android.content.Context;
 import android.support.v4.view.ViewCompat;
