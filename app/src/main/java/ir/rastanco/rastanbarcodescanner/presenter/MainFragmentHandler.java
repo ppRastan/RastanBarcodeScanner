@@ -1,6 +1,8 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
-import android.app.Activity;
+import android.annotation.TargetApi;
+import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,27 +10,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
-public class RecyclerViewActivity extends Activity {
+/**
+ * Created by ParisaRashidhi on 23/12/2015.
+ */
+public class MainFragmentHandler extends Fragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recycler_view);
-        init((RecyclerView) findViewById(R.id.recycler_view));
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.activity_recycler_view, null);
+        init((RecyclerView) v.findViewById(R.id.recycler_view));
+        return v;
     }
-
+    @TargetApi(Build.VERSION_CODES.M)
     private void init(RecyclerView recyclerView) {
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
         final MyBaseAdapter adapter = new MyBaseAdapter();
         recyclerView.setAdapter(adapter);
@@ -51,7 +52,7 @@ public class RecyclerViewActivity extends Activity {
         // Setting this scroll listener is required to ensure that during ListView scrolling,
         // we don't look for swipes.
         recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
-        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(this,
+        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(getContext(),
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
@@ -60,7 +61,7 @@ public class RecyclerViewActivity extends Activity {
                         } else if (view.getId() == R.id.txt_undo) {
                             touchListener.undoPendingDismiss();
                         } else { // R.id.txt_data
-                            Toast.makeText(RecyclerViewActivity.this, "Position " + position, LENGTH_SHORT).show();
+
                         }
                     }
                 }));
@@ -73,14 +74,22 @@ public class RecyclerViewActivity extends Activity {
         private final List<String> mDataSet = new ArrayList<>();
 
         MyBaseAdapter() {
-            //for (int i = 0; i < SIZE; i++)
-            //  mDataSet.add(i, "This is row number " + i);
             mDataSet.add("file 1");
             mDataSet.add("file 2");
             mDataSet.add("file 3");
             mDataSet.add("file 4");
             mDataSet.add("file 5");
             mDataSet.add("file 6");
+            mDataSet.add("file 7");
+            mDataSet.add("file 8");
+            mDataSet.add("file 9");
+            mDataSet.add("file 10");
+            mDataSet.add("file 11");
+            mDataSet.add("file 12");
+            mDataSet.add("file 13");
+            mDataSet.add("file 14");
+            mDataSet.add("file 15");
+            mDataSet.add("file 16");
         }
 
         @Override
@@ -115,3 +124,5 @@ public class RecyclerViewActivity extends Activity {
     }
 
 }
+
+

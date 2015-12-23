@@ -35,13 +35,7 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <activity android:name=".presenter.RecyclerViewActivity">
-            <intent-filter>
-                <action android:name="com.example.parisarashidhi.presenter.RecyclerViewActivity" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
 
     </application>
 

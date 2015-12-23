@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
     private Button select_all_checkboxes;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private MainFragmentHandeler imainFragmentHandler;
+    private MainFragmentHandler mainFragmentHandler;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity
          */
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        imainFragmentHandler = new MainFragmentHandeler();
-        fragmentTransaction.add(R.id.fragment_container, imainFragmentHandler);
+        mainFragmentHandler = new MainFragmentHandler();
+        fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
         fragmentTransaction.commit();
 
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);

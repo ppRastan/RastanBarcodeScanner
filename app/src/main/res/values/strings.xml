@@ -44,5 +44,6 @@
     -->
     <string name="deleted">حذف</string>
     <string name="undo">انصراف</string>
+    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
 
 </resources>
