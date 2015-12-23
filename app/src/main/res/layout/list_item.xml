@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <FrameLayout android:background="@color/gray_background"
     android:id="@+id/lyt_container"
     android:layout_height="wrap_content"
@@ -12,7 +11,6 @@
         android:paddingLeft="@dimen/list_item_padding_sides"
         android:gravity="center_vertical"
         android:height="@dimen/list_item_height"/>
-
 
     <LinearLayout android:layout_height="match_parent"
         android:layout_width="match_parent"

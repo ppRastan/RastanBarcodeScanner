@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
+import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
 
 /**
  * Created by ParisaRashidhi on 23/12/2015.
@@ -27,9 +28,8 @@ public class MainFragmentHandler extends Fragment {
         init((RecyclerView) v.findViewById(R.id.recycler_view));
         return v;
     }
-    @TargetApi(Build.VERSION_CODES.M)
     private void init(RecyclerView recyclerView) {
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
         final MyBaseAdapter adapter = new MyBaseAdapter();
         recyclerView.setAdapter(adapter);
@@ -52,7 +52,7 @@ public class MainFragmentHandler extends Fragment {
         // Setting this scroll listener is required to ensure that during ListView scrolling,
         // we don't look for swipes.
         recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
-        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(getContext(),
+        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(Configuration.activityContext,
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
