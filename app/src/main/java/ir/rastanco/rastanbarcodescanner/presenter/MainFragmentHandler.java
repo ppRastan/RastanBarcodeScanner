@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import ir.rastanco.rastanbarcodescanner.Utility.SwipeableItemClickListener;
  */
 public class MainFragmentHandler extends Fragment {
 
+    View v;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_recycler_view, null);
@@ -71,11 +73,11 @@ public class MainFragmentHandler extends Fragment {
 
     static class MyBaseAdapter extends RecyclerView.Adapter<MyBaseAdapter.MyViewHolder> {
 
-        private static final int SIZE = 100;
 
         private final List<String> mDataSet = new ArrayList<>();
 
         MyBaseAdapter() {
+
             mDataSet.add("file 1");
             mDataSet.add("file 2");
             mDataSet.add("file 3");
@@ -99,6 +101,8 @@ public class MainFragmentHandler extends Fragment {
             return new MyViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.list_item, parent, false));
         }
+
+
 
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {

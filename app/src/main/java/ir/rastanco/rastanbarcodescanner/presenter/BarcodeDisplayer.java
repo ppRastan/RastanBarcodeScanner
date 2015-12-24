@@ -80,6 +80,7 @@ public class BarcodeDisplayer extends Fragment {
         private final List<String> mDataSet = new ArrayList<>();
 
         MyBaseAdapter() {
+
             mDataSet.add("barcode 1");
             mDataSet.add("barcode 2");
             mDataSet.add("barcode 3");

@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity
     private FragmentTransaction fragmentTransaction;
     private MainFragmentHandler mainFragmentHandler;
     private BarcodeDisplayer barcodeDisplayer;
+    private boolean isCheckboxToolbarChecked = false;
+    private ListViewItemsManagement listViewItemsManagement;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -101,7 +105,8 @@ public class MainActivity extends AppCompatActivity
         mainFragmentHandler = new MainFragmentHandler();
         fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
         fragmentTransaction.commit();
-
+        listViewItemsManagement = new ListViewItemsManagement();
+        listViewItemsManagement.CheckboxState(isCheckboxToolbarChecked);
       /*  fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         barcodeDisplayer = new BarcodeDisplayer();
@@ -116,6 +121,7 @@ public class MainActivity extends AppCompatActivity
         checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
         sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
+        listViewItemsManagement = new ListViewItemsManagement();
 
         share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +173,8 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 temp_linear_for_checkbox.setVisibility(View.VISIBLE);
+                isCheckboxToolbarChecked = true;
+                listViewItemsManagement.CheckboxState(isCheckboxToolbarChecked);
 
             }
         });
