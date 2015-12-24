@@ -7,10 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,20 +14,24 @@ import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
-import ir.rastanco.rastanbarcodescanner.Utility.ListViewAdapter;
 import ir.rastanco.rastanbarcodescanner.Utility.OnItemClickListener;
 import ir.rastanco.rastanbarcodescanner.Utility.RecyclerViewAdapter;
 import ir.rastanco.rastanbarcodescanner.Utility.SwipeToDismissTouchListener;
 import ir.rastanco.rastanbarcodescanner.Utility.SwipeableItemClickListener;
+import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
 
 /**
  * Created by ParisaRashidhi on 22/12/2015.
  */
 public class BarcodeDisplayer extends Fragment {
+    public ArrayList<Barcode> allBarcode;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_recycler_view, null);
         init((RecyclerView) v.findViewById(R.id.recycler_view));
+        allBarcode=new ArrayList<Barcode>();
+        allBarcode= (ArrayList<Barcode>) getArguments().getSerializable("allBarcode");
+        System.out.println("بار کد در فرگمنت:" + allBarcode.get(0).getContent());
         return v;
     }
     private void init(RecyclerView recyclerView) {
@@ -76,7 +76,6 @@ public class BarcodeDisplayer extends Fragment {
     static class MyBaseAdapter extends RecyclerView.Adapter<MyBaseAdapter.MyViewHolder> {
 
         private static final int SIZE = 100;
-
         private final List<String> mDataSet = new ArrayList<>();
 
         MyBaseAdapter() {
