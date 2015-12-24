@@ -1,6 +1,7 @@
 package ir.rastanco.rastanbarcodescanner.Utility;
 
 import android.content.Context;
+import android.widget.CheckBox;
 
 import ir.rastanco.rastanbarcodescanner.R;
 

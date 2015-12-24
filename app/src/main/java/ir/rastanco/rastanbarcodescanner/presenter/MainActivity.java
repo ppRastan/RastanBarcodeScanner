@@ -17,23 +17,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.R;
-import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
 
 /*
 created by parisaRashidi  on 94/9/27
  this is MainActivity for RastanBarcodeScanner witch handele toolbars actions
  */
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private String state = "default";
     private boolean sort_mode = true ;
@@ -51,8 +54,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FragmentTransaction fragmentTransaction;
     private MainFragmentHandler mainFragmentHandler;
     private BarcodeDisplayer barcodeDisplayer;
-    private boolean isCheckboxToolbarChecked = false;
-    private ListViewItemsManagement listViewItemsManagement;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 Intent iBarcodeReader = new Intent(MainActivity.this, BarcodeReadingActivity.class);
                 startActivity(iBarcodeReader);
+                //here
             }
         });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,11 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          */
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        mainFragmentHandler = new MainFragmentHandler();
         fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
         fragmentTransaction.commit();
-        listViewItemsManagement = new ListViewItemsManagement();
-        //listViewItemsManagement.CheckboxState(isCheckboxToolbarChecked);
       /*  fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         barcodeDisplayer = new BarcodeDisplayer();
@@ -117,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
         sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
-        listViewItemsManagement = new ListViewItemsManagement();
 
         share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,25 +152,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     fragmentTransaction.add(R.id.fragment_container, sortAToZ, "HELLO");
                     fragmentTransaction.commit();
                     sort_mode = false ;
+
                 }
                 else if(sort_mode == false){
 
                     change_image_sort.setImageResource(R.drawable.ic_sort_icon);
                     sort_mode = true;
                 }
-            }
+                            }
         });
+
 
         checkBox_toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 temp_linear_for_checkbox.setVisibility(View.VISIBLE);
-                isCheckboxToolbarChecked = true;
-                listViewItemsManagement.CheckboxState(isCheckboxToolbarChecked);
-                CheckBox lstvCheckBox=(CheckBox)findViewById(Configuration.listItemCheckBox);
-                lstvCheckBox.setVisibility(View.VISIBLE);
+
             }
         });
+
 
         showFiles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -246,11 +244,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onStart() {
         super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        /*client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://ir.rastanco.rastanbarcodescanner.presenter/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);*/
     }
 
     @Override
     public void onStop() {
         super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+       /* Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://ir.rastanco.rastanbarcodescanner.presenter/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();*/
     }
 
 }
