@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,14 +19,22 @@ import ir.rastanco.rastanbarcodescanner.Utility.OnItemClickListener;
 import ir.rastanco.rastanbarcodescanner.Utility.RecyclerViewAdapter;
 import ir.rastanco.rastanbarcodescanner.Utility.SwipeToDismissTouchListener;
 import ir.rastanco.rastanbarcodescanner.Utility.SwipeableItemClickListener;
+import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 
 /**
  * Created by ParisaRashidhi on 23/12/2015.
  */
 public class MainFragmentHandler extends Fragment {
 
+    private ArrayList<FileInfo> allFileInfo;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        allFileInfo=new ArrayList<FileInfo>();
+        allFileInfo= (ArrayList<FileInfo>) getArguments().getSerializable("allFileInfo");
+
         View v = inflater.inflate(R.layout.activity_recycler_view, null);
         init((RecyclerView) v.findViewById(R.id.recycler_view));
         return v;
@@ -34,7 +42,7 @@ public class MainFragmentHandler extends Fragment {
     private void init(RecyclerView recyclerView) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
-        final MyBaseAdapter adapter = new MyBaseAdapter();
+        final MyBaseAdapter adapter = new MyBaseAdapter(allFileInfo);
         recyclerView.setAdapter(adapter);
         final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
                 new SwipeToDismissTouchListener<>(
@@ -74,25 +82,18 @@ public class MainFragmentHandler extends Fragment {
 
 
         private final List<String> mDataSet = new ArrayList<>();
+        private final List<Integer> typeFile=new ArrayList<>();
 
-        MyBaseAdapter() {
+        MyBaseAdapter(ArrayList<FileInfo> allFileInfo) {
 
-            mDataSet.add("file 1");
-            mDataSet.add("file 2");
-            mDataSet.add("file 3");
-            mDataSet.add("file 4");
-            mDataSet.add("file 5");
-            mDataSet.add("file 6");
-            mDataSet.add("file 7");
-            mDataSet.add("file 8");
-            mDataSet.add("file 9");
-            mDataSet.add("file 10");
-            mDataSet.add("file 11");
-            mDataSet.add("file 12");
-            mDataSet.add("file 13");
-            mDataSet.add("file 14");
-            mDataSet.add("file 15");
-            mDataSet.add("file 16");
+            for (int i=0;i<allFileInfo.size();i++) {
+                mDataSet.add(allFileInfo.get(i).getFileName());
+                if(allFileInfo.get(i).getFileType().equals(".docx"))
+                    typeFile.add(R.drawable.ic_word);
+                else if(allFileInfo.get(i).getFileType().equals(".xlsx"))
+                    typeFile.add(R.drawable.ic_excel);
+            }
+
         }
 
         @Override
@@ -103,6 +104,7 @@ public class MainFragmentHandler extends Fragment {
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             holder.dataTextView.setText(mDataSet.get(position));
+            holder.iconImageView.setImageResource(typeFile.get(position));
         }
 
         @Override
@@ -118,9 +120,11 @@ public class MainFragmentHandler extends Fragment {
         static class MyViewHolder extends RecyclerView.ViewHolder {
 
             TextView dataTextView;
+            ImageView iconImageView;
             MyViewHolder(View view) {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
+                iconImageView=(ImageView)view.findViewById(R.id.img_icon);
             }
         }
     }

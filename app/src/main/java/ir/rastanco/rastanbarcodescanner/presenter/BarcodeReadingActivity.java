@@ -1,8 +1,6 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
 import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
@@ -76,7 +74,7 @@ public class BarcodeReadingActivity extends Activity {
         scanner.setConfig(0, Config.Y_DENSITY, 3);
 
         mPreview = new CameraPreview(this, mCamera, previewCb, autoFocusCB);
-        FrameLayout preview = (FrameLayout) findViewById(R.id.cameraPreview);
+        final FrameLayout preview = (FrameLayout) findViewById(R.id.cameraPreview);
         preview.addView(mPreview);
 
         imgBarecode.setOnClickListener(new View.OnClickListener() {
@@ -96,20 +94,10 @@ public class BarcodeReadingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Bundle bundle=new Bundle();
-                FragmentManager fragmentManager = getFragmentManager();
                 bundle.putSerializable("allBarcode", allBarcode);
-                BarcodeDisplayer barcodeDisplayer=new BarcodeDisplayer();
-                barcodeDisplayer.setArguments(bundle);
-                fragmentManager.popBackStack();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.cameraPreview, barcodeDisplayer);
-                fragmentTransaction.commit();
-                /*Intent intent=new Intent(BarcodeReadingActivity.this,DisplayBarcodeNumbersActivity.class);
-                intent.putExtras(bundle);
-                startActivity(intent);
-                mPreview.getHolder().removeCallback(mPreview);
-                /*Intent intent = new Intent(BarcodeReadingActivity.this, ChooseNameActivity.class);
-                startActivity(intent);*/
+                Intent iDisplayBarcode=new Intent(BarcodeReadingActivity.this,BarcodeDisplayer.class);
+                iDisplayBarcode.putExtras(bundle);
+                startActivity(iDisplayBarcode);
             }
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.

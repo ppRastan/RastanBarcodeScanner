@@ -1,10 +1,12 @@
 package ir.rastanco.rastanbarcodescanner.dataModel;
 
+import java.io.Serializable;
+
 /**
  * Created by ShaisteS on 12/12/2015.
  * This class is packaging File information that save in user mobile.
  */
-public class FileInfo {
+public class FileInfo implements Serializable {
     private String fileName;
     private String fileType;
     private String dateModified;

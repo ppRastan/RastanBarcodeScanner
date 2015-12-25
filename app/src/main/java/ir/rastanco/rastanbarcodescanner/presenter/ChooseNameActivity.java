@@ -1,7 +1,5 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -67,8 +65,8 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         final Spinner spinner = (Spinner) findViewById(R.id.spin_fileType);
         spinner.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
-        categories.add(".doxc");
-        categories.add(".xslx");
+        categories.add(".docx");
+        categories.add(".xlsx");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
@@ -105,33 +103,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
                         currentDateAndTime);
                 dbHandler.insertAFileInfo(fileInfoSave);
                 actvFileName.setText("");
-                //TODO add this alertDialog as btnSave ActionListener
-/*
-     AlertDialog.Builder builder = new AlertDialog.Builder(ChooseNameActivity.this);
-                builder.setTitle(getResources().getString(R.string.savingfile));
-                builder.setIcon(R.mipmap.ic_launcher);
-                builder.setItems(new CharSequence[]
-                                {
-                                        getResources().getString(R.string.display),
-                                        getResources().getString(R.string.confirm),
-                                        getResources().getString(R.string.sent)},
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case 0:
-                                        startActivity(new Intent(ChooseNameActivity.this,ChooseNameActivity.class));
-                                    case 1:
-                                        //TODO dont show this file again and just save in database
-                                        break;
-                                    case 2:
-                                        //TODO share file
-                                        break;
-                                }
-                            }
-                        });
-                builder.create().show();
 
- */
             }
         });
     }

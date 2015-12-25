@@ -1,12 +1,16 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
-import android.app.Fragment;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,21 +27,42 @@ import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
 /**
  * Created by ParisaRashidhi on 22/12/2015.
  */
-public class BarcodeDisplayer extends Fragment {
-    public ArrayList<Barcode> allBarcode;
+public class BarcodeDisplayer extends Activity {
+
+    private ArrayList<Barcode> allBarcode;
+    private Button btnSave;
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_recycler_view, null);
-        init((RecyclerView) v.findViewById(R.id.recycler_view));
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
+
         allBarcode=new ArrayList<Barcode>();
-        allBarcode= (ArrayList<Barcode>) getArguments().getSerializable("allBarcode");
-        System.out.println("بار کد در فرگمنت:" + allBarcode.get(0).getContent());
-        return v;
+        allBarcode= (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("allBarcode");
+        setContentView(R.layout.activity_barcode_display);
+        init((RecyclerView) findViewById(R.id.recycler_view));
+
+        btnSave=(Button)findViewById(R.id.btn_save);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent iChooseName=new Intent(BarcodeDisplayer.this,ChooseNameActivity.class);
+                startActivity(iChooseName);
+
+            }
+        });
+
+
+
     }
     private void init(RecyclerView recyclerView) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
-        final MyBaseAdapter adapter = new MyBaseAdapter();
+        final MyBaseAdapter adapter = new MyBaseAdapter(allBarcode);
         recyclerView.setAdapter(adapter);
         final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
                 new SwipeToDismissTouchListener<>(
@@ -78,24 +103,11 @@ public class BarcodeDisplayer extends Fragment {
         private static final int SIZE = 100;
         private final List<String> mDataSet = new ArrayList<>();
 
-        MyBaseAdapter() {
+        MyBaseAdapter(ArrayList<Barcode> allBarcode) {
 
-            mDataSet.add("barcode 1");
-            mDataSet.add("barcode 2");
-            mDataSet.add("barcode 3");
-            mDataSet.add("barcode 4");
-            mDataSet.add("barcode 5");
-            mDataSet.add("barcode 6");
-            mDataSet.add("barcode 7");
-            mDataSet.add("barcode 8");
-            mDataSet.add("barcode 9");
-            mDataSet.add("barcode 10");
-            mDataSet.add("barcode 11");
-            mDataSet.add("barcode 12");
-            mDataSet.add("barcode 13");
-            mDataSet.add("barcode 14");
-            mDataSet.add("barcode 15");
-            mDataSet.add("barcode 16");
+            for (int i=0;i<allBarcode.size();i++)
+                mDataSet.add(allBarcode.get(i).getContent());
+
         }
 
         @Override
@@ -107,6 +119,7 @@ public class BarcodeDisplayer extends Fragment {
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             holder.dataTextView.setText(mDataSet.get(position));
+            holder.iconImageView.setImageResource(R.drawable.ic_action);
         }
 
         @Override
@@ -122,9 +135,11 @@ public class BarcodeDisplayer extends Fragment {
         static class MyViewHolder extends RecyclerView.ViewHolder {
 
             TextView dataTextView;
+            ImageView iconImageView;
             MyViewHolder(View view) {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
+                iconImageView=(ImageView)view.findViewById(R.id.img_icon);
             }
         }
     }

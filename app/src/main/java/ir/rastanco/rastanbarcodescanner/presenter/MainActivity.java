@@ -17,19 +17,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.R;
+import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
+import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 
 /*
 created by parisaRashidi  on 94/9/27
@@ -37,6 +37,9 @@ created by parisaRashidi  on 94/9/27
  */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DataBaseHandler dbHandler;
+    private ArrayList<FileInfo> allFileInfo;
 
     private String state = "default";
     private boolean sort_mode = true ;
@@ -72,6 +75,10 @@ public class MainActivity extends AppCompatActivity
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
 
+        dbHandler=new DataBaseHandler(this);
+        allFileInfo=new ArrayList<FileInfo>();
+        allFileInfo=dbHandler.selectAllFileInfo();
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -98,9 +105,12 @@ public class MainActivity extends AppCompatActivity
           * just handle fragments by button actionlistener
           * by default MainFragmentHandler take place of container
          */
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("allFileInfo", allFileInfo);
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         mainFragmentHandler = new MainFragmentHandler();
+        mainFragmentHandler.setArguments(bundle);
         fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
         fragmentTransaction.commit();
       /*  fragmentManager = getFragmentManager();
