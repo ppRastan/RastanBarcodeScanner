@@ -157,11 +157,7 @@ public class MainActivity extends AppCompatActivity
                 if(sort_mode == true){
                     change_image_sort = (ImageButton) findViewById(R.id.sort_toolbar);
                     change_image_sort.setImageResource(R.drawable.ic_sort_a_to_z);
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    SheredFiles sortAToZ = new SheredFiles();
-                    fragmentTransaction.add(R.id.fragment_container, sortAToZ, "HELLO");
-                    fragmentTransaction.commit();
+
                     sort_mode = false ;
 
                 }
@@ -229,11 +225,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_my_files) {
             startActivity(new Intent(MainActivity.this, MainActivity.class));
         } else if (id == R.id.nav_have_sent_files) {
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            SheredFiles sheredFiles = new SheredFiles();
-            fragmentTransaction.add(R.id.fragment_container, sheredFiles, "HELLO");
-            fragmentTransaction.commit();
+
         } else if (id == R.id.nav_send) {
 
             Intent sendIntent = new Intent();
@@ -242,8 +234,6 @@ public class MainActivity extends AppCompatActivity
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 
-        } else if (id == R.id.nav_payment) {
-         //TODO
         }
 
 

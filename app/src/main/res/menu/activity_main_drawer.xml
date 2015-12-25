@@ -10,12 +10,6 @@
         android:id="@+id/nav_have_sent_files"
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="@string/sentFiles" />
-
-    <item
-        android:id="@+id/nav_payment"
-        android:icon="@android:drawable/ic_secure"
-        android:title="@string/inside_payment" />
-
     <item
         android:id="@+id/nav_send"
         android:icon="@android:drawable/ic_menu_share"
