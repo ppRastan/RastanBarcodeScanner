@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    @TargetApi(Build.VERSION_CODES.M)
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,12 +113,7 @@ public class MainActivity extends AppCompatActivity
         mainFragmentHandler.setArguments(bundle);
         fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
         fragmentTransaction.commit();
-      /*  fragmentManager = getFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        barcodeDisplayer = new BarcodeDisplayer();
-        fragmentTransaction.add(R.id.fragment_container,barcodeDisplayer);
-        fragmentTransaction.commit();
-*/
+
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
         container = (FrameLayout) findViewById(R.id.fragment_container);
         share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
