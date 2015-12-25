@@ -26,6 +26,20 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
     }
 
+    public Boolean emptyDB() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor rs = db.rawQuery( "select * from tblFileInfo", null );
+        if (rs.moveToFirst() ) {
+            //Not empty
+            return false;
+        }
+        else
+        {
+            //Is Empty
+            return true;
+        }
+    }
+
     public void insertAFileInfo(FileInfo aFile){
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert("tblFileInfo", null,addFieldToFileInfoTable(aFile));
