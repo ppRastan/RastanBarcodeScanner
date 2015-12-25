@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:weightSum="10"
+    android:weightSum="2"
     android:background="@android:color/white">
     <CheckBox
         android:background="@android:color/white"
@@ -19,7 +19,7 @@
         android:paddingLeft="@dimen/list_item_padding_sides"
         android:gravity="center_vertical"
         android:height="@dimen/list_item_height"
-        android:layout_weight="8"
+        android:layout_weight="1"
         android:visibility="invisible" />
     <TextView android:background="@android:color/white"
         android:id="@+id/txt_data"
@@ -29,7 +29,7 @@
         android:paddingLeft="@dimen/list_item_padding_sides"
         android:gravity="center_vertical"
         android:height="@dimen/list_item_height"
-        android:layout_weight="2"/>
+        android:layout_weight="1"/>
 
 </LinearLayout>
 

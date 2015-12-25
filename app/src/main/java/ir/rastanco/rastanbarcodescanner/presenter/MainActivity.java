@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity
          */
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+        mainFragmentHandler = new MainFragmentHandler();
         fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
         fragmentTransaction.commit();
       /*  fragmentManager = getFragmentManager();
