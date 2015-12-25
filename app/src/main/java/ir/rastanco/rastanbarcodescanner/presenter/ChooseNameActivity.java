@@ -1,7 +1,5 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -67,7 +65,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         final Spinner spinner = (Spinner) findViewById(R.id.spin_fileType);
         spinner.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
-        categories.add(".docx");
+        categories.add(".txt");
         categories.add(".xlsx");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

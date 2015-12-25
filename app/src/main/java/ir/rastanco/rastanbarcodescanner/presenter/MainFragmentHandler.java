@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -89,8 +88,8 @@ public class MainFragmentHandler extends Fragment {
 
             for (int i=0;i<allFileInfo.size();i++) {
                 mDataSet.add(allFileInfo.get(i).getFileName());
-                if(allFileInfo.get(i).getFileType().equals(".docx"))
-                    typeFile.add(R.drawable.ic_word);
+                if(allFileInfo.get(i).getFileType().equals(".txt"))
+                    typeFile.add(R.drawable.ic_txt);
                 else if(allFileInfo.get(i).getFileType().equals(".xlsx"))
                     typeFile.add(R.drawable.ic_excel);
             }
