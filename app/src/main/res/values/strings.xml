@@ -34,10 +34,10 @@
     <!--
      these strings are for ChooseNameActivity
     -->
-    <string name="savingfile">ذخیره فایل</string>
-    <string name="display">نمایش دوباره</string>
+    <string name="file_saved">فایل شماذخیره شد</string>
+    <string name="display_current_file">نمایش مجددفایل</string>
     <string name="confirm">تایید</string>
-    <string name="send">ارسال</string>
+    <string name="share_current_file">ارسال</string>
 
     <!--
     these strings are for listviewItems
