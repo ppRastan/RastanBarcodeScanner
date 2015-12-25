@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity
 
     private DataBaseHandler dbHandler;
     private ArrayList<FileInfo> allFileInfo;
-
     private String state = "default";
     private boolean sort_mode = true ;
     private Toolbar toolbar;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private MainFragmentHandler mainFragmentHandler;
-    private BarcodeDisplayer barcodeDisplayer;
+    private TextView simple_empty_database_textView;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -105,15 +105,8 @@ public class MainActivity extends AppCompatActivity
           * just handle fragments by button actionlistener
           * by default MainFragmentHandler take place of container
          */
-        Bundle bundle=new Bundle();
-        bundle.putSerializable("allFileInfo", allFileInfo);
-        fragmentManager = getFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        mainFragmentHandler = new MainFragmentHandler();
-        mainFragmentHandler.setArguments(bundle);
-        fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
-        fragmentTransaction.commit();
 
+        simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
         container = (FrameLayout) findViewById(R.id.fragment_container);
         share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
@@ -122,6 +115,26 @@ public class MainActivity extends AppCompatActivity
         checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
         sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
+
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("allFileInfo", allFileInfo);
+        if(dbHandler.emptyDB())
+        {
+            simple_empty_database_textView.setVisibility(View.VISIBLE);
+
+        }
+
+        else
+        {
+            simple_empty_database_textView.setVisibility(View.GONE);
+            fragmentManager = getFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            mainFragmentHandler = new MainFragmentHandler();
+            mainFragmentHandler.setArguments(bundle);
+            fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
+            fragmentTransaction.commit();
+        }
+
 
         share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
