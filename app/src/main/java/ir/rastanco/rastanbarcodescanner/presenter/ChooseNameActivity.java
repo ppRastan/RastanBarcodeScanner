@@ -103,40 +103,6 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
                         currentDateAndTime);
                 dbHandler.insertAFileInfo(fileInfoSave);
                 actvFileName.setText("");
-                //TODO display this AlertDialog after save button clicked
-                 /*
-                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseNameActivity.this);
-                builder.setTitle(getResources().getString(R.string.file_saved));
-                builder.setIcon(R.mipmap.ic_launcher);
-                builder.setItems(new CharSequence[]
-                                {       getResources().getString(R.string.display_current_file),
-                                        getResources().getString(R.string.confirm),
-                                        getResources().getString(R.string.share_current_file)},
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case 0:
-                                         startActivity(new Intent(ChooseNameActivity.this, BarcodeDisplayer.class));
-                                        break;
-                                    case 1:
-                                         //TODO save current file in database with out display
-                                        break;
-                                    case 2: {
-                                        Intent sendIntent = new Intent();
-                                        sendIntent.setAction(Intent.ACTION_SEND);
-                                        sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                                        sendIntent.setType("text/plain");
-                                        startActivity(sendIntent);
-                                    }
-                                    break;
-
-                                }
-                            }
-                        });
-                builder.create().show();
-
-            }
-                           */
 
             }
         });

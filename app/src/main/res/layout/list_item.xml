@@ -48,7 +48,7 @@
         android:paddingRight="@dimen/list_item_padding_sides"
         android:paddingLeft="@dimen/list_item_padding_sides"
         android:height="@dimen/list_item_height"
-        android:weightSum="4"
+        android:weightSum="6"
         android:visibility="gone"
         android:orientation="horizontal">
 
@@ -61,6 +61,16 @@
             android:layout_weight="2"
             android:clickable="false"
             android:text="@string/deleted"/>
+
+        <TextView android:id="@+id/txt_share"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/primary"
+            android:hapticFeedbackEnabled="true"
+            android:layout_weight="2"
+            android:clickable="false"
+            android:text="@string/share_current_file"/>
 
         <TextView android:id="@+id/txt_undo"
             android:layout_height="match_parent"

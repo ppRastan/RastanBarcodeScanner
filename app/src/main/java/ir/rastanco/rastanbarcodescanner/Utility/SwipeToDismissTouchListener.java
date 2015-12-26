@@ -14,6 +14,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class SwipeToDismissTouchListener<SomeCollectionView extends ViewAdapter> implements
         View.OnTouchListener {
@@ -351,7 +352,9 @@ public class SwipeToDismissTouchListener<SomeCollectionView extends ViewAdapter>
         return existPendingDismisses;
     }
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+       public void shareCurrentFile(){
+           //TODO get file path and share
+       }
     private void processPendingDismisses(final PendingDismissData pendingDismissData) {
         mPendingDismiss = null;
         final ViewGroup.LayoutParams lp = pendingDismissData.rowContainer.container.getLayoutParams();

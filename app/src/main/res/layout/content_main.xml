@@ -25,10 +25,7 @@
             android:textSize="20dp"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:paddingBottom="50dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="50dp"
+            android:singleLine="true"
             android:text="@string/no_file_saved"
             android:id="@+id/check_db_state_textView"
             android:visibility="invisible"/>
