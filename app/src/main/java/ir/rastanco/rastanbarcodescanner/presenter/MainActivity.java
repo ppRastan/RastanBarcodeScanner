@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
     private MainFragmentHandler mainFragmentHandler;
     private TextView simple_empty_database_textView;
     private ArrayList<String> filesToSend;
-    private String checkListViewAdapterState;
+    private String checkListViewAdapterState = "displayDefaultListView";
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -110,7 +110,6 @@ public class MainActivity extends AppCompatActivity
           * just handle fragments by button actionlistener
           * by default MainFragmentHandler take place of container
          */
-        checkListViewAdapterState.equals("displayDefaultAdapter");
         simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
         temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
         container = (FrameLayout) findViewById(R.id.fragment_container);
@@ -189,7 +188,7 @@ public class MainActivity extends AppCompatActivity
 
                     change_image_sort.setImageResource(R.drawable.ic_sort_icon);
                     sort_mode = true;
-                    checkListViewAdapterState.equals("displaySortAToZInListView");
+                   // checkListViewAdapterState == "displaySortAToZInListView";
                 }
                             }
         });
@@ -250,7 +249,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_my_files) {
             startActivity(new Intent(MainActivity.this, MainActivity.class));
         } else if (id == R.id.nav_have_sent_files) {
-            checkListViewAdapterState.equals("displaySentFilesInListView");
+            //checkListViewAdapterState.equals("displaySentFilesInListView");
 
         } else if (id == R.id.nav_send) {
 
