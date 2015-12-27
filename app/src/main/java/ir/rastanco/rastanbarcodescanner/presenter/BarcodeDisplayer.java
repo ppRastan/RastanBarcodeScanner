@@ -52,32 +52,8 @@ public class BarcodeDisplayer extends Activity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(BarcodeDisplayer.this);
-                builder.setTitle(getResources().getString(R.string.type_of_file));
-                builder.setIcon(R.mipmap.ic_launcher);
-                builder.setItems(new CharSequence[]
-                                {getResources().getString(R.string.save_az_txt_file), getResources().getString(R.string.save_az_xls_file)},
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    //in both cases we must open ChooseNameActivity
-                                    case 0:
-                                        //TODO add txt file creator
-                                        //startActivity(new Intent(BarcodeDisplayer.this, Confirm.class));
-                                        Intent iChooseName=new Intent(BarcodeDisplayer.this,ChooseNameActivity.class);
-                                        startActivity(iChooseName);
-                                        break;
-                                    case 1:
-                                        //TODO add xls files creator
-                                        //startActivity(new Intent(BarcodeDisplayer.this, Displaying.class));
-                                        iChooseName = new Intent(BarcodeDisplayer.this, ChooseNameActivity.class);
-                                        startActivity(iChooseName);
-                                        break;
-
-                                }
-                            }
-                        });
-                builder.create().show();
+                Intent iChooseName=new Intent(BarcodeDisplayer.this,ChooseNameActivity.class);
+                startActivity(iChooseName);
 
             }
         });
@@ -85,6 +61,10 @@ public class BarcodeDisplayer extends Activity {
 
 
     }
+
+    @Override
+    public void onBackPressed() { }
+
     private void init(RecyclerView recyclerView) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);

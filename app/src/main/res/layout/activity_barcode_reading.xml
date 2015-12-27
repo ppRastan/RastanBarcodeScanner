@@ -16,27 +16,38 @@
         android:layout_width="match_parent"
         android:layout_height="78dp"
         android:orientation="horizontal"
-        android:background="@android:color/background_dark">
+        android:background="@color/colorAccent">
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgb_Check"
+            android:src="@drawable/ic_check"
+            android:background="@color/colorAccent"
+            android:layout_marginRight="65dp"
+            android:layout_marginEnd="65dp"
+            android:layout_alignTop="@+id/imgb_rScan"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <!---->
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imgb_rScan"
-            android:src="@drawable/refresh"
-            android:background="@android:color/background_dark"
+            android:src="@drawable/ic_camera"
+            android:background="@color/colorAccent"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
-        <ImageButton
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imgb_end"
-            android:src="@drawable/end"
-            android:background="@android:color/background_dark"
-            android:layout_alignTop="@+id/imgb_rScan"
-            android:layout_toRightOf="@+id/imgb_rScan"
-            android:layout_toEndOf="@+id/imgb_rScan"
-            android:layout_marginLeft="58dp"
-            android:layout_marginStart="58dp" />
+            android:text="0"
+            android:id="@+id/txt_counterScan"
+            android:textColor="#fffefe"
+            android:layout_above="@+id/imgb_Check"
+            android:layout_alignRight="@+id/imgb_Check"
+            android:layout_alignEnd="@+id/imgb_Check" />
     </RelativeLayout>
 </LinearLayout>

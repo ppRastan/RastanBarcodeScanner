@@ -66,7 +66,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         spinner.setOnItemSelectedListener(this);
         List<String> categories = new ArrayList<String>();
         categories.add(".txt");
-        categories.add(".xlsx");
+        categories.add(".xls");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);

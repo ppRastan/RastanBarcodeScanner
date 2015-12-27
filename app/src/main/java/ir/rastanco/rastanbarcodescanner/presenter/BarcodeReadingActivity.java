@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -34,10 +34,12 @@ public class BarcodeReadingActivity extends Activity {
     private CameraPreview mPreview;
     private Handler autoFocusHandler;
 
-    private ImageButton imgbRScan;
-    private ImageButton endScan;
+    private ImageButton imgbCheck;
     private ImageView imgBarecode;
     private ImageScanner scanner;
+    private TextView txtCounterScan;
+
+    private int counterScan;
 
     private boolean barcodeScanned = false;
     private boolean previewing = true;
@@ -60,8 +62,14 @@ public class BarcodeReadingActivity extends Activity {
         setContentView(R.layout.activity_barcode_reading);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+
         imgBarecode = (ImageButton) findViewById(R.id.imgb_rScan);
-        endScan = (ImageButton) findViewById(R.id.imgb_end);
+        imgbCheck=(ImageButton)findViewById(R.id.imgb_Check);
+
+        //For counter
+        counterScan=0;
+        txtCounterScan=(TextView)findViewById(R.id.txt_counterScan);
+        txtCounterScan.setText(Integer.toString(counterScan));
 
         allBarcode = new ArrayList<Barcode>();
 
@@ -82,7 +90,6 @@ public class BarcodeReadingActivity extends Activity {
                 if (barcodeScanned) {
                     barcodeScanned = false;
                     mCamera.startPreview();
-                    Toast.makeText(getBaseContext(), "آغاز اسکن ...", Toast.LENGTH_LONG).show();
                     mCamera.setPreviewCallback(previewCb);
                     previewing = true;
                     mCamera.autoFocus(autoFocusCB);
@@ -90,7 +97,7 @@ public class BarcodeReadingActivity extends Activity {
             }
         });
 
-        endScan.setOnClickListener(new View.OnClickListener() {
+        imgbCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle=new Bundle();
@@ -100,15 +107,14 @@ public class BarcodeReadingActivity extends Activity {
                 startActivity(iDisplayBarcode);
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
     public void onBackPressed() {
-        //do whatever you want the 'Back' button to do
-        //as an example the 'Back' button is set to start a new Activity named 'NewActivity'
+
         this.startActivity(new Intent(BarcodeReadingActivity.this, MainActivity.class));
     }
 
@@ -160,13 +166,14 @@ public class BarcodeReadingActivity extends Activity {
                 mCamera.stopPreview();
                 SymbolSet syms = scanner.getResults();
                 for (Symbol sym : syms) {
-                    Toast.makeText(getBaseContext(), "شماره بار کد :" + sym.getData(), Toast.LENGTH_LONG).show();
                     barcodeScanned = true;
                     Barcode aBarcode = new Barcode();
                     aBarcode.setContent(sym.getData());
                     aBarcode.setFormat(sym.getType());
                     allBarcode.add(aBarcode);
                 }
+                counterScan++;
+                txtCounterScan.setText(Integer.toString(counterScan));
             }
         }
     };

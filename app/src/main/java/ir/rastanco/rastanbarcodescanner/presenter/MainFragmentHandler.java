@@ -90,7 +90,7 @@ public class MainFragmentHandler extends Fragment {
                 mDataSet.add(allFileInfo.get(i).getFileName());
                 if(allFileInfo.get(i).getFileType().equals(".txt"))
                     typeFile.add(R.drawable.ic_txt);
-                else if(allFileInfo.get(i).getFileType().equals(".xlsx"))
+                else if(allFileInfo.get(i).getFileType().equals(".xls"))
                     typeFile.add(R.drawable.ic_excel);
             }
 
