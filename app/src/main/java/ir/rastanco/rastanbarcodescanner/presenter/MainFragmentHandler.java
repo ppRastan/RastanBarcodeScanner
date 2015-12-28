@@ -131,6 +131,7 @@ public class MainFragmentHandler extends Fragment {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
                 iconImageView=(ImageView)view.findViewById(R.id.img_icon);
+                //acsess listview checkbox
                 checkBox = (CheckBox) view.findViewById(R.id.listview_checkbox);
                 checkBox.setVisibility(View.VISIBLE);
             }
