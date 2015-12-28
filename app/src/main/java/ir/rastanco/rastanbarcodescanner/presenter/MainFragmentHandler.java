@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -132,18 +133,11 @@ public class MainFragmentHandler extends Fragment {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
                 iconImageView=(ImageView)view.findViewById(R.id.img_icon);
-                checkBox = (CheckBox) view.findViewById(R.id.listview_checkbox);
-                checkCheckBoxToolbarState(checkState);
-                if(checkState){
-                    checkBox.setVisibility(View.VISIBLE);
-                }
-                else if(checkState == false){
-                    checkBox.setVisibility(View.INVISIBLE);
-                }
+
             }
 
             public void checkCheckBoxToolbarState(boolean isCheckBoxChecked) {
-                checkState = isCheckBoxChecked;
+
             }
         }
     }

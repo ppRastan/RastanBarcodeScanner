@@ -61,19 +61,12 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<String> filesToSend;
     private String checkListViewAdapterState = "displayDefaultListView";
     private MainFragmentHandler.MyBaseAdapter.MyViewHolder myViewHolder;
-    private boolean isCheckBoxChecked = false;
-    private View view;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
 
-    //add checkboxes to listveiw
     private GoogleApiClient client;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +118,8 @@ public class MainActivity extends AppCompatActivity
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
         filesToSend = new ArrayList<String>();
         //TODO fill this arraylist when user checked checkboxes and wanted to share items
+        mainFragmentHandler = new MainFragmentHandler();
+
 
         Bundle bundle=new Bundle();
         bundle.putSerializable("allFileInfo", allFileInfo);
@@ -139,12 +134,10 @@ public class MainActivity extends AppCompatActivity
             simple_empty_database_textView.setVisibility(View.GONE);
             fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            mainFragmentHandler = new MainFragmentHandler();
-            myViewHolder = new MainFragmentHandler.MyBaseAdapter.MyViewHolder(view);
             mainFragmentHandler.setArguments(bundle);
             fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
             fragmentTransaction.commit();
-            myViewHolder.checkCheckBoxToolbarState(isCheckBoxChecked);
+           // myViewHolder.checkCheckBoxToolbarState(isCheckBoxChecked);
         }
 
         share_btn.setOnClickListener(new View.OnClickListener() {
@@ -203,7 +196,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 temp_linear_for_checkbox.setVisibility(View.VISIBLE);
-                myViewHolder.checkCheckBoxToolbarState(isCheckBoxChecked);
+//                myViewHolder.checkCheckBoxToolbarState(isCheckBoxChecked);
 
             }
         });
