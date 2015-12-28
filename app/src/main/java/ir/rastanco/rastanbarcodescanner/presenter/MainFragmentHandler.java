@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,8 +27,8 @@ import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
  */
 public class MainFragmentHandler extends Fragment {
 
-    private ArrayList<FileInfo> allFileInfo;
-
+        private ArrayList<FileInfo> allFileInfo;
+        private boolean checkBoxState = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,19 +65,23 @@ public class MainFragmentHandler extends Fragment {
         // we don't look for swipes.
         recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
         recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(Configuration.activityContext,
-                new OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        if (view.getId() == R.id.txt_delete) {
-                            touchListener.processPendingDismisses();
-                        } else if (view.getId() == R.id.txt_undo) {
-                            touchListener.undoPendingDismiss();
-                        } else { // R.id.txt_data
+                        new OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                if (view.getId() == R.id.txt_delete) {
+                                    touchListener.processPendingDismisses();
+                                } else if (view.getId() == R.id.txt_undo) {
+                                    touchListener.undoPendingDismiss();
+                                } else {
+                                    touchListener.shareCurrentFile();
 
-                        }
-                    }
-                }));
+                                }
+                            }
+                        })
+        );
     }
+
+
 
     static class MyBaseAdapter extends RecyclerView.Adapter<MyBaseAdapter.MyViewHolder> {
 
@@ -121,10 +126,13 @@ public class MainFragmentHandler extends Fragment {
 
             TextView dataTextView;
             ImageView iconImageView;
+            CheckBox checkBox;
             MyViewHolder(View view) {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
                 iconImageView=(ImageView)view.findViewById(R.id.img_icon);
+                checkBox = (CheckBox) view.findViewById(R.id.listview_checkbox);
+                checkBox.setVisibility(View.VISIBLE);
             }
         }
     }

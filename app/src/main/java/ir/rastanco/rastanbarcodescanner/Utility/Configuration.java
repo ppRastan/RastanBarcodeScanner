@@ -22,5 +22,13 @@ public class Configuration {
     }
 
     public static Context activityContext;
-    public static int listItemCheckBox;
+    public static int listItemCheckBox = R.id.listview_checkbox;
+
+    public static int getListItemCheckBox() {
+        return listItemCheckBox;
+    }
+
+    public static void setListItemCheckBox(int listItemCheckBox) {
+        Configuration.listItemCheckBox = listItemCheckBox;
+    }
 }
