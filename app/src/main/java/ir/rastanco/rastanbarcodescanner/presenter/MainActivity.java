@@ -1,6 +1,5 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
-import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -16,7 +15,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -62,6 +60,9 @@ public class MainActivity extends AppCompatActivity
     private TextView simple_empty_database_textView;
     private ArrayList<String> filesToSend;
     private String checkListViewAdapterState = "displayDefaultListView";
+    private MainFragmentHandler.MyBaseAdapter.MyViewHolder myViewHolder;
+    private boolean isCheckBoxChecked = false;
+    private View view;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -139,11 +140,12 @@ public class MainActivity extends AppCompatActivity
             fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             mainFragmentHandler = new MainFragmentHandler();
+            myViewHolder = new MainFragmentHandler.MyBaseAdapter.MyViewHolder(view);
             mainFragmentHandler.setArguments(bundle);
             fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
             fragmentTransaction.commit();
+            myViewHolder.checkCheckBoxToolbarState(isCheckBoxChecked);
         }
-
 
         share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +203,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 temp_linear_for_checkbox.setVisibility(View.VISIBLE);
+                myViewHolder.checkCheckBoxToolbarState(isCheckBoxChecked);
 
             }
         });

@@ -127,13 +127,23 @@ public class MainFragmentHandler extends Fragment {
             TextView dataTextView;
             ImageView iconImageView;
             CheckBox checkBox;
+            boolean checkState;
             MyViewHolder(View view) {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
                 iconImageView=(ImageView)view.findViewById(R.id.img_icon);
-                //acsess listview checkbox
                 checkBox = (CheckBox) view.findViewById(R.id.listview_checkbox);
-                checkBox.setVisibility(View.VISIBLE);
+                checkCheckBoxToolbarState(checkState);
+                if(checkState){
+                    checkBox.setVisibility(View.VISIBLE);
+                }
+                else if(checkState == false){
+                    checkBox.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            public void checkCheckBoxToolbarState(boolean isCheckBoxChecked) {
+                checkState = isCheckBoxChecked;
             }
         }
     }
