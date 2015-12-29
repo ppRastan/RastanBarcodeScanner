@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.SparseBooleanArray;
@@ -26,15 +27,20 @@ public class CheckBoxManager extends ListActivity {
     private ImageButton delete_btn;
     private ArrayList<String> filesToSend;
     private ArrayList<String>listview_items;
+    ArrayAdapter<String> adapter;
     private final List<Integer> typeFile=new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_box_manager);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        }
         listview_items = new ArrayList<String >();
         fillListViewItemsFromDataBase();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, listview_items);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, listview_items);
         getListView().setAdapter(adapter);
         share_btn = (ImageButton)findViewById(R.id.checkbox_content_layout_share_btn);
         delete_btn = (ImageButton)findViewById(R.id.checkbox_content_layout_delete_btn);
@@ -58,7 +64,19 @@ public class CheckBoxManager extends ListActivity {
             @Override
             public void onClick(View v) {
 
-            }
+
+                    SparseBooleanArray checkedItemPositions = getListView().getCheckedItemPositions();
+                    int itemCount = getListView().getCount();
+
+                    for(int i=itemCount-1; i >= 0; i--){
+                        if(checkedItemPositions.get(i)){
+                            adapter.remove(listview_items.get(i));
+                        }
+                    }
+                    checkedItemPositions.clear();
+                    adapter.notifyDataSetChanged();
+
+                }
         });
 
         View.OnClickListener clickListener = new View.OnClickListener() {
@@ -70,6 +88,7 @@ public class CheckBoxManager extends ListActivity {
                 for(int i=0 ; i < itemCount ; i++){
                     getListView().setItemChecked(i, chk.isChecked());
                 }
+
             }
         };
 
