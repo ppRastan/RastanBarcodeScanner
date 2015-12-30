@@ -29,4 +29,40 @@
             android:visibility="invisible"
             />
     </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:weightSum="6"
+        android:id="@+id/temp_linear_checkbox"
+        android:visibility="invisible">
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:src="@android:drawable/ic_menu_share"
+            android:id="@+id/checkbox_content_layout_share_btn"
+            android:background="#3e8d8f"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="@string/selectAll"
+            android:gravity="center_vertical"
+            android:textColor="#ffffff"/>
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:id="@+id/select_all_checkboxes"
+            android:checkMarkTint="#ffffff"
+            />
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:src="@android:drawable/ic_menu_delete"
+            android:id="@+id/checkbox_content_layout_delete_btn"
+            android:background="#3e8d8f"/>
+    </LinearLayout>
 </RelativeLayout>

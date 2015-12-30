@@ -35,16 +35,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-        <activity
-            android:name=".presenter.CheckBoxManager"
-            android:label="@string/title_activity_check_box_manager">
-            <intent-filter>
-                <action android:name="ir.rastanco.rastanbarcodescanner.presenter.CheckBoxManager" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

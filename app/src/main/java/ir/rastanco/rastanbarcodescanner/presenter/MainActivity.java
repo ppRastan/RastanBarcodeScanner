@@ -54,7 +54,9 @@ public class MainActivity extends AppCompatActivity
     private FragmentTransaction fragmentTransaction;
     private MainFragmentHandler mainFragmentHandler;
     private TextView simple_empty_database_textView;
-
+    private CheckBoxManager checkBoxManager;
+    private LinearLayout temp_toolbar_checkbox_handler;
+    private LinearLayout main_toolbar;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -106,6 +108,9 @@ public class MainActivity extends AppCompatActivity
         sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
         mainFragmentHandler = new MainFragmentHandler();
+        checkBoxManager = new CheckBoxManager();
+        temp_toolbar_checkbox_handler = (LinearLayout)findViewById(R.id.temp_linear_checkbox);
+        main_toolbar = (LinearLayout)findViewById(R.id.main_toolbar);
         Bundle bundle=new Bundle();
         bundle.putSerializable("allFileInfo", allFileInfo);
         if(dbHandler.emptyDB())
@@ -147,8 +152,13 @@ public class MainActivity extends AppCompatActivity
         checkBox_toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                  startActivity(new Intent(MainActivity.this,CheckBoxManager.class));
+                main_toolbar.setVisibility(View.INVISIBLE);
+                temp_toolbar_checkbox_handler.setVisibility(View.VISIBLE);
+                simple_empty_database_textView.setVisibility(View.GONE);
+                fragmentManager = getFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.fragment_container, checkBoxManager);
+                fragmentTransaction.commit();
             }
         });
 

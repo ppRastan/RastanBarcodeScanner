@@ -127,8 +127,6 @@ public class MainFragmentHandler extends Fragment {
 
             TextView dataTextView;
             ImageView iconImageView;
-            CheckBox checkBox;
-            boolean checkState;
             MyViewHolder(View view) {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
@@ -136,9 +134,6 @@ public class MainFragmentHandler extends Fragment {
 
             }
 
-            public void checkCheckBoxToolbarState(boolean isCheckBoxChecked) {
-
-            }
         }
     }
 
