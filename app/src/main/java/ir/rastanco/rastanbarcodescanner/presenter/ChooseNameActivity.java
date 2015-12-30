@@ -2,6 +2,7 @@ package ir.rastanco.rastanbarcodescanner.presenter;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -71,9 +76,9 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
 
-        ArrayList<FileInfo> allFileInfo=new ArrayList<FileInfo>();
-        allFileInfo=dbHandler.selectAllFileInfo();
-        ArrayList<String> fileName=new ArrayList<String>();
+        ArrayList<FileInfo> allFileInfo = new ArrayList<FileInfo>();
+        allFileInfo = dbHandler.selectAllFileInfo();
+        final ArrayList<String> fileName=new ArrayList<String>();
         for (int i=0;i<allFileInfo.size();i++)
             fileName.add(allFileInfo.get(i).getFileName()+allFileInfo.get(i).getFileType());
         ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,fileName);
@@ -104,6 +109,14 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
                 dbHandler.insertAFileInfo(fileInfoSave);
                 actvFileName.setText("");
 
+                //what is the filename?
+                //what is the fileContent?
+                //TODO for Shaiste:
+                //Please use this method to save your file on the external Storage of the phone!
+
+             //   this.saveToFile(fileName, fileContent);
+
+
             }
         });
     }
@@ -122,5 +135,32 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+    private void saveToFile(String name, String fileContent) {
+
+        File file = null;
+        File root = Environment.getExternalStorageDirectory();
+        if (root.canWrite()) {
+            File dir = new File(root.getAbsolutePath() + "/BarcodeScanner");
+            dir.mkdirs();
+            String fileName = name;
+            file = new File(dir, fileName);
+            FileOutputStream out = null;
+            try {
+                out = new FileOutputStream(file);
+     } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                out.write(fileContent.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
