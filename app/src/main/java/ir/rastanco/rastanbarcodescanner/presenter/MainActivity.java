@@ -37,9 +37,7 @@ import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 created by parisaRashidi  on 94/9/27
  this is MainActivity for RastanBarcodeScanner witch handele toolbars actions
  */
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
     private DataBaseHandler dbHandler;
     private ArrayList<FileInfo> allFileInfo;
     private String state = "default";
@@ -54,7 +52,6 @@ public class MainActivity extends AppCompatActivity
     private FragmentTransaction fragmentTransaction;
     private MainFragmentHandler mainFragmentHandler;
     private TextView simple_empty_database_textView;
-    private CheckBoxManager checkBoxManager;
     private LinearLayout temp_toolbar_checkbox_handler;
     private LinearLayout main_toolbar;
     /**
@@ -108,7 +105,6 @@ public class MainActivity extends AppCompatActivity
         sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
         mainFragmentHandler = new MainFragmentHandler();
-        checkBoxManager = new CheckBoxManager();
         temp_toolbar_checkbox_handler = (LinearLayout)findViewById(R.id.temp_linear_checkbox);
         main_toolbar = (LinearLayout)findViewById(R.id.main_toolbar);
         Bundle bundle=new Bundle();
@@ -155,10 +151,7 @@ public class MainActivity extends AppCompatActivity
                 main_toolbar.setVisibility(View.INVISIBLE);
                 temp_toolbar_checkbox_handler.setVisibility(View.VISIBLE);
                 simple_empty_database_textView.setVisibility(View.GONE);
-                fragmentManager = getFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.fragment_container, checkBoxManager);
-                fragmentTransaction.commit();
+
             }
         });
 

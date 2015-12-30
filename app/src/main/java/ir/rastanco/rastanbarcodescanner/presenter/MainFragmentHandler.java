@@ -127,11 +127,12 @@ public class MainFragmentHandler extends Fragment {
 
             TextView dataTextView;
             ImageView iconImageView;
+            CheckBox checkBox;
             MyViewHolder(View view) {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
                 iconImageView=(ImageView)view.findViewById(R.id.img_icon);
-
+                checkBox = (CheckBox)view.findViewById(R.id.checkbox_listview_items);
             }
 
         }
