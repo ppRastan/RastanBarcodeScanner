@@ -5,8 +5,7 @@ import android.view.View;
 import android.widget.AbsListView;
 
 /**
- * Interface for a given UI element to help extend the swipe-to-dismiss-undo pattern to other
- * elements.
+ * created by parisaRashidiNezhad
  */
 public interface ViewAdapter {
     Context getContext();
