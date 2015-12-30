@@ -1,6 +1,5 @@
 package ir.rastanco.rastanbarcodescanner.presenter;
 
-import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -48,28 +47,20 @@ public class MainActivity extends AppCompatActivity
     private Toolbar toolbar;
     private ImageButton sortFiles;
     private ImageButton change_image_sort;
-    private ImageButton delete_btn;
-    private ImageButton share_btn;
     private Button showFiles;
     private ImageButton checkBox_toolbar;
     private FrameLayout container;
-    private LinearLayout temp_linear_for_checkbox;
-    private Button select_all_checkboxes;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private MainFragmentHandler mainFragmentHandler;
     private TextView simple_empty_database_textView;
-    private ArrayList<String> filesToSend;
-    private String checkListViewAdapterState = "displayDefaultListView";
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
+
     private GoogleApiClient client;
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,7 +74,6 @@ public class MainActivity extends AppCompatActivity
         dbHandler=new DataBaseHandler(this);
         allFileInfo=new ArrayList<FileInfo>();
         allFileInfo=dbHandler.selectAllFileInfo();
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -111,17 +101,11 @@ public class MainActivity extends AppCompatActivity
           * by default MainFragmentHandler take place of container
          */
         simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
-        temp_linear_for_checkbox = (LinearLayout) findViewById(R.id.checkbox_content_layout);
         container = (FrameLayout) findViewById(R.id.fragment_container);
-        share_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_share_btn);
-        delete_btn = (ImageButton) findViewById(R.id.checkbox_content_layout_delete_btn);
-        select_all_checkboxes = (Button) findViewById(R.id.checkbox_content_layout_select_all);
         checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
         sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
-        filesToSend = new ArrayList<String>();
-        //TODO fill this arraylist when user checked checkboxes and wanted to share items
-
+        mainFragmentHandler = new MainFragmentHandler();
         Bundle bundle=new Bundle();
         bundle.putSerializable("allFileInfo", allFileInfo);
         if(dbHandler.emptyDB())
@@ -135,42 +119,10 @@ public class MainActivity extends AppCompatActivity
             simple_empty_database_textView.setVisibility(View.GONE);
             fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            mainFragmentHandler = new MainFragmentHandler();
             mainFragmentHandler.setArguments(bundle);
             fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
             fragmentTransaction.commit();
         }
-
-
-        share_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
-                intent.putExtra(android.content.Intent.EXTRA_SUBJECT,getResources().getString(R.string.share_subject));
-                startActivity(Intent.createChooser(intent,getResources().getString(R.string.share_via)));
-                ArrayList<Uri> files = new ArrayList<Uri>();
-                for(String path : filesToSend /* List of the files you want to send */) {
-                    File file = new File(path);
-                    Uri uri = Uri.fromFile(file);
-                    files.add(uri);
-
-                }
-            }
-        });
-
-        delete_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        select_all_checkboxes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
 
         sortFiles.setOnClickListener(new View.OnClickListener() {
@@ -188,17 +140,15 @@ public class MainActivity extends AppCompatActivity
 
                     change_image_sort.setImageResource(R.drawable.ic_sort_icon);
                     sort_mode = true;
-                   // checkListViewAdapterState == "displaySortAToZInListView";
                 }
                             }
         });
 
-
         checkBox_toolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                temp_linear_for_checkbox.setVisibility(View.VISIBLE);
 
+                  startActivity(new Intent(MainActivity.this,CheckBoxManager.class));
             }
         });
 
