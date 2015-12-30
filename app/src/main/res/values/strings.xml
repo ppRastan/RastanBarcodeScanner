@@ -15,8 +15,6 @@
     <string name="selectAll">انتخاب همه</string>
     <string name="savethisBarcodes">ذخیره</string>
     <string name="no_file_saved">تاکنون فایلی روی گوشی شماذخیره نشده است .</string>
-    <string name="share_subject">این فایل توسط برنامه ی بارکدخوان حرفه ای ارسال شده است.</string>
-    <string name="share_via">ارسال به وسیله ی</string>
     <!--
      actionbar titeles and activity names are here
     -->

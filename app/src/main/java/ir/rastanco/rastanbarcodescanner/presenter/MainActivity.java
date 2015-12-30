@@ -50,14 +50,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private FrameLayout container;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private MainFragmentHandler mainFragmentHandler;
     private TextView simple_empty_database_textView;
     private LinearLayout temp_toolbar_checkbox_handler;
     private LinearLayout main_toolbar;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
 
     private GoogleApiClient client;
     @Override
@@ -92,38 +87,26 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        /*
-          *we have a mainFragment in this class called container and we will replace add fragments in it
-          * in fact the mainActivity contains all other fragments
-          * in this way we have one navigationDrawer and one Fab button
-          * just handle fragments by button actionlistener
-          * by default MainFragmentHandler take place of container
-         */
         simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
-        container = (FrameLayout) findViewById(R.id.fragment_container);
         checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
         sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
-        mainFragmentHandler = new MainFragmentHandler();
         temp_toolbar_checkbox_handler = (LinearLayout)findViewById(R.id.temp_linear_checkbox);
         main_toolbar = (LinearLayout)findViewById(R.id.main_toolbar);
         Bundle bundle=new Bundle();
         bundle.putSerializable("allFileInfo", allFileInfo);
+        //mainFragmentHandler.setArguments(bundle);
         if(dbHandler.emptyDB())
         {
             simple_empty_database_textView.setVisibility(View.VISIBLE);
 
         }
 
-        else
-        {
-            simple_empty_database_textView.setVisibility(View.GONE);
-            fragmentManager = getFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            mainFragmentHandler.setArguments(bundle);
-            fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
-            fragmentTransaction.commit();
-        }
+        //else
+        //{
+          //  simple_empty_database_textView.setVisibility(View.GONE);
+
+//        }
 
 
         sortFiles.setOnClickListener(new View.OnClickListener() {
@@ -201,7 +184,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         int id = item.getItemId();
         if (id == R.id.nav_my_files) {
             startActivity(new Intent(MainActivity.this, MainActivity.class));
-        } else if (id == R.id.nav_have_sent_files) {
+                                                                                                                                           } else if (id == R.id.nav_have_sent_files) {
             //checkListViewAdapterState.equals("displaySentFilesInListView");
 
         } else if (id == R.id.nav_send) {

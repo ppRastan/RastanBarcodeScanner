@@ -59,7 +59,7 @@
             android:layout_height="match_parent"
             android:layout_width="0dp"
             android:gravity="center_vertical"
-            android:textColor="@color/primary"
+            android:textColor="@color/toolbar"
             android:hapticFeedbackEnabled="true"
             android:layout_weight="2"
             android:clickable="false"
