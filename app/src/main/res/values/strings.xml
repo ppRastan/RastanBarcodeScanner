@@ -5,6 +5,7 @@
     <!--
  navigationDrawers item
 -->
+
     <string name="myFiles">فایل های من</string>
     <string name="sentFiles">فایل های ارسال شده</string>
     <string name="inside_payment">پرداخت درون برنامه ای</string>

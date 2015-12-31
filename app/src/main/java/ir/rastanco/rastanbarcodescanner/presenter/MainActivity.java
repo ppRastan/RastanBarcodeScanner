@@ -5,6 +5,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,23 +39,16 @@ created by parisaRashidi  on 94/9/27
  this is MainActivity for RastanBarcodeScanner witch handele toolbars actions
  */
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
-    private DataBaseHandler dbHandler;
-    private ArrayList<FileInfo> allFileInfo;
-    private String state = "default";
-    private boolean sort_mode = true ;
+    private GoogleApiClient client;
     private Toolbar toolbar;
-    private ImageButton sortFiles;
-    private ImageButton change_image_sort;
-    private Button showFiles;
-    private ImageButton checkBox_toolbar;
+    private DataBaseHandler dbHandler;
+    private TextView simple_empty_database_textView;
     private FrameLayout container;
+    private Intent sendIntent;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private TextView simple_empty_database_textView;
-    private LinearLayout temp_toolbar_checkbox_handler;
-    private LinearLayout main_toolbar;
-    private Intent sendIntent;
-    private GoogleApiClient client;
+    private MainFragmentHandler mainFragmentHandler;
+    private Typeface font ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +58,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
 
-
-        dbHandler=new DataBaseHandler(this);
-        allFileInfo=new ArrayList<FileInfo>();
-        allFileInfo=dbHandler.selectAllFileInfo();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        mainFragmentHandler = new MainFragmentHandler();
+        dbHandler=new DataBaseHandler(this);
+        simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
+        container = (FrameLayout)findViewById(R.id.fragment_container);
+        font  = Typeface.createFromAsset(getAssets(), "yekan_font.ttf");
+        sendIntent = new Intent();
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
@@ -87,83 +83,24 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
-        checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
-        sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
-        showFiles = (Button) findViewById(R.id.allfiles_toolbar);
-        temp_toolbar_checkbox_handler = (LinearLayout)findViewById(R.id.temp_linear_checkbox);
-        main_toolbar = (LinearLayout)findViewById(R.id.main_toolbar);
-        sendIntent = new Intent();
-        Bundle bundle=new Bundle();
-        bundle.putSerializable("allFileInfo", allFileInfo);
-        //mainFragmentHandler.setArguments(bundle);
-        if(dbHandler.emptyDB())
-        {
-            simple_empty_database_textView.setVisibility(View.VISIBLE);
 
-        }
-
-        //else
-        //{
-          //  simple_empty_database_textView.setVisibility(View.GONE);
-
+//        if(dbHandler.emptyDB())
+//        {
+//            simple_empty_database_textView.setVisibility(View.VISIBLE);
+//            simple_empty_database_textView.setTypeface(font);
+//
 //        }
 
+//        else
+//        {
+            simple_empty_database_textView.setVisibility(View.GONE);
+            fragmentManager = getFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
+            fragmentTransaction.commit();
 
-        sortFiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                container.removeAllViewsInLayout();
-                if(sort_mode == true){
-                    change_image_sort = (ImageButton) findViewById(R.id.sort_toolbar);
-                    change_image_sort.setImageResource(R.drawable.ic_sort_a_to_z);
+        //}
 
-                    sort_mode = false ;
-
-                }
-                else if(sort_mode == false){
-
-                    change_image_sort.setImageResource(R.drawable.ic_sort_icon);
-                    sort_mode = true;
-                }
-                            }
-        });
-
-        checkBox_toolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                main_toolbar.setVisibility(View.INVISIBLE);
-                temp_toolbar_checkbox_handler.setVisibility(View.VISIBLE);
-                simple_empty_database_textView.setVisibility(View.GONE);
-
-            }
-        });
-
-
-        showFiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                container.removeAllViewsInLayout();
-                switch (state) {
-
-                    case "default": {
-                        showFiles.setText(getResources().getString(R.string.showExcelFilesOnly));
-                        state = "displayTextFilesOnly";
-                        break;
-                    }
-                    case "displayExcelFilesOnly": {
-                        showFiles.setText(getResources().getString(R.string.allfiles));
-                        state = "default";
-                        break;
-                    }
-                    case "displayTextFilesOnly": {
-                        showFiles.setText(getResources().getString(R.string.showTextFilesOnly));
-                        state = "displayExcelFilesOnly";
-                        break;
-                    }
-                }
-            }
-        });
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 

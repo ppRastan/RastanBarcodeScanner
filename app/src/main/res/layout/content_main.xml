@@ -7,62 +7,25 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.parisarashidhi.fragmenttoolbar.MainActivity"
     tools:showIn="@layout/app_bar_main">
-    <include
-        layout="@layout/toolbar_main"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        />
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/gray_background"
-            android:singleLine="true"
-            android:text="@string/no_file_saved"
-            android:id="@+id/check_db_state_textView"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:visibility="invisible"
-            />
-
-    <LinearLayout
-        android:layout_width="match_parent"
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_container">
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:weightSum="6"
-        android:id="@+id/temp_linear_checkbox"
-        android:visibility="invisible">
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:src="@drawable/ic_share_icon"
-            android:padding="8dp"
-            android:id="@+id/checkbox_content_layout_share_btn"
-            android:background="#3e8d8f"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/selectAll"
-            android:textColor="#ffffff"
-            android:layout_marginTop="8dp"
-            />
-        <CheckBox
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:id="@+id/select_all_checkboxes"
-            android:layout_marginTop="8dp"
-            android:buttonTint="@color/white"
+        android:textColor="@color/colorLightBlue"
+        android:singleLine="true"
+        android:text="@string/no_file_saved"
+        android:id="@+id/check_db_state_textView"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:shadowColor="@color/toolbar"
+        android:shadowRadius="1.5"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:visibility="invisible"
+        />
 
-            />
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_delete_icon"
-            android:id="@+id/checkbox_content_layout_delete_btn"
-            android:background="#3e8d8f"
-            android:padding="8dp"/>
-    </LinearLayout>
+</FrameLayout>
+
 </RelativeLayout>
