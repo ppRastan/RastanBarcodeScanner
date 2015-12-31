@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private TextView simple_empty_database_textView;
     private LinearLayout temp_toolbar_checkbox_handler;
     private LinearLayout main_toolbar;
-
+    private Intent sendIntent;
     private GoogleApiClient client;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         showFiles = (Button) findViewById(R.id.allfiles_toolbar);
         temp_toolbar_checkbox_handler = (LinearLayout)findViewById(R.id.temp_linear_checkbox);
         main_toolbar = (LinearLayout)findViewById(R.id.main_toolbar);
+        sendIntent = new Intent();
         Bundle bundle=new Bundle();
         bundle.putSerializable("allFileInfo", allFileInfo);
         //mainFragmentHandler.setArguments(bundle);
@@ -163,8 +164,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 }
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -185,13 +184,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         if (id == R.id.nav_my_files) {
             startActivity(new Intent(MainActivity.this, MainActivity.class));
                                                                                                                                            } else if (id == R.id.nav_have_sent_files) {
-            //checkListViewAdapterState.equals("displaySentFilesInListView");
 
         } else if (id == R.id.nav_send) {
-
-            Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "lets try our barcodeScanner");
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
+            //TODO for samane : please check in your phone whether this code can share cafebazaar link by telegram or not
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "http://cafebazaar.ir/app/?id=com.Arvand.HundredPercent");
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 
@@ -207,40 +205,14 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     public void onStart() {
         super.onStart();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        /*client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://ir.rastanco.rastanbarcodescanner.presenter/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);*/
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-       /* Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://ir.rastanco.rastanbarcodescanner.presenter/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();*/
+
     }
 
 }
