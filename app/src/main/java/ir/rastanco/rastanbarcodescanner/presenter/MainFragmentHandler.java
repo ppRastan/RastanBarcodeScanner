@@ -135,9 +135,8 @@ public class MainFragmentHandler extends Fragment {
         init((RecyclerView) v.findViewById(R.id.recycler_view));
         return v;
     }
-    @TargetApi(Build.VERSION_CODES.M)
     private void init(RecyclerView recyclerView) {
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
         final MyBaseAdapter adapter = new MyBaseAdapter();
         recyclerView.setAdapter(adapter);
@@ -158,7 +157,7 @@ public class MainFragmentHandler extends Fragment {
 
         recyclerView.setOnTouchListener(touchListener);
         recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
-        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(getContext(),
+        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(Configuration.activityContext,
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
