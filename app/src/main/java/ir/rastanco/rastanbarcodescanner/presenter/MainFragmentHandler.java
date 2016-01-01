@@ -43,38 +43,47 @@ public class MainFragmentHandler extends Fragment {
     private ImageButton checkBox_toolbar;
     private LinearLayout temp_toolbar_checkbox_handler;
     private LinearLayout main_toolbar;
-    DataBaseHandler dbHandler;
     private ImageButton toolbar_share_btn;
     private ImageButton toolbar_delete_btn;
     private CheckBox toolbar_select_all_checkboxes;
-    public Typeface font ;
     private TextView textView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_handler, null);
-        checkBox_toolbar = (ImageButton)v. findViewById(R.id.checkbox_toolbar);
-        sortFiles = (ImageButton) v.findViewById(R.id.sort_toolbar);
-        showFiles = (Button)v.findViewById(R.id.allfiles_toolbar);
-        temp_toolbar_checkbox_handler = (LinearLayout)v.findViewById(R.id.temp_linear_checkbox);
-        main_toolbar = (LinearLayout)v.findViewById(R.id.main_toolbar);
-        toolbar_delete_btn = (ImageButton)v.findViewById(R.id.checkbox_content_layout_delete_btn);
-        textView = (TextView)v.findViewById(R.id.temp_toolbar_textview);
-        font  = Typeface.createFromAsset(getActivity().getAssets(), "yekan_font.ttf");
-        textView.setTypeface(font);
+        View view = inflater.inflate(R.layout.fragment_handler, null);
+        this.createToolbar(view);
+        this.setFont();
+        this.showListOfFiles(view);
+        return view;
+    }
+
+    private void showListOfFiles(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("allFileInfo", allFileInfo);
+        init((RecyclerView) view.findViewById(R.id.recycler_view));
+    }
+
+    private void createToolbar(View view) {
+        checkBox_toolbar = (ImageButton)view. findViewById(R.id.checkbox_toolbar);
+        sortFiles = (ImageButton) view.findViewById(R.id.sort_toolbar);
+        showFiles = (Button)view.findViewById(R.id.allfiles_toolbar);
+        temp_toolbar_checkbox_handler = (LinearLayout)view.findViewById(R.id.temp_linear_checkbox);
+        main_toolbar = (LinearLayout)view.findViewById(R.id.main_toolbar);
+        toolbar_delete_btn = (ImageButton)view.findViewById(R.id.checkbox_content_layout_delete_btn);
+        textView = (TextView)view.findViewById(R.id.temp_toolbar_textview);
         toolbar_delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        toolbar_share_btn = (ImageButton)v.findViewById(R.id.checkbox_content_layout_share_btn);
+        toolbar_share_btn = (ImageButton)view.findViewById(R.id.checkbox_content_layout_share_btn);
         toolbar_share_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        toolbar_select_all_checkboxes = (CheckBox)v.findViewById(R.id.select_all_checkboxes);
+        toolbar_select_all_checkboxes = (CheckBox)view.findViewById(R.id.select_all_checkboxes);
         //ToDo set on click listener for select all checkboxes in toolbar
         sortFiles.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,14 +139,15 @@ public class MainFragmentHandler extends Fragment {
             }
         });
 
-        Bundle bundle=new Bundle();
-        bundle.putSerializable("allFileInfo", allFileInfo);
-        init((RecyclerView) v.findViewById(R.id.recycler_view));
-        return v;
     }
-    @TargetApi(Build.VERSION_CODES.M)
+
+    private void setFont() {
+        Typeface font  = Typeface.createFromAsset(getActivity().getAssets(), "yekan_font.ttf");
+        textView.setTypeface(font);
+    }
+
     private void init(RecyclerView recyclerView) {
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
         final MyBaseAdapter adapter = new MyBaseAdapter();
         recyclerView.setAdapter(adapter);
@@ -158,7 +168,7 @@ public class MainFragmentHandler extends Fragment {
 
         recyclerView.setOnTouchListener(touchListener);
         recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
-        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(getContext(),
+        recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(Configuration.activityContext,
                 new OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
