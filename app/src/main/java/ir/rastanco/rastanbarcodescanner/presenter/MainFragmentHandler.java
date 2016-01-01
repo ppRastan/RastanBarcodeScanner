@@ -47,13 +47,17 @@ public class MainFragmentHandler extends Fragment {
     private ImageButton toolbar_delete_btn;
     private CheckBox toolbar_select_all_checkboxes;
     private TextView textView;
+
+    private final String defaultMode= "default";
+    private final String displayExcelFilesOnly = "displayExcelFilesOnly";
+    private final String displayTextFilesOnly = "displayTextFilesOnly";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_handler, null);
         this.createToolbar(view);
         this.setFont();
         this.showListOfFiles(view);
-        //Good?
         return view;
     }
 
@@ -121,19 +125,19 @@ public class MainFragmentHandler extends Fragment {
             public void onClick(View v) {
                 switch (state) {
 
-                    case "default": {
+                    case defaultMode: {
                         showFiles.setText(getResources().getString(R.string.showExcelFilesOnly));
-                        state = "displayTextFilesOnly";
+                        state = displayTextFilesOnly;
                         break;
                     }
-                    case "displayExcelFilesOnly": {
+                    case displayExcelFilesOnly: {
                         showFiles.setText(getResources().getString(R.string.allfiles));
-                        state = "default";
+                        state = defaultMode;
                         break;
                     }
-                    case "displayTextFilesOnly": {
+                    case displayTextFilesOnly: {
                         showFiles.setText(getResources().getString(R.string.showTextFilesOnly));
-                        state = "displayExcelFilesOnly";
+                        state = displayExcelFilesOnly;
                         break;
                     }
                 }
