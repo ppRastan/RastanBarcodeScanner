@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.CheckBox;
 
 import ir.rastanco.rastanbarcodescanner.R;
+import ir.rastanco.rastanbarcodescanner.presenter.MainFragmentHandler;
 
 /**
  * Created by parisaRashidiNezhad on 1394/8/20
@@ -22,4 +23,5 @@ public class Configuration {
     }
 
     public static Context activityContext;
+    public static boolean checkCheckBoxState;
 }

@@ -18,7 +18,8 @@
     android:id="@+id/checkbox_listview_items"
     android:visibility="invisible"
     />
-    <TextView android:background="@android:color/white"
+    <TextView
+        android:background="@android:color/white"
         android:id="@+id/txt_data"
         android:layout_height="wrap_content"
         android:layout_width="0dp"

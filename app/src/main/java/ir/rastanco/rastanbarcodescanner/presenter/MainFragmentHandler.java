@@ -225,10 +225,13 @@ public class MainFragmentHandler extends Fragment {
 
         static class MyViewHolder extends RecyclerView.ViewHolder {
             TextView dataTextView;
+            CheckBox listViewCheckBox;
             MyViewHolder(View view) {
 
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
+                listViewCheckBox = (CheckBox)view.findViewById(R.id.checkbox_listview_items);
+                listViewCheckBox.setVisibility(View.VISIBLE);
             }
         }
     }
