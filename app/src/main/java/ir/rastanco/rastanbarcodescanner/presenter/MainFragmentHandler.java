@@ -53,6 +53,7 @@ public class MainFragmentHandler extends Fragment {
         this.createToolbar(view);
         this.setFont();
         this.showListOfFiles(view);
+        //Good?
         return view;
     }
 
