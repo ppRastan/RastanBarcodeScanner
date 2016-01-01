@@ -52,8 +52,6 @@ public class MainFragmentHandler extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_handler, null);
-        allFileInfo=new ArrayList<FileInfo>();
-       // allFileInfo=dbHandler.selectAllFileInfo();
         checkBox_toolbar = (ImageButton)v. findViewById(R.id.checkbox_toolbar);
         sortFiles = (ImageButton) v.findViewById(R.id.sort_toolbar);
         showFiles = (Button)v.findViewById(R.id.allfiles_toolbar);
