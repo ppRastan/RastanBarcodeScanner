@@ -19,10 +19,10 @@ import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
-import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.OnItemClickListener;
-import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.RecyclerViewAdapter;
-import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.SwipeToDismissTouchListener;
-import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.SwipeableItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.OnItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.RecyclerViewAdapter;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeToDismissTouchListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 
 /**
