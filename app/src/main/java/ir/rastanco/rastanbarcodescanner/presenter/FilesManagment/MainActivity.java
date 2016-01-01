@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter;
+package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,21 +17,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
-import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
+import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
 
 /*
 created by parisaRashidi  on 94/9/27
@@ -125,7 +118,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         } else if (id == R.id.nav_send) {
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.app_name));
-            //TODO for samane : please check in your phone whether this code can share cafebazaar link by telegram or not
             sendIntent.putExtra(Intent.EXTRA_TEXT, "http://cafebazaar.ir/app/?id=com.Arvand.HundredPercent");
             sendIntent.setType("text/plain");
             startActivity(sendIntent);

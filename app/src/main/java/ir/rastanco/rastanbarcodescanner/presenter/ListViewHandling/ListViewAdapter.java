@@ -1,12 +1,10 @@
-package ir.rastanco.rastanbarcodescanner.Utility;
+package ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling;
 
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
-
-import ir.rastanco.rastanbarcodescanner.Utility.ViewAdapter;
 
 public class ListViewAdapter implements ViewAdapter {
 

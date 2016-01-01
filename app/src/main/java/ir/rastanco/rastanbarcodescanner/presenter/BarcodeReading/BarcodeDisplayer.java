@@ -1,8 +1,6 @@
-package ir.rastanco.rastanbarcodescanner.presenter;
+package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,11 +18,12 @@ import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
-import ir.rastanco.rastanbarcodescanner.Utility.OnItemClickListener;
-import ir.rastanco.rastanbarcodescanner.Utility.RecyclerViewAdapter;
-import ir.rastanco.rastanbarcodescanner.Utility.SwipeToDismissTouchListener;
-import ir.rastanco.rastanbarcodescanner.Utility.SwipeableItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.OnItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.RecyclerViewAdapter;
+import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.SwipeToDismissTouchListener;
+import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.SwipeableItemClickListener;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ChooseNameActivity;
 
 /**
  * Created by ParisaRashidhi on 22/12/2015.

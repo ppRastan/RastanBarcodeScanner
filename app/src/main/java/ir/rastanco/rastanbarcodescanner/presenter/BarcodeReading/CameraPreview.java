@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter;
+package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 import android.content.Context;
 import android.hardware.Camera;

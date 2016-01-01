@@ -1,11 +1,9 @@
-package ir.rastanco.rastanbarcodescanner.Utility;
+package ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
 import android.graphics.Rect;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -14,7 +12,6 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class SwipeToDismissTouchListener<SomeCollectionView extends ViewAdapter> implements
         View.OnTouchListener {

@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter;
+package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +25,8 @@ import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+
 /*
 created by shayeste
  */

@@ -1,10 +1,7 @@
-package ir.rastanco.rastanbarcodescanner.presenter;
+package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
 
-import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.graphics.Typeface;
-import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,11 +19,10 @@ import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
-import ir.rastanco.rastanbarcodescanner.Utility.OnItemClickListener;
-import ir.rastanco.rastanbarcodescanner.Utility.RecyclerViewAdapter;
-import ir.rastanco.rastanbarcodescanner.Utility.SwipeToDismissTouchListener;
-import ir.rastanco.rastanbarcodescanner.Utility.SwipeableItemClickListener;
-import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
+import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.OnItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.RecyclerViewAdapter;
+import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.SwipeToDismissTouchListener;
+import ir.rastanco.rastanbarcodescanner.presenter.ListViewHandling.SwipeableItemClickListener;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 
 /**

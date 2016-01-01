@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter;
+package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +28,7 @@ import java.util.List;
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
+import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
 
 public class ChooseNameActivity extends AppCompatActivity implements OnItemSelectedListener {
 
