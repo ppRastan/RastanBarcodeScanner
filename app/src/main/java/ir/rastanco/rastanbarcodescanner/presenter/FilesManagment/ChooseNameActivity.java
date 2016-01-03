@@ -61,8 +61,6 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
                 Intent iBarcodeReader=new Intent(ChooseNameActivity.this,BarcodeReadingActivity.class);
                 startActivity(iBarcodeReader);
             }
@@ -125,11 +123,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     @Override
     public void onBackPressed()
     {
-
-
-        //do whatever you want the 'Back' button to do
-        //as an example the 'Back' button is set to start a new Activity named 'NewActivity'
-        this.startActivity(new Intent(ChooseNameActivity.this,BarcodeReadingActivity.class));
+        startActivity(new Intent(ChooseNameActivity.this,MainActivity.class));
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

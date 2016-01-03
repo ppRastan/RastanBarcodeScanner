@@ -62,7 +62,11 @@ public class BarcodeDisplayer extends Activity {
     }
 
     @Override
-    public void onBackPressed() { }
+    public void onBackPressed() {
+
+        startActivity(new Intent(BarcodeDisplayer.this,BarcodeReadingActivity.class));
+    }
+
 
     private void init(RecyclerView recyclerView) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);

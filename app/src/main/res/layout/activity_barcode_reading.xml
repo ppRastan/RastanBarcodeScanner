@@ -16,14 +16,14 @@
         android:layout_width="match_parent"
         android:layout_height="78dp"
         android:orientation="horizontal"
-        android:background="@color/colorAccent">
+        android:background="#3e4243">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imgb_Check"
             android:src="@drawable/ic_check"
-            android:background="@color/colorAccent"
+            android:background="#3e4243"
             android:layout_marginRight="65dp"
             android:layout_marginEnd="65dp"
             android:layout_alignTop="@+id/imgb_rScan"
@@ -34,8 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imgb_rScan"
-            android:src="@drawable/ic_camera"
-            android:background="@color/colorAccent"
+            android:src="@mipmap/ic_camera"
+            android:background="#3e4243"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
