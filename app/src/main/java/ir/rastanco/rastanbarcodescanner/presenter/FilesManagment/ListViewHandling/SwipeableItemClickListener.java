@@ -64,7 +64,8 @@ public class SwipeableItemClickListener implements RecyclerView.OnItemTouchListe
             if (child.getVisibility() == View.GONE) continue;
             final float translationX = ViewCompat.getTranslationX(child);
             final float translationY = ViewCompat.getTranslationY(child);
-            if (x >= child.getLeft() + translationX &&
+            if (
+                    x >= child.getLeft() + translationX &&
                     x <= child.getRight() + translationX &&
                     y >= child.getTop() + translationY &&
                     y <= child.getBottom() + translationY) {

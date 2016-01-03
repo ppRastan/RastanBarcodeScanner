@@ -7,27 +7,13 @@
     tools:context="com.example.parisarashidhi.test.RecyclerViewActivity"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@+id/btn_save">
+
 
         <android.support.v7.widget.RecyclerView android:layout_height="525dp"
             android:layout_width="match_parent"
             android:id="@+id/recycler_view"/>
 
-    </LinearLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/savethisBarcodes"
-        android:id="@+id/btn_save"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-         />
 
 
 </RelativeLayout>
