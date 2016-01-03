@@ -85,7 +85,6 @@ public class MainFragmentHandler extends Fragment {
             }
         });
         toolbar_select_all_checkboxes = (CheckBox)view.findViewById(R.id.select_all_checkboxes);
-        //ToDo set on click listener for select all checkboxes in toolbar
         sortFiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

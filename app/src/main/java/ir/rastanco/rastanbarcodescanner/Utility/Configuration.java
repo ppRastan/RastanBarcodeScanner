@@ -19,5 +19,4 @@ public class Configuration {
     }
 
     public static Context activityContext;
-    public static boolean checkCheckBoxState;
 }

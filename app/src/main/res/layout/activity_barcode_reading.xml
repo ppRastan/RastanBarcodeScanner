@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imgb_Check"
             android:src="@drawable/ic_check"
-            android:background="#3e4243"
+            android:background="@color/actionbar"
             android:layout_marginRight="65dp"
             android:layout_marginEnd="65dp"
             android:layout_alignTop="@+id/imgb_rScan"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imgb_rScan"
             android:src="@mipmap/ic_camera"
-            android:background="#3e4243"
+            android:background="@color/actionbar"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
