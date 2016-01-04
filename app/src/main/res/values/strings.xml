@@ -45,7 +45,9 @@
     <string name="display_current_file">نمایش مجددفایل</string>
     <string name="confirm">تایید</string>
     <string name="share_current_file">ارسال</string>
-
+    <string name="file_exist">فایل شماموجوداست</string>
+    <string name="replace">فایل راجایگزین کن</string>
+    <string name="add">فایل رابه قبلی اضافه کن</string>
     <!--
     these strings are for listviewItems
     -->

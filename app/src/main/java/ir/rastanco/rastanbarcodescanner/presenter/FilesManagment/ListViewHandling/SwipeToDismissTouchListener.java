@@ -117,9 +117,6 @@ public class SwipeToDismissTouchListener<SomeCollectionView extends ViewAdapter>
                     return false;
                 }
 
-                // TODO: ensure this is a finger, and set a flag
-
-                // Find the child view that was touched (perform a hit test)
                 Rect rect = new Rect();
                 int childCount = mRecyclerView.getChildCount();
                 int[] listViewCoords = new int[2];
@@ -200,7 +197,6 @@ public class SwipeToDismissTouchListener<SomeCollectionView extends ViewAdapter>
                     dismissRight = deltaX > 0;
                 } else if (mMinFlingVelocity <= absVelocityX && absVelocityX <= mMaxFlingVelocity
                         && absVelocityY < absVelocityX && mSwiping) {
-                    // dismiss only if flinging in the same direction as dragging
                     dismiss = (velocityX < 0) == (deltaX < 0);
                     dismissRight = mVelocityTracker.getXVelocity() > 0;
                 }
@@ -349,9 +345,7 @@ public class SwipeToDismissTouchListener<SomeCollectionView extends ViewAdapter>
         return existPendingDismisses;
     }
 
-       public void shareCurrentFile(){
-           //TODO get file path and share
-       }
+
     private void processPendingDismisses(final PendingDismissData pendingDismissData) {
         mPendingDismiss = null;
         final ViewGroup.LayoutParams lp = pendingDismissData.rowContainer.container.getLayoutParams();

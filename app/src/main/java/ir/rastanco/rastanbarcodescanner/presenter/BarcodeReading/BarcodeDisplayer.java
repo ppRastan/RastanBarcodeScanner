@@ -2,7 +2,6 @@ package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +32,7 @@ public class BarcodeDisplayer extends Activity {
 
     private ArrayList<Barcode> allBarcode;
     private ImageButton btnSave;
+    private ChooseNameActivity chooseNameActivity;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -52,9 +51,10 @@ public class BarcodeDisplayer extends Activity {
 
             }
         });
-
+        chooseNameActivity = new ChooseNameActivity();
         allBarcode=new ArrayList<Barcode>();
         allBarcode= (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("allBarcode");
+        //chooseNameActivity.setAllBarcodesList(allBarcode);
         init((RecyclerView) findViewById(R.id.recycler_view));
 
 

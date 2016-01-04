@@ -10,14 +10,15 @@
     android:orientation="horizontal"
     android:weightSum="10"
     android:background="@android:color/white">
-    <ImageView
+    <CheckBox
         android:layout_width="0dp"
+        android:layout_weight="1"
+        android:padding="4dp"
         android:layout_height="wrap_content"
-        android:id="@+id/img_icon"
-        android:layout_weight="2"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_marginLeft="5dp"
-        android:src="@drawable/ic_excel"/>
+        android:id="@+id/checkbox_listview_items"
+        android:visibility="invisible"
+        />
+
 
     <TextView
         android:background="@android:color/white"
@@ -31,13 +32,14 @@
         android:height="@dimen/list_item_height"
         />
 
-    <CheckBox
+    <ImageView
         android:layout_width="0dp"
-        android:layout_weight="1"
-        android:padding="4dp"
         android:layout_height="wrap_content"
-        android:id="@+id/checkbox_listview_items"
-        android:visibility="invisible"
+        android:id="@+id/img_icon"
+        android:layout_weight="2"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_txt"
         />
 
 </LinearLayout>

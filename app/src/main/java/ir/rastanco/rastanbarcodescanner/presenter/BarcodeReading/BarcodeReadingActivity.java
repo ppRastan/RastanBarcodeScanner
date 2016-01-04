@@ -60,8 +60,6 @@ public class BarcodeReadingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_reading);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-
         imgBarecode = (ImageButton) findViewById(R.id.imgb_rScan);
         imgbCheck=(ImageButton)findViewById(R.id.imgb_Check);
 

@@ -15,13 +15,13 @@
         android:id="@+id/main_toolbar">
         <ImageButton
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_sort_icon"
-            android:background="@color/toolbar"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
             android:foregroundTint="@android:color/background_dark"
-            android:id="@+id/sort_toolbar"
-            android:padding="4dp"/>
+            android:id="@+id/checkbox_toolbar"
+            android:src="@drawable/ic_checkbox_icon"
+            android:background="@color/toolbar" />
 
         <Button
             android:layout_width="0dp"
@@ -32,15 +32,17 @@
             android:text="@string/allfiles"
             android:textColor="@color/white"
             android:background="@color/toolbar"/>
+
         <ImageButton
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_sort_icon"
+            android:background="@color/toolbar"
             android:foregroundTint="@android:color/background_dark"
-            android:id="@+id/checkbox_toolbar"
-            android:src="@drawable/ic_checkbox_icon"
-            android:background="@color/toolbar" />
+            android:id="@+id/sort_toolbar"
+            android:padding="4dp"/>
+
 
     </LinearLayout>
 

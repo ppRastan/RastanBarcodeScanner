@@ -177,7 +177,7 @@ public class MainFragmentHandler extends Fragment {
                         } else if (view.getId() == R.id.txt_undo) {
                             touchListener.undoPendingDismiss();
                         } else {
-                            touchListener.shareCurrentFile();
+
 
                         }
                     }
@@ -186,7 +186,6 @@ public class MainFragmentHandler extends Fragment {
 
     static class MyBaseAdapter extends RecyclerView.Adapter<MyBaseAdapter.MyViewHolder> {
 
-        private static final int SIZE = 100;
 
         private final List<String> mDataSet = new ArrayList<>();
 
@@ -195,6 +194,8 @@ public class MainFragmentHandler extends Fragment {
             mDataSet.add("file 2");
             mDataSet.add("file 3");
             mDataSet.add("file 4");
+            mDataSet.add("فایل اول");
+            mDataSet.add("فایل دوم");
         }
 
         @Override
