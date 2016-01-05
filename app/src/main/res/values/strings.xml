@@ -17,6 +17,7 @@
     <string name="selectAll">انتخاب همه</string>
     <string name="savethisBarcodes">ذخیره</string>
     <string name="no_file_saved">تاکنون فایلی روی گوشی شماذخیره نشده است .</string>
+    <string name="sure_to_exit">آیا مایلید خارج شوید؟</string>
     <string name="exit">آیاقصدخروج دارید؟</string>
     <string name="yes">بله</string>
     <string name="no">خیر</string>
@@ -53,11 +54,13 @@
     -->
     <string name="deleted">حذف</string>
     <string name="undo">انصراف</string>
-    <string name="title_activity_recycler_view">RecyclerViewActivity</string>
-    <string name="title_activity_check_box_manager">CheckBoxManager</string>
 
     <!--
     there strings are for barcode displayer activity
     -->
     <string name="barcode_displayer">نمایش بارکدها</string>
+    <string name="title_activity_choose_name">تاییدنهایی فایل</string>
+    <string name="file_name">نام فایل:</string>
+    <string name="title_activity_barcode_displayer">نمایش بارکدها</string>
+    <string name="title_activity_barcode_reading">BarcodeReadingActivity</string>
 </resources>

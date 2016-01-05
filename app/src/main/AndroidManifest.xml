@@ -26,15 +26,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".presenter.BarcodeReading.BarcodeReadingActivity" />
-        <activity
-            android:name=".presenter.FilesManagment.ChooseNameActivity"
-            android:label="@string/title_activity_choose"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".presenter.BarcodeReading.BarcodeDisplayer" />
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".presenter.BarcodeReading.ChooseName">
+
+        </activity>
     </application>
 
 </manifest>

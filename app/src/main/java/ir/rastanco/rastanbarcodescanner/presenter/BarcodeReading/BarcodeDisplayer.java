@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -23,7 +25,6 @@ import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandlin
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeToDismissTouchListener;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ChooseNameActivity;
 
 /**
  * Created by ParisaRashidhi on 22/12/2015.
@@ -32,26 +33,27 @@ public class BarcodeDisplayer extends Activity {
 
     private ArrayList<Barcode> allBarcode;
     private ImageButton btnSave;
-    private ChooseNameActivity chooseNameActivity;
+    private ChooseName chooseName;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_barcode_display);
+        setContentView(R.layout.activity_barcode_displayer);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
-        btnSave = (ImageButton)findViewById(R.id.barcode_displayer_save_btn);
+        chooseName = new ChooseName();
+         btnSave = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
         btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+          @Override
+        public void onClick(View v) {
 
-                Intent iChooseName = new Intent(BarcodeDisplayer.this, ChooseNameActivity.class);
-                startActivity(iChooseName);
+          Intent iChooseName = new Intent(BarcodeDisplayer.this, ChooseName.class);
+          startActivity(iChooseName);
 
-            }
+        }
         });
-        chooseNameActivity = new ChooseNameActivity();
+
         allBarcode=new ArrayList<Barcode>();
         allBarcode= (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("allBarcode");
         //chooseNameActivity.setAllBarcodesList(allBarcode);
@@ -148,7 +150,6 @@ public class BarcodeDisplayer extends Activity {
             }
         }
     }
-
 }
 
 

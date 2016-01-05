@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
+package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,6 +10,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -32,10 +34,11 @@ import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
 
-public class ChooseNameActivity extends AppCompatActivity implements OnItemSelectedListener {
+public class ChooseName extends AppCompatActivity implements OnItemSelectedListener {
 
-//    private ImageButton btnSave;
+    //    private ImageButton btnSave;
     private ListView fileNamesListView;
     private AutoCompleteTextView activeFileName;
     private DataBaseHandler dbHandler;
@@ -50,31 +53,31 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
-        this.setToolbar();
+        // this.setToolbar();
         this.createPage();
         this.addClickedListViewItemFileNameToTextView();
     }
 
     private void addClickedListViewItemFileNameToTextView() {
-       // textViewFileName = (AutoCompleteTextView)findViewById(R.id.actv_fileName);
+        // textViewFileName = (AutoCompleteTextView)findViewById(R.id.actv_fileName);
         //textViewFileName.setText();
     }
 
     private void setToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         //Buton save:
 
         //TODO OnclickListeners
-            //this.saveToFile((activeFileName.getText()).toString(), fileContent);
+        //this.saveToFile((activeFileName.getText()).toString(), fileContent);
     }
 
     private void createPage() {
         fileNamesListView =(ListView) findViewById(R.id.lstv_fileName);
         activeFileName =(AutoCompleteTextView)findViewById(R.id.actv_fileName);
 
-        this.addFab();
+        //this.addFab();
         this.addSpinner();
         ArrayList<String> fileNamesList = this.getAllFileNamesFromDB();
         this.handleListView(fileNamesList);
@@ -100,7 +103,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseNameActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseName.this);
                 builder.setTitle(getResources().getString(R.string.file_exist));
                 builder.setIcon(R.mipmap.ic_launcher);
                 builder.setItems(new CharSequence[]
@@ -161,7 +164,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent iBarcodeReader = new Intent(ChooseNameActivity.this, BarcodeReadingActivity.class);
+                Intent iBarcodeReader = new Intent(ChooseName.this, BarcodeReadingActivity.class);
                 startActivity(iBarcodeReader);
             }
         });
@@ -193,7 +196,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     @Override
     public void onBackPressed()
     {
-        startActivity(new Intent(ChooseNameActivity.this,MainActivity.class));
+        startActivity(new Intent(ChooseName.this,MainActivity.class));
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -215,7 +218,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
             FileOutputStream out = null;
             try {
                 out = new FileOutputStream(file);
-     } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
             try {
@@ -238,4 +241,5 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         }
         //Log.v("all barcodes", fileContent);
     }
+
 }
