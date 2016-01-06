@@ -6,71 +6,71 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.parisarashidhi.fragmenttoolbar.MainActivity"
-    tools:showIn="@layout/app_bar_main">
+    >
     <include
         layout="@layout/appbar_choosename_activity"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="50dp"
-    android:id="@+id/linearLayout2"
-    android:orientation="vertical">
     <LinearLayout
-        android:orientation="horizontal"
-        android:weightSum="10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/file_name"
-            android:id="@+id/txt_fileName"
-            android:layout_centerVertical="true"
-             android:layout_weight="2"/>
-
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spin_fileType"
-            android:layout_weight="2"
-             />
-
-    <AutoCompleteTextView
-        android:layout_width="0dp"
-        android:layout_weight="6"
-        android:layout_height="wrap_content"
-        android:id="@+id/actv_fileName"
-        android:ellipsize="end" />
-    </LinearLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:id="@+id/linearLayout2"
+        android:orientation="vertical">
         <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="10"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="right"
-            android:weightSum="1"
-            android:id="@+id/linearLayout">
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/file_name"
+                android:id="@+id/txt_fileName"
+                android:layout_centerVertical="true"
+                android:layout_weight="2"/>
 
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="300dp"
-                android:id="@+id/lstv_fileName"
-                android:scrollingCache="false"
-                android:smoothScrollbar="true" />
+            <Spinner
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/spin_fileType"
+                android:layout_weight="2"
+                />
+
+            <AutoCompleteTextView
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_height="wrap_content"
+                android:id="@+id/actv_fileName"
+                android:ellipsize="end" />
         </LinearLayout>
-        <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="ذخیره"-->
-        <!--android:id="@+id/btn_save"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_below="@+id/linearLayout"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginTop="15dp" />-->
-    </RelativeLayout>
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="right"
+                android:weightSum="1"
+                android:id="@+id/linearLayout">
+
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="300dp"
+                    android:id="@+id/lstv_fileName"
+                    android:scrollingCache="false"
+                    android:smoothScrollbar="true" />
+            </LinearLayout>
+            <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="ذخیره"-->
+            <!--android:id="@+id/btn_save"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:layout_below="@+id/linearLayout"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="15dp" />-->
+        </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>
