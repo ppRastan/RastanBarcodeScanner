@@ -33,7 +33,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".presenter.BarcodeReading.ChooseName"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="com.example.parisarashidhi.fragmenttoolbar.MainActivity" />
 
