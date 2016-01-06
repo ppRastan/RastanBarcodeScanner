@@ -55,7 +55,7 @@ public class BarcodeDisplayer extends Activity {
         });
 
         allBarcode=new ArrayList<Barcode>();
-        allBarcode= (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("allBarcode");
+        //allBarcode= (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("allBarcode");
         //chooseNameActivity.setAllBarcodesList(allBarcode);
         init((RecyclerView) findViewById(R.id.recycler_view));
 

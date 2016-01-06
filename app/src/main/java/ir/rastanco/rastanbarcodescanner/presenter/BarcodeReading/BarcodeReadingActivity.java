@@ -1,12 +1,18 @@
 package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.hardware.Camera;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -45,6 +51,9 @@ public class BarcodeReadingActivity extends Activity {
     private ArrayList<Barcode> allBarcode;
     private FrameLayout frameCameraPreview;
     private GoogleApiClient client;
+    private Context context;
+    TextView scanText;
+    Button scanButton;
     static {
         System.loadLibrary("iconv");
     }
@@ -52,10 +61,10 @@ public class BarcodeReadingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_reading);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                this.addArea();
                 this.readyCamera();
                 this.setToolbarOnclickListener();
                 this.addGoogleClient();
+
     }
 
     private void addGoogleClient() {
@@ -71,10 +80,7 @@ public class BarcodeReadingActivity extends Activity {
 
     }
 
-    private void addArea() {
-        mCamera.setPreviewCallback(null);
 
-    }
 
     private void setToolbarOnclickListener() {
 
@@ -169,6 +175,21 @@ public class BarcodeReadingActivity extends Activity {
                 mCamera.stopPreview();
                 SymbolSet syms = scanner.getResults();
                 for (Symbol sym : syms) {
+
+                    //parisa added this code
+                    if(sym.getType() == Symbol.CODE128){
+                        sym.getData();
+                        MediaPlayer mediaPlayer = MediaPlayer.create(context,R.raw.beep_ok);
+                        mediaPlayer.start();
+                    }
+                    else {
+                        MediaPlayer mediaPlayer = MediaPlayer.create(context,R.raw.beep_wrong);
+                        mediaPlayer.start();
+                    }
+                    mCamera.setPreviewCallback(previewCallback);
+                    mCamera.startPreview();
+                    previewing = true;
+                    mCamera.autoFocus(autoFocusCallback);
                     barcodeScanned = true;
                     Barcode aBarcode = new Barcode();
                     aBarcode.setContent(sym.getData());
@@ -192,5 +213,30 @@ public class BarcodeReadingActivity extends Activity {
 
     @Override
     public void onStop() { super.onStop(); }
+     //method to crop Bitmap in case of use
+    //this method written by parisa
+      public Bitmap scaleCenterCrop(Bitmap source , int newHeight , int newWidth){
 
+        int sourceWidth = source.getWidth();
+        int sourceHeight = source.getHeight();
+
+        float xScale = (float) newWidth / sourceWidth;
+        float yScale = (float) newHeight / sourceHeight;
+        float scale = Math.max(xScale, yScale);
+
+        float scaledWidth = scale * sourceWidth;
+        float scaledHeight = scale * sourceHeight;
+
+        float left = (newWidth - scaledWidth) / 2;
+        float top = (newHeight - scaledHeight) / 2;
+
+        RectF targetRect = new RectF(left, top, left + scaledWidth, top + scaledHeight);
+
+
+        Bitmap dest = Bitmap.createBitmap(newWidth, newHeight, source.getConfig());
+        Canvas canvas = new Canvas(dest);
+        canvas.drawBitmap(source, null, targetRect, null);
+
+        return dest;
+    }
 }

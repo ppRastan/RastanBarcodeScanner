@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -39,12 +41,12 @@ import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingA
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
 
 public class ChooseName extends AppCompatActivity implements OnItemSelectedListener {
-
-    //    private ImageButton btnSave;
+    private ImageButton btnSave;
     private ListView fileNamesListView;
     private AutoCompleteTextView activeFileName;
     private DataBaseHandler dbHandler;
     private String fileContent;
+    private ImageButton camera_btn;
 //    private FileInfo fileInfoSave;
 
     @Override
@@ -55,31 +57,61 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
-        // this.setToolbar();
+        this.setToolbar();
         this.createPage();
         this.addClickedListViewItemFileNameToTextView();
     }
 
     private void addClickedListViewItemFileNameToTextView() {
-        // textViewFileName = (AutoCompleteTextView)findViewById(R.id.actv_fileName);
-        //textViewFileName.setText();
+         //textViewFileName = (AutoCompleteTextView)findViewById(R.id.actv_fileName);
+         //textViewFileName.setText();
     }
 
     private void setToolbar() {
-        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        camera_btn = (ImageButton)findViewById(R.id.choose_name_activity_camera);
+        camera_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ChooseName.this,BarcodeReadingActivity.class));
+            }
+        });
+        btnSave = (ImageButton) findViewById(R.id.appbar_barcode_displayer_check_btn);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseName.this);
+                builder.setTitle(getResources().getString(R.string.file_saved));
+                builder.setIcon(R.mipmap.ic_launcher);
+                builder.setItems(new CharSequence[]
+                                {getResources().getString(R.string.confirm), getResources().getString(R.string.display_current_file),
+                                        getResources().getString(R.string.share_current_file)},
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case 0:
+                                        startActivity(new Intent(ChooseName.this, MainActivity.class));
+                                        break;
+                                    case 1:
+                                        startActivity(new Intent(ChooseName.this, BarcodeDisplayer.class));
+                                        break;
+                                    case 2: {
+                                        //TODO share current file
+                                    }
+                                    break;
 
-        //Buton save:
+                                }
+                            }
+                        });
+                builder.create().show();
 
-        //TODO OnclickListeners
-        //this.saveToFile((activeFileName.getText()).toString(), fileContent);
+            }
+        });
+
     }
-
     private void createPage() {
         fileNamesListView =(ListView) findViewById(R.id.lstv_fileName);
         activeFileName =(AutoCompleteTextView)findViewById(R.id.actv_fileName);
 
-        //this.addFab();
         this.addSpinner();
         ArrayList<String> fileNamesList = this.getAllFileNamesFromDB();
         this.handleListView(fileNamesList);
@@ -121,7 +153,9 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
 
 
                                     break;
-                                    case 1:
+                                    case 1:{
+
+                                    }
 
                                         break;
 
@@ -133,10 +167,6 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
 
             }
         });
-
-
-
-
     }
 
     private ArrayList<String> getAllFileNamesFromDB() {
@@ -161,16 +191,7 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
 
     }
 
-    private void addFab() {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent iBarcodeReader = new Intent(ChooseName.this, BarcodeReadingActivity.class);
-                startActivity(iBarcodeReader);
-            }
-        });
-    }
+
 //
 //        btnSave.setOnClickListener(new View.OnClickListener() {
 //            @Override
