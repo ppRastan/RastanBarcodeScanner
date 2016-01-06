@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="78dp"
         android:orientation="horizontal"
-        android:background="#3e4243">
+        android:background="@color/actionbar">
 
         <ImageButton
             android:layout_width="wrap_content"
