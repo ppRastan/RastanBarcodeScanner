@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
         android:layout_gravity="center_horizontal|center_vertical"
-        android:src="@mipmap/ic_check"
+        android:src="@drawable/ic_check"
         android:id="@+id/appbar_barcode_displayer_check_btn"
         android:background="@color/actionbar"/>
 

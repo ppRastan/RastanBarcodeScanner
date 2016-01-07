@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imgb_Check"
-            android:src="@mipmap/ic_check"
+            android:src="@drawable/ic_check"
             android:background="@color/actionbar"
             android:layout_marginRight="65dp"
             android:layout_marginEnd="65dp"
@@ -48,5 +48,18 @@
             android:layout_above="@+id/imgb_Check"
             android:layout_alignRight="@+id/imgb_Check"
             android:layout_alignEnd="@+id/imgb_Check" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_area"
+            android:src="@drawable/ic_area"
+            android:background="@color/actionbar"
+            android:layout_marginRight="52dp"
+            android:layout_marginEnd="52dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/imgb_rScan"
+            android:layout_toStartOf="@+id/imgb_rScan" />
+
     </RelativeLayout>
 </LinearLayout>
