@@ -52,27 +52,16 @@ public class BarcodeReadingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_reading);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                this.addArea();
-                this.readyCamera();
                 this.setToolbarOnclickListener();
-                this.addGoogleClient();
-    }
-
-    private void addGoogleClient() {
-
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-    }
-
-    private void readyCamera() {
         mCamera = getCameraInstance();
         cameraPreview = new CameraPreview(this, mCamera, previewCallback, autoFocusCallback);
         frameCameraPreview = (FrameLayout) findViewById(R.id.cameraPreview);
         frameCameraPreview.addView(cameraPreview);
-
-    }
-
-    private void addArea() {
-        mCamera.setPreviewCallback(null);
+        scanner = new ImageScanner();
+        scanner.setConfig(0, Config.X_DENSITY, 3);
+        scanner.setConfig(0, Config.Y_DENSITY, 3);
+        txtCounterScan=(TextView)findViewById(R.id.txt_counterScan);
 
     }
 
@@ -97,11 +86,11 @@ public class BarcodeReadingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 allBarcode = new ArrayList<Barcode>();
-                Bundle bundle=new Bundle();
+                Bundle bundle = new Bundle();
                 bundle.putSerializable("allBarcode", allBarcode);
-                Intent iDisplayBarcode=new Intent(BarcodeReadingActivity.this,BarcodeDisplayer.class);
+                Intent iDisplayBarcode = new Intent(BarcodeReadingActivity.this, BarcodeDisplayer.class);
                 iDisplayBarcode.putExtras(bundle);
-                if(counterScan > 0){
+                if (counterScan > 0) {
                     startActivity(iDisplayBarcode);
                 }
 
@@ -152,10 +141,6 @@ public class BarcodeReadingActivity extends Activity {
 
         Camera.PreviewCallback previewCallback = new Camera.PreviewCallback() {
         public void onPreviewFrame(byte[] data, Camera camera) {
-            scanner = new ImageScanner();
-            scanner.setConfig(0, Config.X_DENSITY, 3);
-            scanner.setConfig(0, Config.Y_DENSITY, 3);
-            txtCounterScan=(TextView)findViewById(R.id.txt_counterScan);
             txtCounterScan.setText(Integer.toString(counterScan));
             Camera.Parameters parameters = camera.getParameters();
             Camera.Size size = parameters.getPreviewSize();
