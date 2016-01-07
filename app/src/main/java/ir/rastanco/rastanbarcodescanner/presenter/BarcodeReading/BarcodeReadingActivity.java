@@ -177,16 +177,16 @@ public class BarcodeReadingActivity extends Activity {
                 for (Symbol sym : syms) {
 
                     //parisa added this code
-                    if(sym.getType() == Symbol.CODE128){
-                        sym.getData();
-                        MediaPlayer mediaPlayer = MediaPlayer.create(context,R.raw.beep_ok);
-                        mediaPlayer.start();
-                    }
-                    else {
-                        MediaPlayer mediaPlayer = MediaPlayer.create(context,R.raw.beep_wrong);
-                        mediaPlayer.start();
-                    }
-                    mCamera.setPreviewCallback(previewCallback);
+//                    if(sym.getType() == Symbol.CODE128){
+//                        sym.getData();
+//                        MediaPlayer mediaPlayer = MediaPlayer.create(context,R.raw.beep_ok);
+//                        mediaPlayer.start();
+//                    }
+//                    else {
+//                        MediaPlayer mediaPlayer = MediaPlayer.create(context,R.raw.beep_wrong);
+//                        mediaPlayer.start();
+//                    }
+//                    mCamera.setPreviewCallback(previewCallback);
                     mCamera.startPreview();
                     previewing = true;
                     mCamera.autoFocus(autoFocusCallback);
