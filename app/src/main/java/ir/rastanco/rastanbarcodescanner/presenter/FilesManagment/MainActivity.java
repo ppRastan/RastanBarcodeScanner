@@ -28,7 +28,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
+import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeDisplayer;
 import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.ChooseName;
 
 /*
 created by parisaRashidi  on 94/9/27
@@ -91,6 +93,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                                     fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
                                     fragmentTransaction.commit();
+
 
 //                                  }
 

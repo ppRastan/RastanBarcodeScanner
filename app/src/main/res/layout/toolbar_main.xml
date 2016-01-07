@@ -20,7 +20,7 @@
             android:padding="4dp"
             android:foregroundTint="@android:color/background_dark"
             android:id="@+id/checkbox_toolbar"
-            android:src="@drawable/ic_checkbox_toolbar"
+            android:src="@mipmap/ic_checkbox_toolbar"
             android:background="@color/toolbar" />
 
         <Button
@@ -30,6 +30,8 @@
             android:padding="4dp"
             android:id="@+id/allfiles_toolbar"
             android:text="@string/allfiles"
+            android:textSize="20dp"
+            android:textStyle="bold"
             android:textColor="@color/white"
             android:background="@color/toolbar"/>
 
@@ -37,7 +39,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_sort_icon"
+            android:src="@mipmap/ic_sort"
             android:background="@color/toolbar"
             android:foregroundTint="@android:color/background_dark"
             android:id="@+id/sort_toolbar"

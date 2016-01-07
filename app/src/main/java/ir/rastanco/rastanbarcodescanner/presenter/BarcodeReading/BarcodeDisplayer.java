@@ -25,6 +25,7 @@ import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandlin
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeToDismissTouchListener;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
 
 /**
  * Created by ParisaRashidhi on 22/12/2015.
@@ -34,6 +35,7 @@ public class BarcodeDisplayer extends Activity {
     private ArrayList<Barcode> allBarcode;
     private ImageButton btnSave;
     private ChooseName chooseName;
+    private ImageButton homeBtn;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -42,6 +44,13 @@ public class BarcodeDisplayer extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
+        homeBtn = (ImageButton)findViewById(R.id.choose_name_activity_home);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BarcodeDisplayer.this, MainActivity.class));
+            }
+        });
         chooseName = new ChooseName();
          btnSave = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
         btnSave.setOnClickListener(new View.OnClickListener() {

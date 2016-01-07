@@ -91,14 +91,14 @@ public class MainFragmentHandler extends Fragment {
                 //container.removeAllViewsInLayout();
                 if(sort_mode == true){
                     change_image_sort = (ImageButton) v.findViewById(R.id.sort_toolbar);
-                    change_image_sort.setImageResource(R.drawable.ic_sort_a_to_z);
+                    change_image_sort.setImageResource(R.mipmap.ic_sort_a_to_z);
 
                     sort_mode = false ;
 
                 }
                 else if(sort_mode == false){
 
-                    change_image_sort.setImageResource(R.drawable.ic_sort_icon);
+                    change_image_sort.setImageResource(R.mipmap.ic_sort);
                     sort_mode = true;
                 }
             }

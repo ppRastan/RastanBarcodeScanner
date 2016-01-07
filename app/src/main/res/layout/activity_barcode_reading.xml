@@ -12,9 +12,9 @@
         android:layout_weight="1">
     </FrameLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="78dp"
         android:orientation="horizontal"
         android:background="@color/actionbar">
 
@@ -61,5 +61,5 @@
             android:layout_toLeftOf="@+id/imgb_rScan"
             android:layout_toStartOf="@+id/imgb_rScan" />
 
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

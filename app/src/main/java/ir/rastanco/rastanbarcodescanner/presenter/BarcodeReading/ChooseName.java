@@ -3,19 +3,13 @@ package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -23,6 +17,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -37,7 +32,6 @@ import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
-import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
 
 public class ChooseName extends AppCompatActivity implements OnItemSelectedListener {
@@ -47,6 +41,7 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
     private DataBaseHandler dbHandler;
     private String fileContent;
     private ImageButton camera_btn;
+    private Typeface font;
 //    private FileInfo fileInfoSave;
 
     @Override
@@ -80,8 +75,14 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChooseName.this);
-                builder.setTitle(getResources().getString(R.string.file_saved));
-                builder.setIcon(R.mipmap.ic_launcher);
+                TextView title = new TextView(ChooseName.this);
+                title.setText(getResources().getString(R.string.file_saved));
+                title.setPadding(10, 10, 10, 10);
+                title.setGravity(Gravity.CENTER);
+                title.setTextColor(getResources().getColor(R.color.toolbar));
+                title.setTextSize(23);
+                font  = Typeface.createFromAsset(getAssets(), "yekan_font.ttf");
+                title.setTypeface(font);
                 builder.setItems(new CharSequence[]
                                 {getResources().getString(R.string.confirm), getResources().getString(R.string.display_current_file),
                                         getResources().getString(R.string.share_current_file)},
@@ -102,8 +103,9 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
                                 }
                             }
                         });
+                builder.setCustomTitle(title);
+                builder.setCancelable(true);
                 builder.create().show();
-
             }
         });
 
