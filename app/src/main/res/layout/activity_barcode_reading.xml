@@ -12,9 +12,9 @@
         android:layout_weight="1">
     </FrameLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="78dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="@color/actionbar">
 
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imgb_Check"
-            android:src="@drawable/ic_check"
+            android:src="@mipmap/ic_check"
             android:background="@color/actionbar"
             android:layout_marginRight="65dp"
             android:layout_marginEnd="65dp"
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/image_area"
-            android:src="@drawable/ic_area"
+            android:src="@mipmap/ic_area"
             android:background="@color/actionbar"
             android:layout_marginRight="52dp"
             android:layout_marginEnd="52dp"
@@ -61,5 +61,5 @@
             android:layout_toLeftOf="@+id/imgb_rScan"
             android:layout_toStartOf="@+id/imgb_rScan" />
 
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
