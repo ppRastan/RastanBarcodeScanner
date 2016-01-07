@@ -71,7 +71,8 @@
             android:hapticFeedbackEnabled="true"
             android:layout_weight="2"
             android:clickable="false"
-            android:text="@string/share_current_file"/>
+            android:text="@string/share_current_file"
+            android:visibility="invisible"/>
 
         <TextView android:id="@+id/txt_undo"
             android:layout_height="match_parent"
