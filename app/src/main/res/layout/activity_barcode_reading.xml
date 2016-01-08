@@ -12,54 +12,57 @@
         android:layout_weight="1">
     </FrameLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="78dp"
+        android:layout_height="70dp"
         android:orientation="horizontal"
-        android:background="@color/actionbar">
+        android:background="@color/actionbar"
+        android:weightSum="7">
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/imgb_Check"
             android:src="@mipmap/ic_check"
             android:background="@color/actionbar"
-            android:layout_marginRight="65dp"
-            android:layout_marginEnd="65dp"
-            android:layout_alignTop="@+id/imgb_rScan"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgb_rScan"
-            android:src="@mipmap/ic_camera"
-            android:background="@color/actionbar"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_weight="2" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="0"
             android:id="@+id/txt_counterScan"
-            android:textColor="#fffefe"
-            android:layout_above="@+id/imgb_Check"
-            android:layout_alignRight="@+id/imgb_Check"
-            android:layout_alignEnd="@+id/imgb_Check" />
+            android:textColor="@color/light_green"
+            android:background="@color/actionbar"
+            android:layout_gravity="center_horizontal"
+            />
 
         <ImageButton
-            android:layout_width="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgb_rScan"
+            android:src="@mipmap/ic_camera"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/actionbar"
+             />
+
+
+        <ImageButton
+            android:layout_marginTop="7dp"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="2"
             android:layout_height="wrap_content"
             android:id="@+id/image_area"
             android:src="@mipmap/ic_area"
             android:background="@color/actionbar"
-            android:layout_marginRight="52dp"
-            android:layout_marginEnd="52dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/imgb_rScan"
-            android:layout_toStartOf="@+id/imgb_rScan" />
+             />
 
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
