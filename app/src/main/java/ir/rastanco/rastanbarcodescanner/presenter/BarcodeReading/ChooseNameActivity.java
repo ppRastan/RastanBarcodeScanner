@@ -34,7 +34,7 @@ import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
 
-public class ChooseName extends AppCompatActivity implements OnItemSelectedListener {
+public class ChooseNameActivity extends AppCompatActivity implements OnItemSelectedListener {
     private ImageButton btnSave;
     private ListView fileNamesListView;
     private AutoCompleteTextView activeFileName;
@@ -67,15 +67,15 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
         camera_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ChooseName.this,BarcodeReadingActivity.class));
+                startActivity(new Intent(ChooseNameActivity.this,BarcodeReadingActivity.class));
             }
         });
         btnSave = (ImageButton) findViewById(R.id.appbar_barcode_displayer_check_btn);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseName.this);
-                TextView title = new TextView(ChooseName.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseNameActivity.this);
+                TextView title = new TextView(ChooseNameActivity.this);
                 title.setText(getResources().getString(R.string.file_saved));
                 title.setPadding(10, 10, 10, 10);
                 title.setGravity(Gravity.CENTER);
@@ -90,10 +90,10 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case 0:
-                                        startActivity(new Intent(ChooseName.this, MainActivity.class));
+                                        startActivity(new Intent(ChooseNameActivity.this, MainActivity.class));
                                         break;
                                     case 1:
-                                        startActivity(new Intent(ChooseName.this, BarcodeDisplayer.class));
+                                        startActivity(new Intent(ChooseNameActivity.this, BarcodeDisplayer.class));
                                         break;
                                     case 2: {
                                         //TODO share current file
@@ -139,7 +139,7 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseName.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ChooseNameActivity.this);
                 builder.setTitle(getResources().getString(R.string.file_exist));
                 builder.setIcon(R.mipmap.ic_launcher);
                 builder.setItems(new CharSequence[]
@@ -221,7 +221,7 @@ public class ChooseName extends AppCompatActivity implements OnItemSelectedListe
     @Override
     public void onBackPressed()
     {
-        startActivity(new Intent(ChooseName.this,MainActivity.class));
+        startActivity(new Intent(ChooseNameActivity.this,MainActivity.class));
     }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

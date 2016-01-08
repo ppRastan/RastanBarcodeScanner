@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -34,7 +32,7 @@ public class BarcodeDisplayer extends Activity {
 
     private ArrayList<Barcode> allBarcode;
     private ImageButton btnSave;
-    private ChooseName chooseName;
+    private ChooseNameActivity chooseNameActivity;
     private ImageButton homeBtn;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,21 +49,21 @@ public class BarcodeDisplayer extends Activity {
                 startActivity(new Intent(BarcodeDisplayer.this, MainActivity.class));
             }
         });
-        chooseName = new ChooseName();
+        chooseNameActivity = new ChooseNameActivity();
          btnSave = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
         btnSave.setOnClickListener(new View.OnClickListener() {
           @Override
         public void onClick(View v) {
 
-          Intent iChooseName = new Intent(BarcodeDisplayer.this, ChooseName.class);
+          Intent iChooseName = new Intent(BarcodeDisplayer.this, ChooseNameActivity.class);
           startActivity(iChooseName);
 
         }
         });
 
         allBarcode=new ArrayList<Barcode>();
-        //allBarcode= (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("allBarcode");
-        //chooseNameActivity.setAllBarcodesList(allBarcode);
+        allBarcode= (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("allBarcode");
+        chooseNameActivity.setAllBarcodesList(allBarcode);
         init((RecyclerView) findViewById(R.id.recycler_view));
 
 

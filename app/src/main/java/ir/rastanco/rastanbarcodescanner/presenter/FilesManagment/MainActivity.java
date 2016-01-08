@@ -1,9 +1,7 @@
 package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
 
-import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -19,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +25,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
-import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeDisplayer;
 import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
-import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.ChooseName;
 
 /*
 created by parisaRashidi  on 94/9/27
