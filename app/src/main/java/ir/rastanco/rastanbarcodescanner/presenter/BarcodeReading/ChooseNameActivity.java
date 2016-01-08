@@ -93,7 +93,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
                                         startActivity(new Intent(ChooseNameActivity.this, MainActivity.class));
                                         break;
                                     case 1:
-                                        startActivity(new Intent(ChooseNameActivity.this, BarcodeDisplayer.class));
+                                        startActivity(new Intent(ChooseNameActivity.this, BarcodesListDisplayerActivity.class));
                                         break;
                                     case 2: {
                                         //TODO share current file

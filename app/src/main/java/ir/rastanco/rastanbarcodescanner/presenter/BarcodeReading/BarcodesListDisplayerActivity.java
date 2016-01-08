@@ -28,12 +28,12 @@ import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
 /**
  * Created by ParisaRashidhi on 22/12/2015.
  */
-public class BarcodeDisplayer extends Activity {
+public class BarcodesListDisplayerActivity extends Activity {
 
-    private ArrayList<Barcode> allBarcode;
-    private ImageButton btnSave;
+    private ArrayList<Barcode> barcodesList;
+    private ImageButton saveButton;
     private ChooseNameActivity chooseNameActivity;
-    private ImageButton homeBtn;
+    private ImageButton homeButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -42,38 +42,42 @@ public class BarcodeDisplayer extends Activity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
-        homeBtn = (ImageButton)findViewById(R.id.choose_name_activity_home);
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(BarcodeDisplayer.this, MainActivity.class));
-            }
-        });
-        chooseNameActivity = new ChooseNameActivity();
-         btnSave = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-          @Override
-        public void onClick(View v) {
-
-          Intent iChooseName = new Intent(BarcodeDisplayer.this, ChooseNameActivity.class);
-          startActivity(iChooseName);
-
-        }
-        });
-
-        allBarcode=new ArrayList<Barcode>();
-        allBarcode= (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("allBarcode");
-        chooseNameActivity.setAllBarcodesList(allBarcode);
-        init((RecyclerView) findViewById(R.id.recycler_view));
+        this.createPage();
 
 
 
     }
 
+    private void createPage() {
+        homeButton = (ImageButton)findViewById(R.id.choose_name_activity_home);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BarcodesListDisplayerActivity.this, MainActivity.class));
+            }
+        });
+        chooseNameActivity = new ChooseNameActivity();
+        saveButton = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent iChooseName = new Intent(BarcodesListDisplayerActivity.this, ChooseNameActivity.class);
+                startActivity(iChooseName);
+
+            }
+        });
+
+        barcodesList =new ArrayList<Barcode>();
+        barcodesList = (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("barcodesList");
+        chooseNameActivity.setAllBarcodesList(barcodesList);
+        init((RecyclerView) findViewById(R.id.recycler_view));
+    }
+
     @Override
     public void onBackPressed() {
 
-        startActivity(new Intent(BarcodeDisplayer.this, BarcodeReadingActivity.class));
+        startActivity(new Intent(BarcodesListDisplayerActivity.this, BarcodeReadingActivity.class));
 
     }
 
@@ -81,7 +85,7 @@ public class BarcodeDisplayer extends Activity {
     private void init(RecyclerView recyclerView) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
-        final MyBaseAdapter adapter = new MyBaseAdapter(allBarcode);
+        final MyBaseAdapter adapter = new MyBaseAdapter(barcodesList);
         recyclerView.setAdapter(adapter);
         final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
                 new SwipeToDismissTouchListener<>(

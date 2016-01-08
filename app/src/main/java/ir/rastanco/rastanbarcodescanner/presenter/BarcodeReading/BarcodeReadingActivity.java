@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -33,12 +34,12 @@ created by shayeste
  */
 public class BarcodeReadingActivity extends Activity {
 
-    private Camera mCamera;
-    private CameraPreview mPreview;
+    private Camera camera;
+    private CameraPreview cameraPreview;
     private Handler autoFocusHandler;
 
-    private ImageButton imgbCheck;
-    private ImageView imgBarecode;
+    private ImageButton okButton;
+    private ImageView cameraButton;
     private ImageScanner scanner;
     private TextView txtCounterScan;
 
@@ -47,7 +48,7 @@ public class BarcodeReadingActivity extends Activity {
     private boolean barcodeScanned = false;
     private boolean previewing = true;
 
-    private ArrayList<Barcode> allBarcode;
+    private ArrayList<Barcode> barcodesList;
 
     static {
         System.loadLibrary("iconv");
@@ -57,62 +58,73 @@ public class BarcodeReadingActivity extends Activity {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+//    private GoogleApiClient client;
 
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_reading);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        this.createPage();
+
+    }
+
+    private void createPage() {
 
 
-        imgBarecode = (ImageButton) findViewById(R.id.imgb_rScan);
-        imgbCheck=(ImageButton)findViewById(R.id.imgb_Check);
+        barcodesList = new ArrayList<Barcode>();
+
+        this.initializeCamera();
+        this.createFooterToolbar();
+
+        new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private void createFooterToolbar() {
+        cameraButton = (ImageButton) findViewById(R.id.imgb_rScan);
+        okButton =(ImageButton)findViewById(R.id.imgb_Check);
 
         //For counter
         counterScan=0;
         txtCounterScan=(TextView)findViewById(R.id.txt_counterScan);
         txtCounterScan.setText(Integer.toString(counterScan));
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (barcodeScanned) {
+                    barcodeScanned = false;
+                    camera.startPreview();
+                    camera.setPreviewCallback(previewCb);
+                    previewing = true;
+                    camera.autoFocus(autoFocusCB);
+                }
+            }
+        });
 
-        allBarcode = new ArrayList<Barcode>();
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("barcodesList", barcodesList);
+                Intent iDisplayBarcode = new Intent(BarcodeReadingActivity.this, BarcodesListDisplayerActivity.class);
+                iDisplayBarcode.putExtras(bundle);
+                startActivity(iDisplayBarcode);
+            }
+        });
+    }
+
+    private void initializeCamera() {
 
         autoFocusHandler = new Handler();
-        mCamera = getCameraInstance();
+        camera = getCameraInstance();
 
         /* Instance barcode scanner */
         scanner = new ImageScanner();
         scanner.setConfig(0, Config.X_DENSITY, 3);
         scanner.setConfig(0, Config.Y_DENSITY, 3);
 
-        mPreview = new CameraPreview(this, mCamera, previewCb, autoFocusCB);
+        cameraPreview = new CameraPreview(this, camera, previewCb, autoFocusCB);
         final FrameLayout preview = (FrameLayout) findViewById(R.id.cameraPreview);
-        preview.addView(mPreview);
-
-        imgBarecode.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (barcodeScanned) {
-                    barcodeScanned = false;
-                    mCamera.startPreview();
-                    mCamera.setPreviewCallback(previewCb);
-                    previewing = true;
-                    mCamera.autoFocus(autoFocusCB);
-                }
-            }
-        });
-
-        imgbCheck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("allBarcode", allBarcode);
-                Intent iDisplayBarcode=new Intent(BarcodeReadingActivity.this,BarcodeDisplayer.class);
-                iDisplayBarcode.putExtras(bundle);
-                startActivity(iDisplayBarcode);
-            }
-        });
-
-
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        preview.addView(cameraPreview);
     }
 
     @Override
@@ -134,23 +146,28 @@ public class BarcodeReadingActivity extends Activity {
         try {
             c = Camera.open();
         } catch (Exception e) {
+            Log.v("Camera", "Camera Not Available!");
         }
         return c;
     }
 
     private void releaseCamera() {
-        if (mCamera != null) {
-            previewing = false;
-            mCamera.setPreviewCallback(null);
-            mCamera.release();
-            mCamera = null;
-        }
+       try{
+           if (camera != null) {
+               previewing = false;
+               camera.setPreviewCallback(null);
+               camera.release();
+               camera = null;
+           }
+               }catch(Exception exception){
+                Log.v("Camera", "Error in Releasing Camera");
+             }
     }
 
     private Runnable doAutoFocus = new Runnable() {
         public void run() {
             if (previewing)
-                mCamera.autoFocus(autoFocusCB);
+                camera.autoFocus(autoFocusCB);
         }
     };
 
@@ -165,15 +182,15 @@ public class BarcodeReadingActivity extends Activity {
             int result = scanner.scanImage(barcode);
             if (result != 0) {
                 previewing = false;
-                mCamera.setPreviewCallback(null);
-                mCamera.stopPreview();
+                BarcodeReadingActivity.this.camera.setPreviewCallback(null);
+                BarcodeReadingActivity.this.camera.stopPreview();
                 SymbolSet syms = scanner.getResults();
                 for (Symbol sym : syms) {
                     barcodeScanned = true;
                     Barcode aBarcode = new Barcode();
                     aBarcode.setContent(sym.getData());
                     aBarcode.setFormat(sym.getType());
-                    allBarcode.add(aBarcode);
+                    barcodesList.add(aBarcode);
                 }
                 counterScan++;
                 txtCounterScan.setText(Integer.toString(counterScan));

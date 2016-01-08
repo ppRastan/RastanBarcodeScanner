@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presenter.BarcodeReading.BarcodeReadingActivity" />
-        <activity android:name=".presenter.BarcodeReading.BarcodeDisplayer" />
+        <activity android:name=".presenter.BarcodeReading.BarcodesListDisplayerActivity" />
 
         <meta-data
             android:name="com.google.android.gms.version"
