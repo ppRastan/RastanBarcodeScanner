@@ -131,8 +131,17 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(MainActivity.this,CheckBoxHandler.class));
+                //  if(dbHandler.emptyDB())
+//                         {
+//                              simple_empty_database_textView.setVisibility(View.VISIBLE);
+//                              simple_empty_database_textView.setTypeface(font);
+//
+//                         }
 
+//                              else
+                //                                {
+                startActivity(new Intent(MainActivity.this, CheckBoxHandler.class));
+            //}
             }
         });
 
