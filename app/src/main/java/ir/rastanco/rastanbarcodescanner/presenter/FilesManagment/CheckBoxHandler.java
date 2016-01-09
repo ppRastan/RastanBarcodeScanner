@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -23,20 +24,22 @@ import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandlin
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeToDismissTouchListener;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
 public class CheckBoxHandler extends Activity {
 
-
+    private CheckBox listViewItemCheckBoxes;
+    private ArrayList<Integer> itemSelectedByCheckBoxes;
     private ImageButton toolbarShareButton;
     private ImageButton toolbarDeleteButton;
     private CheckBox toolbarSelectAllCheckboxes;
     private TextView selectAllCheckBoxesTextView;
     private ImageButton toolbarFinishedChecking;
     private ArrayList<FileInfo> allFileInfo;
+    private boolean selectAllCheckboxesState = false;
+    final MyBaseAdapter adapter = new MyBaseAdapter();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_check_box_handler);
         this.addToolbar();
         this.setFont();
@@ -56,18 +59,11 @@ public class CheckBoxHandler extends Activity {
         init((RecyclerView) findViewById(R.id.recycler_view));
     }
     private void addToolbar() {
-
+         listViewItemCheckBoxes = (CheckBox)findViewById(R.id.checkbox_listview_items);
         toolbarFinishedChecking = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
         toolbarShareButton = (ImageButton)findViewById(R.id.checkbox_content_layout_share_btn);
         toolbarDeleteButton = (ImageButton)findViewById(R.id.checkbox_content_layout_delete_btn);
         toolbarSelectAllCheckboxes = (CheckBox)findViewById(R.id.select_all_checkboxes);
-        toolbarFinishedChecking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         toolbarShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,9 +80,10 @@ public class CheckBoxHandler extends Activity {
         toolbarSelectAllCheckboxes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listViewItemCheckBoxes = (CheckBox)findViewById(R.id.checkbox_listview_items);
+                listViewItemCheckBoxes.setChecked(true);
+             }
 
-
-            }
         });
         toolbarFinishedChecking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,11 +95,15 @@ public class CheckBoxHandler extends Activity {
     }
 
 
+
+
     private void init(RecyclerView recyclerView) {
+
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
-        final MyBaseAdapter adapter = new MyBaseAdapter();
         recyclerView.setAdapter(adapter);
+
+
         final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
                 new SwipeToDismissTouchListener<>(
                         new RecyclerViewAdapter(recyclerView),
@@ -119,19 +120,22 @@ public class CheckBoxHandler extends Activity {
                         });
 
         recyclerView.setOnTouchListener(touchListener);
+        itemSelectedByCheckBoxes = new ArrayList<>();
         recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
         recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(this,
                 new OnItemClickListener() {
+
                     @Override
                     public void onItemClick(View view, int position) {
                         if (view.getId() == R.id.txt_delete) {
                             touchListener.processPendingDismisses();
                         } else if (view.getId() == R.id.txt_undo) {
                             touchListener.undoPendingDismiss();
-                        }
-                        else{
+                        } else if (view.getId() == R.id.txt_share) {
                             //TODO handle send files
-                            Toast.makeText(getApplicationContext(),"share button",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "share button", Toast.LENGTH_SHORT).show();
+                        } else if (view.getId() == R.id.checkbox_listview_items) {
+                            itemSelectedByCheckBoxes.add(position);
                         }
                     }
                 }));
@@ -173,17 +177,20 @@ public class CheckBoxHandler extends Activity {
 
         static class MyViewHolder extends RecyclerView.ViewHolder {
 
-            TextView dataTextView;
-            CheckBox checkBox;
-            TextView checkBoxHandlertextShare;
+            private static TextView dataTextView;
+            private static CheckBox listviewItemCheckBoxes;
+            private static TextView checkBoxHandlertextShare;
             MyViewHolder(View view) {
                 super(view);
                 checkBoxHandlertextShare = (TextView)view.findViewById(R.id.txt_share);
-                checkBox = (CheckBox)view.findViewById(R.id.checkbox_listview_items);
+                listviewItemCheckBoxes = (CheckBox)view.findViewById(R.id.checkbox_listview_items);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
-                checkBox.setVisibility(View.VISIBLE);
+                listviewItemCheckBoxes.setVisibility(View.VISIBLE);
                 checkBoxHandlertextShare.setVisibility(View.VISIBLE);
+
             }
+
+
         }
     }
 
