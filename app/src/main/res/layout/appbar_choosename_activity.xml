@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="?attr/actionBarSize"
     android:background="@color/actionbar"
-    android:weightSum="10"
+    android:weightSum="9"
     >
     <TextView
         android:layout_width="0dp"
@@ -17,16 +17,7 @@
         android:textColor="@color/white"
         android:background="@color/actionbar"/>
 
-    <ImageButton
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginLeft="9dp"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:src="@mipmap/ic_camera"
-        android:id="@+id/choose_name_activity_camera"
-        android:background="@color/actionbar"
-        />
+
     <ImageButton
         android:layout_width="0dp"
         android:layout_weight="1"

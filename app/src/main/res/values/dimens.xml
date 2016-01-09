@@ -7,4 +7,5 @@
     <dimen name="list_item_height">60dp</dimen>
     <dimen name="navigation_drawer_width">190dp</dimen>
     <dimen name="list_item_padding_sides">30dp</dimen>
+    <dimen name="actinbar_size">53dp</dimen>
 </resources>

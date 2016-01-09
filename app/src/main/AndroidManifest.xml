@@ -32,10 +32,19 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".presenter.BarcodeReading.ChooseNameActivity"
+        <activity
+            android:name=".presenter.BarcodeReading.ChooseNameActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="com.example.parisarashidhi.fragmenttoolbar.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presenter.FilesManagment.CheckBoxHandler"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.CheckBoxHandler" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

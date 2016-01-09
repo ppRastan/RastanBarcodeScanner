@@ -63,13 +63,13 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     }
 
     private void setToolbar() {
-        camera_btn = (ImageButton)findViewById(R.id.choose_name_activity_camera);
-        camera_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ChooseNameActivity.this,BarcodeReadingActivity.class));
-            }
-        });
+       // camera_btn = (ImageButton)findViewById(R.id.choose_name_activity_camera);
+       // camera_btn.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+           // public void onClick(View v) {
+             //   startActivity(new Intent(ChooseNameActivity.this,BarcodeReadingActivity.class));
+           // }
+        //});
         btnSave = (ImageButton) findViewById(R.id.appbar_barcode_displayer_check_btn);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

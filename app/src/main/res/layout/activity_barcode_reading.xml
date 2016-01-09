@@ -12,57 +12,15 @@
         android:layout_weight="1">
     </FrameLayout>
 
-    <LinearLayout
+    <include
+        layout="@layout/camera_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="horizontal"
-        android:background="@color/actionbar"
-        android:weightSum="7">
+        android:layout_height="wrap_content"
+        />
+    <include
+        layout="@layout/toolbar_barcode_reading_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        />
 
-        <ImageButton
-            android:layout_marginTop="7dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgb_Check"
-            android:src="@mipmap/ic_check"
-            android:background="@color/actionbar"
-            android:layout_weight="2" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_marginTop="7dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:id="@+id/txt_counterScan"
-            android:textColor="@color/light_green"
-            android:background="@color/actionbar"
-            android:layout_gravity="center_horizontal"
-            />
-
-        <ImageButton
-            android:layout_marginTop="7dp"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:id="@+id/imgb_rScan"
-            android:src="@mipmap/ic_camera"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/actionbar"
-             />
-
-
-        <ImageButton
-            android:layout_marginTop="7dp"
-            android:layout_width="0dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:id="@+id/image_area"
-            android:src="@mipmap/ic_area"
-            android:background="@color/actionbar"
-             />
-
-    </LinearLayout>
 </LinearLayout>
