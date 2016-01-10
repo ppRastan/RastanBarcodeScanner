@@ -48,8 +48,7 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
-            android:id="@+id/select_all_checkboxes"
+            android:id="@+id/chkAll"
             android:buttonTint="@color/white"
 
             />

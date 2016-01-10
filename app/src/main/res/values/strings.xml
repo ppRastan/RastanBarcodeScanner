@@ -16,12 +16,9 @@
     -->
     <string name="selectAll">انتخاب همه</string>
     <string name="savethisBarcodes">ذخیره</string>
-    <string name="no_file_saved">تاکنون فایلی روی گوشی شماذخیره نشده است .</string>
+    <string name="no_file_saved">تاکنون فایلی روی گوشی شما ذخیره نشده است .</string>
     <string name="sure_to_exit">برای خروج کلید بازگشت را مجددا فشار دهید</string>
-    <string name="exit">آیاقصدخروج دارید؟</string>
-    <string name="yes">بله</string>
-    <string name="no">خیر</string>
-    <string name="barcode_scanner">برنامه ی بارکدخوان حرفه ای رادربازاراندروید ببینید:</string>
+    <string name="barcode_scanner">برنامه ی بارکد خوان حرفه ایی را در بازار اندروید ببینید:</string>
     <!--
      actionbar titeles and activity names are here
     -->
@@ -33,22 +30,16 @@
     <string name="showExcelFilesOnly">فایل های اکسل</string>
     <string name="showTextFilesOnly">فایل های متنی</string>
 
-    <!--
-     these strings are for DisplayBarcodeActivity
-    -->
-    <string name="type_of_file">انتخاب نوع فایل</string>
-    <string name="save_az_xls_file">ذخیره به صورت فایل متنی</string>
-    <string name="save_az_txt_file">ذخیره به صورت فایل اکسل</string>
-    <!--
+        <!--
      these strings are for ChooseNameActivity
     -->
-    <string name="file_saved">فایل شماذخیره شد</string>
-    <string name="display_current_file">نمایش مجددفایل</string>
+    <string name="file_saved">فایل شما ذخیره شد </string>
+    <string name="display_current_file">نمایش مجدد فایل</string>
     <string name="confirm">تایید</string>
     <string name="share_current_file">ارسال</string>
-    <string name="file_exist">فایل شماموجوداست</string>
+    <string name="file_exist">فایل موجوداست</string>
     <string name="replace">فایل راجایگزین کن</string>
-    <string name="add">فایل رابه قبلی اضافه کن</string>
+    <string name="add">فایل را به قبلی اضافه کن </string>
     <!--
     these strings are for listviewItems
     -->
@@ -59,8 +50,7 @@
     there strings are for barcode displayer activity
     -->
     <string name="barcode_displayer">نمایش بارکدها</string>
-    <string name="title_activity_choose_name">تاییدنهایی فایل</string>
+    <string name="title_activity_choose_name">تایید نهایی فایل</string>
     <string name="file_name">نام فایل:</string>
     <string name="title_activity_barcode_displayer">نمایش بارکدها</string>
-    <string name="title_activity_barcode_reading">BarcodeReadingActivity</string>
 </resources>
