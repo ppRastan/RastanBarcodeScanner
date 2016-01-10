@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:foregroundTint="@android:color/background_dark"
             android:id="@+id/checkbox_toolbar"
-            android:src="@mipmap/check_box_toolbar"
+            android:src="@mipmap/ic_checkbox_toolbar"
             android:background="@color/toolbar" />
 
         <Button
