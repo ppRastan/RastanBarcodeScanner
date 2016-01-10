@@ -43,7 +43,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:id="@+id/image_area"
-                android:src="@mipmap/area"
+                android:src="@mipmap/ic_area"
                 android:background="@color/actionbar"
                 />
         </LinearLayout>

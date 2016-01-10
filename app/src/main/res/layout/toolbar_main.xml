@@ -19,13 +19,13 @@
             android:layout_height="wrap_content"
             android:foregroundTint="@android:color/background_dark"
             android:id="@+id/checkbox_toolbar"
-            android:src="@mipmap/ic_checkbox_toolbar"
+            android:src="@mipmap/ic_check_box_toolbar"
             android:background="@color/toolbar" />
 
         <Button
             android:layout_width="0dp"
             android:layout_weight="2"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/allfiles_toolbar"
             android:text="@string/allfiles"
             android:textColor="@color/white"
