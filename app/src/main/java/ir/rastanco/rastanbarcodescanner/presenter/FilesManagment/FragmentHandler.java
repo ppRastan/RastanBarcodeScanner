@@ -128,7 +128,6 @@ public class FragmentHandler extends Fragment {
 
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
-                listViewCheckBox = ((CheckBox)view.findViewById(R.id.checkbox_listview_items));
                 textShare = (TextView)view.findViewById(R.id.txt_share);
                 textShare.setVisibility(View.VISIBLE);
             }
