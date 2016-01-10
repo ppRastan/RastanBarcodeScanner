@@ -114,13 +114,7 @@ public class CheckBoxHandler extends ListActivity {
         getListView().setAdapter(adapter);
     }
 
-    private void setActivityRTL() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-        {
-            getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-        }
-    }
 
     private int getCheckedItemCount(){
         int cnt = 0;
