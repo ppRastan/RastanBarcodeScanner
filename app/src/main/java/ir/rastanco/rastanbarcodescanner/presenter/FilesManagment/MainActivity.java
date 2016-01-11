@@ -20,19 +20,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.util.ArrayList;
-
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
-import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.AboutBarCodeScanner;
+import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.FragmentSentFiles;
 
 /*
 created by parisaRashidi  on 94/9/27
@@ -59,6 +57,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private final String displayExcelFilesOnly = "displayExcelFilesOnly";
     private final String displayTextFilesOnly = "displayTextFilesOnly";
     private FrameLayout fragmentContainer ;
+    private FragmentSentFiles fragmentSentFiles;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +68,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
         this.setActionBar();
         this.supportDrawable();
         this.addToolbar();
@@ -79,19 +79,19 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     private void setMainFragmentAndCheckDataBaseState() {
 
-        fragmentContainer = (FrameLayout)findViewById(R.id.fragment_container);
-        mainFragmentHandler = new FragmentHandler();
-//        dbHandler = new DataBaseHandler(this);
-        simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
-//               if(dbHandler.emptyDB())
-//                         {
-//                              simple_empty_database_textView.setVisibility(View.VISIBLE);
-//                              simple_empty_database_textView.setTypeface(font);
-//
-//                         }
 
-//                              else
-        //                                {
+        mainFragmentHandler = new FragmentHandler();
+        dbHandler = new DataBaseHandler(this);
+        simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
+               if(dbHandler.emptyDB())
+                         {
+                              simple_empty_database_textView.setVisibility(View.VISIBLE);
+                              simple_empty_database_textView.setTypeface(font);
+
+                         }
+
+                              else
+                                        {
         simple_empty_database_textView.setVisibility(View.GONE);
         fragmentManager = getFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         fragmentTransaction.commit();
 
 
-        //                              }
+                                      }
 
     }
 
@@ -131,18 +131,18 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             @Override
             public void onClick(View v) {
 
-                //  if(dbHandler.emptyDB())
+//                  if(dbHandler.emptyDB())
 //                         {
 //                              simple_empty_database_textView.setVisibility(View.VISIBLE);
 //                              simple_empty_database_textView.setTypeface(font);
 //
 //                         }
-
+//
 //                              else
-                //                                {
+//                                                {
                 startActivity(new Intent(MainActivity.this, CheckBoxHandler.class));
+                                                }
             //}
-            }
         });
 
 
@@ -250,10 +250,30 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         else if(id==R.id.nav_have_sent_files)
         {
 
+//                           if(dbHandler.emptyDB())
+//                         {
+//                              simple_empty_database_textView.setVisibility(View.VISIBLE);
+//                              simple_empty_database_textView.setTypeface(font);
+//
+//                         }
+//
+//                              else
+//                                            {
+            simple_empty_database_textView.setVisibility(View.GONE);
+            fragmentManager = getFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentSentFiles = new FragmentSentFiles();
+            fragmentTransaction.add(R.id.fragment_container, fragmentSentFiles);
+            fragmentTransaction.commit();
+
+
+                                        //}
+
 
         }
         else if(id == R.id.nav_about){
 
+            startActivity(new Intent(MainActivity.this, AboutBarCodeScanner.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

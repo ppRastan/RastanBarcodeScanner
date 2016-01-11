@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -32,6 +33,7 @@ import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
 /*
 created by shayeste
  */
+//Todo for this page : save all barcode aray list and counter number so that users don't miss them when they go to next activity
 public class BarcodeReadingActivity extends Activity {
 
     private Camera camera;
@@ -49,7 +51,8 @@ public class BarcodeReadingActivity extends Activity {
     private boolean previewing = true;
 
     private ArrayList<Barcode> barcodesList;
-
+    private ImageButton selectAreaBtn;
+    private boolean noArea = false;
     static {
         System.loadLibrary("iconv");
     }
@@ -68,6 +71,8 @@ public class BarcodeReadingActivity extends Activity {
         this.createPage();
 
     }
+
+
 
     private void createPage() {
 
@@ -103,11 +108,38 @@ public class BarcodeReadingActivity extends Activity {
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                okButton.setImageResource(R.mipmap.ic_green_check_mark);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("barcodesList", barcodesList);
                 Intent iDisplayBarcode = new Intent(BarcodeReadingActivity.this, BarcodesListDisplayerActivity.class);
                 iDisplayBarcode.putExtras(bundle);
-                startActivity(iDisplayBarcode);
+                //TODO uncommnet this if statement so that user cant continue whit no item scaned
+                              //if (counterScan>0)
+                               startActivity(iDisplayBarcode);
+               // else
+                //{
+                  //  Toast.makeText(getApplicationContext(),getResources().getString(R.id.no_item_scaned),Toast.LENGTH_SHORT).show();
+                //}
+            }
+        });
+        selectAreaBtn = (ImageButton)findViewById(R.id.image_area);
+        selectAreaBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(noArea == false){
+
+                    selectAreaBtn.setImageResource(R.mipmap.ic_green_area);
+                    Toast.makeText(getApplicationContext(),"dfhfh",Toast.LENGTH_SHORT).show();
+                    noArea = true;
+                    //TODO display area here
+                }
+                else if(noArea){
+                    selectAreaBtn.setImageResource(R.mipmap.ic_area);
+                    noArea = false;
+                    //TODO exit area mode
+                }
+
             }
         });
     }

@@ -19,6 +19,7 @@
     <string name="no_file_saved">تاکنون فایلی روی گوشی شما ذخیره نشده است .</string>
     <string name="sure_to_exit">برای خروج کلید بازگشت را مجددا فشار دهید</string>
     <string name="barcode_scanner">برنامه ی بارکد خوان حرفه ایی را در بازار اندروید ببینید:</string>
+    <string name="text_to_discribe_app">این برنامه به شما کمک میکند تا بارکد های خود را به سرعت اسکن کرده و آنها را به راحتی به صورت فایل ذخیره کنید </string>
     <!--
      actionbar titeles and activity names are here
     -->
@@ -30,11 +31,11 @@
     <string name="showExcelFilesOnly">فایل های اکسل</string>
     <string name="showTextFilesOnly">فایل های متنی</string>
 
-        <!--
+    <!--
      these strings are for ChooseNameActivity
     -->
     <string name="file_saved">فایل شما ذخیره شد </string>
-    <string name="display_current_file">نمایش مجدد فایل</string>
+    <string name="edit_file">ویرایش فایل</string>
     <string name="confirm">تایید</string>
     <string name="share_current_file">ارسال</string>
     <string name="file_exist">فایل موجوداست</string>
@@ -53,4 +54,7 @@
     <string name="title_activity_choose_name">تایید نهایی فایل</string>
     <string name="file_name">نام فایل:</string>
     <string name="title_activity_barcode_displayer">نمایش بارکدها</string>
+    <string name="title_activity_about_bar_code_scanner">درباره بارکد خوان</string>
+    <string name="no_item_scaned">هیچ بارکدی ثبت نشده</string>
+    <string name="title_activity_file_editor">FileEditor</string>
 </resources>

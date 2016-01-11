@@ -1,16 +1,17 @@
-package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
+package ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
+import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,70 +23,34 @@ import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandlin
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.RecyclerViewAdapter;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeToDismissTouchListener;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
-import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 
 /**
- * Created by ParisaRashidhi on 22/12/2015.
+ * Created by ParisaRashidhi on 31/12/2015.
  */
-public class BarcodesListDisplayerActivity extends Activity {
+public class FragmentSentFiles extends Fragment {
 
-    private ArrayList<Barcode> barcodesList;
-    private ImageButton saveButton;
-    private ChooseNameActivity chooseNameActivity;
-    private ImageButton homeButton;
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_barcode_displayer);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-        }
-        this.createPage();
-
-
-
-    }
-
-    private void createPage() {
-        homeButton = (ImageButton)findViewById(R.id.choose_name_activity_home);
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(BarcodesListDisplayerActivity.this, MainActivity.class));
-            }
-        });
-        chooseNameActivity = new ChooseNameActivity();
-        saveButton = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 //Todo save barCodes in file
-                Intent iChooseName = new Intent(BarcodesListDisplayerActivity.this, ChooseNameActivity.class);
-                startActivity(iChooseName);
-
-            }
-        });
-
-        barcodesList =new ArrayList<Barcode>();
-        barcodesList = (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("barcodesList");
-        chooseNameActivity.setAllBarcodesList(barcodesList);
-        init((RecyclerView) findViewById(R.id.recycler_view));
-    }
+    private ArrayList<FileInfo> allFileInfo;
 
     @Override
-    public void onBackPressed() {
-
-        startActivity(new Intent(BarcodesListDisplayerActivity.this, BarcodeReadingActivity.class));
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_handler, null);
+        this.showListOfFiles(view);
+        return view;
     }
+
+    private void showListOfFiles(View view) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("allFileInfo", allFileInfo);
+        init((RecyclerView) view.findViewById(R.id.recycler_view));
+    }
+
 
 
     private void init(RecyclerView recyclerView) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
-        final MyBaseAdapter adapter = new MyBaseAdapter(barcodesList);
+        final MyBaseAdapter adapter = new MyBaseAdapter();
         recyclerView.setAdapter(adapter);
         final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
                 new SwipeToDismissTouchListener<>(
@@ -112,6 +77,9 @@ public class BarcodesListDisplayerActivity extends Activity {
                             touchListener.processPendingDismisses();
                         } else if (view.getId() == R.id.txt_undo) {
                             touchListener.undoPendingDismiss();
+                        } else {
+
+                            //TODO send files
                         }
                     }
                 }));
@@ -119,16 +87,16 @@ public class BarcodesListDisplayerActivity extends Activity {
 
     static class MyBaseAdapter extends RecyclerView.Adapter<MyBaseAdapter.MyViewHolder> {
 
+
         private final List<String> mDataSet = new ArrayList<>();
 
-        MyBaseAdapter(ArrayList<Barcode> allBarcode) {
-
-            for (int i=0;i<allBarcode.size();i++)
-                mDataSet.add(allBarcode.get(i).getContent());
-//// TODO: 11/01/2016  replace below code instead of above so that user can see number of barCodes scanned
-//            for (int i = 0; i < allBarcode.size(); i++)
-//                mDataSet.add(i,allBarcode.get(i).getContent() + i);
-
+        MyBaseAdapter() {
+            mDataSet.add("shared file 1");
+            mDataSet.add("shered file 2");
+            mDataSet.add("shered file 3");
+            mDataSet.add("shered file 4");
+            mDataSet.add("shered file 5");
+            mDataSet.add("shered file 6");
         }
 
         @Override
@@ -140,7 +108,6 @@ public class BarcodesListDisplayerActivity extends Activity {
         @Override
         public void onBindViewHolder(MyViewHolder holder, int position) {
             holder.dataTextView.setText(mDataSet.get(position));
-            holder.iconImageView.setImageResource(R.drawable.ic_action);
         }
 
         @Override
@@ -154,16 +121,17 @@ public class BarcodesListDisplayerActivity extends Activity {
         }
 
         static class MyViewHolder extends RecyclerView.ViewHolder {
-
             TextView dataTextView;
-            ImageView iconImageView;
+            CheckBox listViewCheckBox;
+            TextView textShare;
             MyViewHolder(View view) {
+
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
-                iconImageView=(ImageView)view.findViewById(R.id.img_icon);
+                textShare = (TextView)view.findViewById(R.id.txt_share);
+                textShare.setVisibility(View.VISIBLE);
             }
         }
     }
+
 }
-
-

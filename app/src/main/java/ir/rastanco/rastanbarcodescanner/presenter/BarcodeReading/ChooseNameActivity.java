@@ -63,17 +63,12 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     }
 
     private void setToolbar() {
-       // camera_btn = (ImageButton)findViewById(R.id.choose_name_activity_camera);
-       // camera_btn.setOnClickListener(new View.OnClickListener() {
-         //   @Override
-           // public void onClick(View v) {
-             //   startActivity(new Intent(ChooseNameActivity.this,BarcodeReadingActivity.class));
-           // }
-        //});
+
         btnSave = (ImageButton) findViewById(R.id.appbar_barcode_displayer_check_btn);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnSave.setImageResource(R.mipmap.ic_green_check_mark);
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChooseNameActivity.this);
                 TextView title = new TextView(ChooseNameActivity.this);
                 title.setText(getResources().getString(R.string.file_saved));
@@ -84,17 +79,17 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
                 font  = Typeface.createFromAsset(getAssets(), "yekan_font.ttf");
                 title.setTypeface(font);
                 builder.setItems(new CharSequence[]
-                                {getResources().getString(R.string.confirm), getResources().getString(R.string.display_current_file),
+                                {getResources().getString(R.string.confirm), getResources().getString(R.string.edit_file),
                                         getResources().getString(R.string.share_current_file)},
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
-                                    case 0:
+                                    case 0 :
+                                        //// TODO: 11/01/2016 save this file in database
                                         startActivity(new Intent(ChooseNameActivity.this, MainActivity.class));
                                         break;
                                     case 1:
-                                        startActivity(new Intent(ChooseNameActivity.this, BarcodesListDisplayerActivity.class));
-                                        break;
+                                        startActivity(new Intent(ChooseNameActivity.this,FileEditor.class));
                                     case 2: {
                                         //TODO share current file
                                     }

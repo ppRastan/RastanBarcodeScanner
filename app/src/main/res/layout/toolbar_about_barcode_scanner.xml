@@ -1,0 +1,43 @@
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/my_toolbar"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/actionbar"
+    android:layout_width="match_parent"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal" android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/actionbar"
+        android:weightSum="9"
+        >
+
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@mipmap/ic_check"
+            android:id="@+id/about_app_check_btn"
+            android:background="@color/actionbar"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginRight="16dp"
+            android:text="@string/title_activity_about_bar_code_scanner"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@color/actionbar"/>
+
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.Toolbar>
+
