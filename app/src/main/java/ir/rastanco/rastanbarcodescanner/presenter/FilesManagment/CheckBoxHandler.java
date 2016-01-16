@@ -21,14 +21,11 @@ import ir.rastanco.rastanbarcodescanner.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CheckBoxHandler extends ListActivity {
-
-
-
     private ArrayList<String> files;
     private ImageButton toolbarShareButton;
     private ImageButton toolbarDeleteButton;
-    private TextView selectAllCheckBoxesTextView;
     private ImageButton toolbarFinishedChecking;
+    ArrayAdapter<String> adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +35,7 @@ public class CheckBoxHandler extends ListActivity {
         this.manageClickListeners();
 
     }
-
+   //to set font
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
@@ -59,14 +56,23 @@ public class CheckBoxHandler extends ListActivity {
         toolbarDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SparseBooleanArray checkedItemPositions = getListView().getCheckedItemPositions();
+                int itemCount = getListView().getCount();
 
+                for(int i=itemCount-1; i >= 0; i--){
+                    if(checkedItemPositions.get(i)){
+                        adapter.remove(files.get(i));
+                    }
+                }
+                checkedItemPositions.clear();
+                adapter.notifyDataSetChanged();
             }
         });
         toolbarFinishedChecking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(CheckBoxHandler.this,MainActivity.class));
+                startActivity(new Intent(CheckBoxHandler.this, MainActivity.class));
             }
         });
     }
@@ -110,7 +116,7 @@ public class CheckBoxHandler extends ListActivity {
         files.add("file 2");
         files.add("file 3");
         files.add("file 4");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, files);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, files);
         getListView().setAdapter(adapter);
     }
 

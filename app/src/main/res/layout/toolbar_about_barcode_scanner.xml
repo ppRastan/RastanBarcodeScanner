@@ -11,22 +11,10 @@
         android:orientation="horizontal" android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/actionbar"
-        android:weightSum="9"
         >
 
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:src="@mipmap/ic_check"
-            android:id="@+id/about_app_check_btn"
-            android:background="@color/actionbar"/>
-
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="8"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginRight="16dp"
