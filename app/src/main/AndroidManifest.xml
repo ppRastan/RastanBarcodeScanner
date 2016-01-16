@@ -1,48 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ir.rastanco.rastanbarcodescanner"
-    android:installLocation="auto"
-    >
-
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.Camera" />
     <uses-feature android:name="android.hardware.camera2" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:allowBackup="true"
         android:name=".Utility.Application"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
 
         <activity
             android:name=".presenter.FilesManagment.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SplashScreen">
+
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            </activity>
-
-
-
-            <activity android:name=".presenter.BarcodeReading.BarcodeReadingActivity"
+        </activity>
+        <activity
+            android:name=".presenter.BarcodeReading.BarcodeReadingActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            </activity>
-
-
-        <activity android:name=".presenter.BarcodeReading.BarcodesListDisplayerActivity"
+        </activity>
+        <activity
+            android:name=".presenter.BarcodeReading.BarcodesListDisplayerActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodesListDisplayerActivity" />
@@ -50,10 +52,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
 
         <activity
             android:name=".presenter.BarcodeReading.ChooseNameActivity"
@@ -64,8 +66,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".presenter.FilesManagment.CheckBoxHandler"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -75,8 +75,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".presenter.navigationDrawerManagment.AboutBarCodeScanner"
             android:label="@string/title_activity_about_bar_code_scanner">
@@ -86,8 +84,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".presenter.BarcodeReading.FileEditor"
             android:label="@string/title_activity_file_editor">
@@ -98,6 +94,6 @@
             </intent-filter>
         </activity>
 
-
     </application>
+
 </manifest>
