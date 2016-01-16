@@ -71,7 +71,7 @@ public class CheckBoxHandler extends ListActivity {
         toolbarFinishedChecking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                 toolbarFinishedChecking.setImageResource(R.mipmap.ic_green_check_mark);
                 startActivity(new Intent(CheckBoxHandler.this, MainActivity.class));
             }
         });

@@ -222,6 +222,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     @Override
     public void onBackPressed()
     {
+        btnSave.setImageResource(R.mipmap.ic_check);
         startActivity(new Intent(ChooseNameActivity.this,MainActivity.class));
     }
     @Override

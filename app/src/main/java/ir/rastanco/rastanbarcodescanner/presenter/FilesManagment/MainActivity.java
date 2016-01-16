@@ -31,6 +31,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
 import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodesListDisplayerActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.ChooseNameActivity;
 import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.AboutBarCodeScanner;
 import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.FragmentSentFiles;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
@@ -48,7 +50,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private FragmentHandler mainFragmentHandler;
     private DataBaseHandler dbHandler;
     private int exitSafeCounter = 0;
-    //private ArrayList<FileInfo> allFileInfo;
     private String state = "default";
     private boolean sort_mode = true ;
     private ImageButton sortFiles;
@@ -77,6 +78,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         this.supportFab();
         this.setMainFragmentAndCheckDataBaseState();
     }
+
+
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
