@@ -2,6 +2,7 @@ package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -15,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,7 @@ import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
 import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
 import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.AboutBarCodeScanner;
 import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.FragmentSentFiles;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /*
 created by parisaRashidi  on 94/9/27
@@ -43,7 +46,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
     private FragmentHandler mainFragmentHandler;
-    private Typeface font ;
     private DataBaseHandler dbHandler;
     private int exitSafeCounter = 0;
     //private ArrayList<FileInfo> allFileInfo;
@@ -74,9 +76,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         this.addToolbar();
         this.supportFab();
         this.setMainFragmentAndCheckDataBaseState();
-        this.setFont();
     }
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(new CalligraphyContextWrapper(newBase));
+    }
     private void setMainFragmentAndCheckDataBaseState() {
 
 
@@ -86,8 +90,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                if(dbHandler.emptyDB())
                          {
                               simple_empty_database_textView.setVisibility(View.VISIBLE);
-                              simple_empty_database_textView.setTypeface(font);
-
                          }
 
                               else
@@ -112,14 +114,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             @Override
             public void onClick(View v) {
                 //container.removeAllViewsInLayout();
-                if(sort_mode == true){
-                    change_image_sort = (ImageButton)findViewById(R.id.sort_toolbar);
+                if (sort_mode == true) {
+                    change_image_sort = (ImageButton) findViewById(R.id.sort_toolbar);
                     change_image_sort.setImageResource(R.mipmap.ic_sort_a_to_z);
 
-                    sort_mode = false ;
+                    sort_mode = false;
 
-                }
-                else if(sort_mode == false){
+                } else if (sort_mode == false) {
 
                     change_image_sort.setImageResource(R.mipmap.ic_sort);
                     sort_mode = true;
@@ -134,14 +135,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 //                  if(dbHandler.emptyDB())
 //                         {
 //                              simple_empty_database_textView.setVisibility(View.VISIBLE);
-//                              simple_empty_database_textView.setTypeface(font);
 //
 //                         }
 //
 //                              else
 //                                                {
                 startActivity(new Intent(MainActivity.this, CheckBoxHandler.class));
-                                                }
+            }
             //}
         });
 
@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private void setActionBar() {
 
         actionBar = (Toolbar) findViewById(R.id.toolbar);
+        actionBar.setTitle(Html.fromHtml("<font color='#3e8d8f'>بارکد خوان حرفه ای</font>"));
         setSupportActionBar(actionBar);
 
 
@@ -208,9 +209,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         });
     }
 
-    private void setFont(){
-        font  = Typeface.createFromAsset(getAssets(), "yekan_font.ttf");
-    }
 
 
     @Override
@@ -253,7 +251,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 //                           if(dbHandler.emptyDB())
 //                         {
 //                              simple_empty_database_textView.setVisibility(View.VISIBLE);
-//                              simple_empty_database_textView.setTypeface(font);
 //
 //                         }
 //

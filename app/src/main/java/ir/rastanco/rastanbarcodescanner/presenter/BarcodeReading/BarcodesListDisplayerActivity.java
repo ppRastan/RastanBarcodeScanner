@@ -1,6 +1,7 @@
 package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandlin
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by ParisaRashidhi on 22/12/2015.
@@ -47,7 +49,10 @@ public class BarcodesListDisplayerActivity extends Activity {
 
 
     }
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(new CalligraphyContextWrapper(newBase));
+    }
     private void createPage() {
         homeButton = (ImageButton)findViewById(R.id.choose_name_activity_home);
         homeButton.setOnClickListener(new View.OnClickListener() {

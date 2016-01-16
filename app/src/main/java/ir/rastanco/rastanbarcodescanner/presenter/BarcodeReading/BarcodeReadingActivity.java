@@ -2,6 +2,7 @@ package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /*
 created by shayeste
@@ -72,7 +74,10 @@ public class BarcodeReadingActivity extends Activity {
 
     }
 
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(new CalligraphyContextWrapper(newBase));
+    }
 
     private void createPage() {
 

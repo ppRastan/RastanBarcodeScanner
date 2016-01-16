@@ -1,6 +1,7 @@
 package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CheckBoxHandler extends ListActivity {
 
@@ -32,16 +34,14 @@ public class CheckBoxHandler extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_box_handler);
         this.setAdapterAndFillListView();
-        this.setFont();
         this.addToolbarActionListener();
         this.manageClickListeners();
 
     }
 
-    private void setFont() {
-        selectAllCheckBoxesTextView = (TextView)findViewById(R.id.select_all_text_view);
-        Typeface font  = Typeface.createFromAsset(getAssets(), "yekan_font.ttf");
-        selectAllCheckBoxesTextView.setTypeface(font);
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
 
     private void addToolbarActionListener() {

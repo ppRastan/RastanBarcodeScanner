@@ -1,6 +1,7 @@
 package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -33,6 +34,7 @@ import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ChooseNameActivity extends AppCompatActivity implements OnItemSelectedListener {
     private ImageButton btnSave;
@@ -57,6 +59,10 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         this.addClickedListViewItemFileNameToTextView();
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(new CalligraphyContextWrapper(newBase));
+    }
     private void addClickedListViewItemFileNameToTextView() {
          //textViewFileName = (AutoCompleteTextView)findViewById(R.id.actv_fileName);
          //textViewFileName.setText();

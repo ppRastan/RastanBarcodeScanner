@@ -1,5 +1,6 @@
 package ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class AboutBarCodeScanner extends Activity {
 
@@ -20,13 +22,12 @@ public class AboutBarCodeScanner extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_bar_code_scanner);
-        this.setFont();
         this.addToolbar();
     }
 
-    private void setFont() {
-        textAbout = (TextView)findViewById(R.id.about_app_text);
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
 
     private void addToolbar() {
