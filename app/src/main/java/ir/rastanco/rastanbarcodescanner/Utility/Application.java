@@ -9,6 +9,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
         @Override
         public void onCreate() {
             super.onCreate();
-            CalligraphyConfig.initDefault("fonts/yekan_font.ttf");
+            CalligraphyConfig.initDefault("fonts/barcode_scanner_iransans.ttf");
         }
     }

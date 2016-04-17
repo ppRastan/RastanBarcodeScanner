@@ -24,7 +24,7 @@
             android:weightSum="10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
+            <ir.rastanco.rastanbarcodescanner.Utility.FontTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/file_name"

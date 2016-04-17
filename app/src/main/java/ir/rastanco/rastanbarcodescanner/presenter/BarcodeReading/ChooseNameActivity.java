@@ -81,7 +81,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
                 title.setGravity(Gravity.CENTER);
                 title.setTextColor(getResources().getColor(R.color.toolbar));
                 title.setTextSize(23);
-                font  = Typeface.createFromAsset(getAssets(), "yekan_font.ttf");
+                font  = Typeface.createFromAsset(getAssets(), "fonts/barcode_scanner_iransans.ttf");
                 title.setTypeface(font);
                 builder.setItems(new CharSequence[]
                                 {getResources().getString(R.string.confirm), getResources().getString(R.string.edit_file),

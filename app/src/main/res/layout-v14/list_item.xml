@@ -1,78 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<FrameLayout android:background="@color/gray_background"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/lyt_container"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="9"
-    android:background="@android:color/white">
+    android:background="@color/gray_background">
 
-    <TextView
-        android:background="@android:color/white"
-        android:id="@+id/txt_data"
-        android:layout_height="wrap_content"
-        android:layout_width="0dp"
-        android:layout_weight="7"
-        android:paddingRight="@dimen/list_item_padding_sides"
-        android:paddingLeft="@dimen/list_item_padding_sides"
-        android:gravity="center_vertical"
-        android:height="@dimen/list_item_height"
-        />
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/img_icon"
-        android:layout_weight="2"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:layout_margin="5dp"
-
-        />
-
-</LinearLayout>
-
-    <LinearLayout android:layout_height="match_parent"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:paddingRight="@dimen/list_item_padding_sides"
-        android:paddingLeft="@dimen/list_item_padding_sides"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:weightSum="9">
+
+        <ir.rastanco.rastanbarcodescanner.Utility.FontTextView
+            android:id="@+id/txt_data"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:height="@dimen/list_item_height"
+            android:background="@android:color/white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/list_item_padding_sides"
+            android:paddingRight="@dimen/list_item_padding_sides" />
+
+        <ImageView
+            android:id="@+id/img_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:height="@dimen/list_item_height"
-        android:weightSum="6"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/list_item_padding_sides"
+        android:paddingRight="@dimen/list_item_padding_sides"
         android:visibility="gone"
-        android:orientation="horizontal">
+        android:weightSum="6">
 
-        <TextView android:id="@+id/txt_delete"
-            android:layout_height="match_parent"
+        <ir.rastanco.rastanbarcodescanner.Utility.FontTextView
+            android:id="@+id/txt_delete"
             android:layout_width="0dp"
-            android:gravity="center_vertical"
-            android:textColor="@android:color/white"
-            android:hapticFeedbackEnabled="true"
+            android:layout_height="match_parent"
             android:layout_weight="2"
             android:clickable="false"
-            android:text="@string/deleted"/>
-
-        <TextView android:id="@+id/txt_share"
-            android:layout_height="match_parent"
-            android:layout_width="0dp"
             android:gravity="center_vertical"
-            android:textColor="@color/toolbar"
             android:hapticFeedbackEnabled="true"
+            android:text="@string/deleted"
+            android:textColor="@android:color/white" />
+
+        <ir.rastanco.rastanbarcodescanner.Utility.FontTextView
+            android:id="@+id/txt_share"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="2"
             android:clickable="false"
+            android:gravity="center_vertical"
+            android:hapticFeedbackEnabled="true"
             android:text="@string/share_current_file"
-            android:visibility="invisible"/>
+            android:textColor="@color/toolbar"
+            android:visibility="invisible" />
 
-        <TextView android:id="@+id/txt_undo"
-            android:layout_height="match_parent"
+        <ir.rastanco.rastanbarcodescanner.Utility.FontTextView
+            android:id="@+id/txt_undo"
             android:layout_width="0dp"
-            android:gravity="center"
-            android:textColor="@color/yellow"
+            android:layout_height="match_parent"
             android:layout_weight="2"
             android:clickable="false"
-            android:text="@string/undo"/>
+            android:gravity="center"
+            android:text="@string/undo"
+            android:textColor="@color/yellow" />
 
     </LinearLayout>
 
