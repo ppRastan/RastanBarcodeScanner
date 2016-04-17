@@ -1,10 +1,10 @@
 package ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,19 +20,16 @@ import java.util.List;
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.OnItemClickListener;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.RecyclerViewAdapter;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeToDismissTouchListener;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.OnItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.RecyclerViewAdapter;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.SwipeToDismissTouchListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.SwipeableItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.MainActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class FileEditor extends Activity {
 
-    private ArrayList<Barcode> barcodesList;
-    private ImageButton saveButton;
-    private ChooseNameActivity chooseNameActivity;
-    private ImageButton homeButton;
+    private ArrayList<Barcode> listOfIDs;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -51,15 +48,15 @@ public class FileEditor extends Activity {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
     private void createPage() {
-        homeButton = (ImageButton)findViewById(R.id.choose_name_activity_home);
+        ImageButton homeButton = (ImageButton)findViewById(R.id.choose_name_activity_home);
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(FileEditor.this, MainActivity.class));
             }
         });
-        chooseNameActivity = new ChooseNameActivity();
-        saveButton = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
+        ChooseNameActivity chooseNameActivity = new ChooseNameActivity();
+        ImageButton saveButton = (ImageButton)findViewById(R.id.appbar_barcode_Indicative_check_btn);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,15 +67,15 @@ public class FileEditor extends Activity {
             }
         });
 
-        barcodesList =new ArrayList<Barcode>();
-        chooseNameActivity.setAllBarcodesList(barcodesList);
+        listOfIDs =new ArrayList<>();
+        chooseNameActivity.setListOfIDs(listOfIDs);
         init((RecyclerView) findViewById(R.id.recycler_view));
     }
 
     @Override
     public void onBackPressed() {
 
-        startActivity(new Intent(FileEditor.this, BarcodeReadingActivity.class));
+        startActivity(new Intent(FileEditor.this, CameraBarcodeReader.class));
 
     }
 
@@ -86,7 +83,7 @@ public class FileEditor extends Activity {
     private void init(RecyclerView recyclerView) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
-        final MyBaseAdapter adapter = new MyBaseAdapter(barcodesList);
+        final MyBaseAdapter adapter = new MyBaseAdapter(listOfIDs);
         recyclerView.setAdapter(adapter);
         final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
                 new SwipeToDismissTouchListener<>(
@@ -160,8 +157,8 @@ public class FileEditor extends Activity {
 
         static class MyViewHolder extends RecyclerView.ViewHolder {
 
-            TextView dataTextView;
-            ImageView iconImageView;
+            final TextView dataTextView;
+            final ImageView iconImageView;
             MyViewHolder(View view) {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));

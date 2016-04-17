@@ -1,17 +1,13 @@
-package ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment;
+package ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagement;
 
 import android.app.Fragment;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -19,11 +15,11 @@ import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.OnItemClickListener;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.RecyclerViewAdapter;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeToDismissTouchListener;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.OnItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.RecyclerViewAdapter;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.SwipeToDismissTouchListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.SwipeableItemClickListener;
 
 /**
  * Created by ParisaRashidhi on 31/12/2015.
@@ -34,7 +30,7 @@ public class FragmentSentFiles extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_handler, null);
+        View view = inflater.inflate(R.layout.fragment_handler,container ,false);
         this.showListOfFiles(view);
         return view;
     }
@@ -44,7 +40,6 @@ public class FragmentSentFiles extends Fragment {
         bundle.putSerializable("allFileInfo", allFileInfo);
         init((RecyclerView) view.findViewById(R.id.recycler_view));
     }
-
 
 
     private void init(RecyclerView recyclerView) {
@@ -92,11 +87,11 @@ public class FragmentSentFiles extends Fragment {
 
         MyBaseAdapter() {
             mDataSet.add("shared file 1");
-            mDataSet.add("shered file 2");
-            mDataSet.add("shered file 3");
-            mDataSet.add("shered file 4");
-            mDataSet.add("shered file 5");
-            mDataSet.add("shered file 6");
+            mDataSet.add("shared file 2");
+            mDataSet.add("shared file 3");
+            mDataSet.add("shared file 4");
+            mDataSet.add("shared file 5");
+            mDataSet.add("shared file 6");
         }
 
         @Override
@@ -121,14 +116,15 @@ public class FragmentSentFiles extends Fragment {
         }
 
         static class MyViewHolder extends RecyclerView.ViewHolder {
-            TextView dataTextView;
+            final TextView dataTextView;
             CheckBox listViewCheckBox;
-            TextView textShare;
+            final TextView textShare;
+
             MyViewHolder(View view) {
 
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
-                textShare = (TextView)view.findViewById(R.id.txt_share);
+                textShare = (TextView) view.findViewById(R.id.txt_share);
                 textShare.setVisibility(View.VISIBLE);
             }
         }

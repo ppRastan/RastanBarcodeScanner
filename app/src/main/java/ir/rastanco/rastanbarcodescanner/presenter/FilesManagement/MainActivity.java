@@ -1,12 +1,10 @@
-package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
-
+package ir.rastanco.rastanbarcodescanner.presenter.FilesManagement;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,57 +18,46 @@ import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
-import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodeReadingActivity;
-import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.BarcodesListDisplayerActivity;
-import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.ChooseNameActivity;
-import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.AboutBarCodeScanner;
-import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.FragmentSentFiles;
+import ir.rastanco.rastanbarcodescanner.presenter.BarcodeReading.CameraBarcodeReader;
+import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagement.AboutBarCodeScanner;
+import ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagement.FragmentSentFiles;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /*
-created by parisaRashidi  on 94/9/27
+created by parisa  on 94/9/27
  */
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
-    private GoogleApiClient client;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    //private GoogleApiClient client;
     private Toolbar actionBar;
     private TextView simple_empty_database_textView;
-    private Intent sendIntent;
+
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private FragmentHandler mainFragmentHandler;
-    private DataBaseHandler dbHandler;
     private int exitSafeCounter = 0;
     private String state = "default";
-    private boolean sort_mode = true ;
-    private ImageButton sortFiles;
+    private boolean sort_mode = true;
     private ImageButton change_image_sort;
     private Button showFiles;
-    private ImageButton checkBox_toolbar;
-    private final String defaultMode= "default";
+    private DataBaseHandler dbHandler;
+    private final String defaultMode = "default";
     private final String displayExcelFilesOnly = "displayExcelFilesOnly";
     private final String displayTextFilesOnly = "displayTextFilesOnly";
-    private FrameLayout fragmentContainer ;
-    private FragmentSentFiles fragmentSentFiles;
+    //private FrameLayout fragmentContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
-        {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             getWindow().getDecorView().setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
         }
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
         this.setActionBar();
         this.supportDrawable();
@@ -80,51 +67,46 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     }
 
 
-
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
+
     private void setMainFragmentAndCheckDataBaseState() {
 
 
-        mainFragmentHandler = new FragmentHandler();
+        SwipeListViewInFragmentHandler mainFragmentHandler = new SwipeListViewInFragmentHandler();
         dbHandler = new DataBaseHandler(this);
-        simple_empty_database_textView = (TextView)findViewById(R.id.check_db_state_textView);
-               if(dbHandler.emptyDB())
-                         {
-                              simple_empty_database_textView.setVisibility(View.VISIBLE);
-                         }
-
-                              else
-                                        {
-        simple_empty_database_textView.setVisibility(View.GONE);
-        fragmentManager = getFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
-        fragmentTransaction.commit();
+        simple_empty_database_textView = (TextView) findViewById(R.id.check_db_state_textView);
+        if (dbHandler.emptyDB()) {
+            simple_empty_database_textView.setVisibility(View.VISIBLE);
+        } else {
+            simple_empty_database_textView.setVisibility(View.GONE);
+            fragmentManager = getFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, mainFragmentHandler);
+            fragmentTransaction.commit();
 
 
-                                      }
+        }
 
     }
 
-    private void addToolbar()
-    {
-        checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
-        sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
-        showFiles = (Button)findViewById(R.id.allfiles_toolbar);
+    private void addToolbar() {
+        ImageButton checkBox_toolbar = (ImageButton) findViewById(R.id.checkbox_toolbar);
+        ImageButton sortFiles = (ImageButton) findViewById(R.id.sort_toolbar);
+        showFiles = (Button) findViewById(R.id.allFiles);
         sortFiles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //container.removeAllViewsInLayout();
-                if (sort_mode == true) {
+                if (sort_mode) {
                     change_image_sort = (ImageButton) findViewById(R.id.sort_toolbar);
                     change_image_sort.setImageResource(R.mipmap.ic_sort_a_to_z);
 
                     sort_mode = false;
 
-                } else if (sort_mode == false) {
+                } else {
 
                     change_image_sort.setImageResource(R.mipmap.ic_sort);
                     sort_mode = true;
@@ -136,17 +118,17 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             @Override
             public void onClick(View v) {
 
-//                  if(dbHandler.emptyDB())
-//                         {
-//                              simple_empty_database_textView.setVisibility(View.VISIBLE);
-//
-//                         }
-//
-//                              else
-//                                                {
-                startActivity(new Intent(MainActivity.this, CheckBoxHandler.class));
+                  if(dbHandler.emptyDB())
+                         {
+                              simple_empty_database_textView.setVisibility(View.VISIBLE);
+
+                         }
+
+                              else
+                                                {
+                startActivity(new Intent(MainActivity.this, ListViewWithCheckboxHandler.class));
             }
-            //}
+            }
         });
 
 
@@ -161,7 +143,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                         break;
                     }
                     case displayExcelFilesOnly: {
-                        showFiles.setText(getResources().getString(R.string.allfiles));
+                        showFiles.setText(getResources().getString(R.string.allFiles));
                         state = defaultMode;
                         break;
                     }
@@ -189,8 +171,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     }
 
 
-
-
     private void setActionBar() {
 
         actionBar = (Toolbar) findViewById(R.id.toolbar);
@@ -207,12 +187,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent iBarcodeReader = new Intent(MainActivity.this, BarcodeReadingActivity.class);
-                startActivity(iBarcodeReader);
+                startActivity(new Intent(MainActivity.this,CameraBarcodeReader.class));
             }
         });
     }
-
 
 
     @Override
@@ -220,9 +198,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         exitSafeCounter++;
         if (exitSafeCounter == 1) {
-            Toast.makeText(MainActivity.this,getResources().getString(R.string.sure_to_exit),
+            Toast.makeText(MainActivity.this, getResources().getString(R.string.sure_to_exit),
                     Toast.LENGTH_SHORT).show();
-        } else if(exitSafeCounter >1) {
+        } else if (exitSafeCounter > 1) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -238,41 +216,36 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         if (id == R.id.nav_my_files) {
             startActivity(new Intent(MainActivity.this, MainActivity.class));
 
-        }
-        else if (id == R.id.nav_send)
-        {
-            sendIntent = new Intent();
+        } else if (id == R.id.nav_send) {
+            Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
             sendIntent.putExtra(Intent.EXTRA_SUBJECT, getResources().getString(R.string.barcode_scanner));
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "http://cafebazaar.ir/app/?id=com.Arvand.HundredPercent");
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "link of barcodeScanner in bazaar");
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 
-        }
-        else if(id==R.id.nav_have_sent_files)
-        {
+        } else if (id == R.id.nav_have_sent_files) {
 
-//                           if(dbHandler.emptyDB())
-//                         {
-//                              simple_empty_database_textView.setVisibility(View.VISIBLE);
-//
-//                         }
-//
-//                              else
-//                                            {
+                           if(dbHandler.emptyDB())
+                         {
+                              simple_empty_database_textView.setVisibility(View.VISIBLE);
+
+                         }
+
+                              else
+                                            {
             simple_empty_database_textView.setVisibility(View.GONE);
             fragmentManager = getFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentSentFiles = new FragmentSentFiles();
+            FragmentSentFiles fragmentSentFiles = new FragmentSentFiles();
             fragmentTransaction.add(R.id.fragment_container, fragmentSentFiles);
             fragmentTransaction.commit();
 
 
-                                        //}
+            }
 
 
-        }
-        else if(id == R.id.nav_about){
+        } else if (id == R.id.nav_about) {
 
             startActivity(new Intent(MainActivity.this, AboutBarCodeScanner.class));
         }

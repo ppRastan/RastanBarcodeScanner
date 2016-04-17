@@ -29,30 +29,23 @@ import java.util.ArrayList;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.MainActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /*
-created by shayeste
+created by shayesteS
  */
-//Todo for this page : save all barcode aray list and counter number so that users don't miss them when they go to next activity
-public class BarcodeReadingActivity extends Activity {
-
+//Todo for this page : save all barcode arrayList and counter number so that users don't miss them when they go to next activity
+public class CameraBarcodeReader extends Activity {
     private Camera camera;
-    private CameraPreview cameraPreview;
     private Handler autoFocusHandler;
-
     private ImageButton okButton;
-    private ImageView cameraButton;
     private ImageScanner scanner;
     private TextView txtCounterScan;
-
     private int counterScan;
-
     private boolean barcodeScanned = false;
     private boolean previewing = true;
-
-    private ArrayList<Barcode> barcodesList;
+    private ArrayList<Barcode> cameraBarcodeReaderListOfIDs;
     private ImageButton selectAreaBtn;
     private boolean noArea = false;
     static {
@@ -82,7 +75,7 @@ public class BarcodeReadingActivity extends Activity {
     private void createPage() {
 
 
-        barcodesList = new ArrayList<Barcode>();
+        cameraBarcodeReaderListOfIDs = new ArrayList<>();
 
         this.initializeCamera();
         this.createFooterToolbar();
@@ -91,7 +84,7 @@ public class BarcodeReadingActivity extends Activity {
     }
 
     private void createFooterToolbar() {
-        cameraButton = (ImageButton) findViewById(R.id.imgb_rScan);
+        ImageView cameraButton = (ImageButton) findViewById(R.id.imageButton_scanIds);
         okButton =(ImageButton)findViewById(R.id.imgb_Check);
 
         //For counter
@@ -116,26 +109,25 @@ public class BarcodeReadingActivity extends Activity {
 
                 okButton.setImageResource(R.mipmap.ic_green_check_mark);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("barcodesList", barcodesList);
-                Intent iDisplayBarcode = new Intent(BarcodeReadingActivity.this, BarcodesListDisplayerActivity.class);
+                bundle.putSerializable("cameraBarcodeReaderListOfIDs", cameraBarcodeReaderListOfIDs);
+                Intent iDisplayBarcode = new Intent(CameraBarcodeReader.this, IDsListIndicativeActivity.class);
                 iDisplayBarcode.putExtras(bundle);
-                //TODO uncommnet this if statement so that user cant continue whit no item scaned
-                              //if (counterScan>0)
+                              if (counterScan>0)
                                startActivity(iDisplayBarcode);
-               // else
-                //{
-                  //  Toast.makeText(getApplicationContext(),getResources().getString(R.id.no_item_scaned),Toast.LENGTH_SHORT).show();
-                //}
+                else
+                {
+                    Toast.makeText(getApplicationContext(),getResources().getString(R.string.no_item_scaned), Toast.LENGTH_SHORT).show();
+                }
             }
         });
         selectAreaBtn = (ImageButton)findViewById(R.id.image_area);
         selectAreaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(noArea == false){
+                if(!noArea){
 
                     selectAreaBtn.setImageResource(R.mipmap.ic_green_area);
-                    Toast.makeText(getApplicationContext(),"dfhfh",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"dfhfh",Toast.LENGTH_SHORT).show();
                     noArea = true;
                     //TODO display area here
                 }
@@ -159,15 +151,15 @@ public class BarcodeReadingActivity extends Activity {
         scanner.setConfig(0, Config.X_DENSITY, 3);
         scanner.setConfig(0, Config.Y_DENSITY, 3);
 
-        cameraPreview = new CameraPreview(this, camera, previewCb, autoFocusCB);
+        CameraManagerActivity cameraManagerActivity = new CameraManagerActivity(this, camera, previewCb, autoFocusCB);
         final FrameLayout preview = (FrameLayout) findViewById(R.id.cameraPreview);
-        preview.addView(cameraPreview);
+        preview.addView(cameraManagerActivity);
     }
 
     @Override
     public void onBackPressed() {
 
-        this.startActivity(new Intent(BarcodeReadingActivity.this, MainActivity.class));
+        this.startActivity(new Intent(CameraBarcodeReader.this, MainActivity.class));
     }
 
     public void onPause() {
@@ -178,7 +170,7 @@ public class BarcodeReadingActivity extends Activity {
     /**
      * A safe way to get an instance of the Camera object.
      */
-    public static Camera getCameraInstance() {
+    private static Camera getCameraInstance() {
         Camera c = null;
         try {
             c = Camera.open();
@@ -219,15 +211,15 @@ public class BarcodeReadingActivity extends Activity {
             int result = scanner.scanImage(barcode);
             if (result != 0) {
                 previewing = false;
-                BarcodeReadingActivity.this.camera.setPreviewCallback(null);
-                BarcodeReadingActivity.this.camera.stopPreview();
-                SymbolSet syms = scanner.getResults();
-                for (Symbol sym : syms) {
+                CameraBarcodeReader.this.camera.setPreviewCallback(null);
+                CameraBarcodeReader.this.camera.stopPreview();
+                SymbolSet cameraBarcodeReaderSymbolSet = scanner.getResults();
+                for (Symbol sym : cameraBarcodeReaderSymbolSet) {
                     barcodeScanned = true;
                     Barcode aBarcode = new Barcode();
                     aBarcode.setContent(sym.getData());
                     aBarcode.setFormat(sym.getType());
-                    barcodesList.add(aBarcode);
+                    cameraBarcodeReaderListOfIDs.add(aBarcode);
                 }
                 counterScan++;
                 txtCounterScan.setText(Integer.toString(counterScan));

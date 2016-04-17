@@ -1,10 +1,9 @@
 package ir.rastanco.rastanbarcodescanner;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.MainActivity;
 
 public class SplashScreen extends Activity {
     @Override
@@ -27,7 +26,6 @@ public class SplashScreen extends Activity {
         };
         timerThread.start();
     }
-
     @Override
     protected void onPause() {
         // TODO Auto-generated method stub

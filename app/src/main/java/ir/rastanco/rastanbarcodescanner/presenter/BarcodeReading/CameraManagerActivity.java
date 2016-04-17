@@ -12,16 +12,16 @@ import java.io.IOException;
  * Created by ShaisteS on 12/10/2015.
  * CameraPreview Custom surfaceView ZBar for camera rotate
  */
-public class CameraPreview  extends SurfaceView implements SurfaceHolder.Callback {
+public class CameraManagerActivity extends SurfaceView implements SurfaceHolder.Callback {
 
     private SurfaceHolder mHolder;
     private Camera mCamera;
     private Camera.PreviewCallback previewCallback;
     private Camera.AutoFocusCallback autoFocusCallback;
 
-    public CameraPreview(Context context, Camera camera,
-                         Camera.PreviewCallback previewCb,
-                         Camera.AutoFocusCallback autoFocusCb) {
+    public CameraManagerActivity(Context context, Camera camera,
+                                 Camera.PreviewCallback previewCb,
+                                 Camera.AutoFocusCallback autoFocusCb) {
         super(context);
         mCamera = camera;
         previewCallback = previewCb;
@@ -80,7 +80,7 @@ public class CameraPreview  extends SurfaceView implements SurfaceHolder.Callbac
         }
 
         try {
-            // Hard code camera surface rotation 90 degs to match Activity view in portrait
+            // Hard code camera surface rotation 90 degree to match Activity view in portrait
             mCamera.setDisplayOrientation(90);
             mCamera.setPreviewDisplay(mHolder);
             mCamera.setPreviewCallback(previewCallback);

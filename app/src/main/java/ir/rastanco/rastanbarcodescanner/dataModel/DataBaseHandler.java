@@ -26,7 +26,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public Boolean emptyDB() {
+    public  Boolean emptyDB() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor rs = db.rawQuery( "select * from tblFileInfo", null );
         if (rs.moveToFirst() ) {
@@ -59,7 +59,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
     public ArrayList<FileInfo> selectAllFileInfo(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor rs =  db.rawQuery( "select * from tblFileInfo", null );
-        ArrayList<FileInfo> allFileInfo=new ArrayList<FileInfo>();
+        ArrayList<FileInfo> allFileInfo=new ArrayList<>();
         if (rs != null) {
             if (rs.moveToFirst()) {
                 do {

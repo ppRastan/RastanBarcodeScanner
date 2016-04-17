@@ -19,23 +19,21 @@ import java.util.List;
 
 import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.Utility.Configuration;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.OnItemClickListener;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.RecyclerViewAdapter;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeToDismissTouchListener;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling.SwipeableItemClickListener;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.OnItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.RecyclerViewAdapter;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.SwipeToDismissTouchListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling.SwipeableItemClickListener;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.MainActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Created by ParisaRashidhi on 22/12/2015.
  */
-public class BarcodesListDisplayerActivity extends Activity {
+public class IDsListIndicativeActivity extends Activity {
 
-    private ArrayList<Barcode> barcodesList;
-    private ImageButton saveButton;
-    private ChooseNameActivity chooseNameActivity;
-    private ImageButton homeButton;
+    private ArrayList<Barcode> listOfIDs;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -47,42 +45,42 @@ public class BarcodesListDisplayerActivity extends Activity {
         this.createPage();
 
 
-
     }
+
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
+
     private void createPage() {
-        homeButton = (ImageButton)findViewById(R.id.choose_name_activity_home);
+        ImageButton homeButton = (ImageButton) findViewById(R.id.choose_name_activity_home);
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BarcodesListDisplayerActivity.this, MainActivity.class));
+                startActivity(new Intent(IDsListIndicativeActivity.this, MainActivity.class));
             }
         });
-        chooseNameActivity = new ChooseNameActivity();
-        saveButton = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
+        ChooseNameActivity chooseNameActivity = new ChooseNameActivity();
+        ImageButton saveButton = (ImageButton) findViewById(R.id.appbar_barcode_Indicative_check_btn);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 //Todo save barCodes in file
-                Intent iChooseName = new Intent(BarcodesListDisplayerActivity.this, ChooseNameActivity.class);
-                startActivity(iChooseName);
+                //Todo save barCodes in file
+                startActivity(new Intent(IDsListIndicativeActivity.this, ChooseNameActivity.class));
 
             }
         });
 
-        barcodesList =new ArrayList<Barcode>();
-        barcodesList = (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("barcodesList");
-        chooseNameActivity.setAllBarcodesList(barcodesList);
+        listOfIDs = new ArrayList<>();
+        listOfIDs = (ArrayList<Barcode>) this.getIntent().getExtras().getSerializable("cameraBarcodeReaderListOfIDs");
+        chooseNameActivity.setListOfIDs(listOfIDs);
         init((RecyclerView) findViewById(R.id.recycler_view));
     }
 
     @Override
     public void onBackPressed() {
 
-        startActivity(new Intent(BarcodesListDisplayerActivity.this, BarcodeReadingActivity.class));
+        startActivity(new Intent(IDsListIndicativeActivity.this, CameraBarcodeReader.class));
 
     }
 
@@ -90,7 +88,7 @@ public class BarcodesListDisplayerActivity extends Activity {
     private void init(RecyclerView recyclerView) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(Configuration.activityContext);
         recyclerView.setLayoutManager(mLayoutManager);
-        final MyBaseAdapter adapter = new MyBaseAdapter(barcodesList);
+        final MyBaseAdapter adapter = new MyBaseAdapter(listOfIDs);
         recyclerView.setAdapter(adapter);
         final SwipeToDismissTouchListener<RecyclerViewAdapter> touchListener =
                 new SwipeToDismissTouchListener<>(
@@ -108,7 +106,7 @@ public class BarcodesListDisplayerActivity extends Activity {
                         });
 
         recyclerView.setOnTouchListener(touchListener);
-        recyclerView.setOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
+        recyclerView.addOnScrollListener((RecyclerView.OnScrollListener) touchListener.makeScrollListener());
         recyclerView.addOnItemTouchListener(new SwipeableItemClickListener(Configuration.activityContext,
                 new OnItemClickListener() {
                     @Override
@@ -128,7 +126,7 @@ public class BarcodesListDisplayerActivity extends Activity {
 
         MyBaseAdapter(ArrayList<Barcode> allBarcode) {
 
-            for (int i=0;i<allBarcode.size();i++)
+            for (int i = 0; i < allBarcode.size(); i++)
                 mDataSet.add(allBarcode.get(i).getContent());
 //// TODO: 11/01/2016  replace below code instead of above so that user can see number of barCodes scanned
 //            for (int i = 0; i < allBarcode.size(); i++)
@@ -160,12 +158,13 @@ public class BarcodesListDisplayerActivity extends Activity {
 
         static class MyViewHolder extends RecyclerView.ViewHolder {
 
-            TextView dataTextView;
-            ImageView iconImageView;
+            final TextView dataTextView;
+            final ImageView iconImageView;
+
             MyViewHolder(View view) {
                 super(view);
                 dataTextView = ((TextView) view.findViewById(R.id.txt_data));
-                iconImageView=(ImageView)view.findViewById(R.id.img_icon);
+                iconImageView = (ImageView) view.findViewById(R.id.img_icon);
             }
         }
     }

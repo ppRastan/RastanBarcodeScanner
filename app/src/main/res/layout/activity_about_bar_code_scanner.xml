@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:context="ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagment.AboutBarCodeScanner"
+    tools:context="ir.rastanco.rastanbarcodescanner.presenter.navigationDrawerManagement.AboutBarCodeScanner"
     android:layout_height="match_parent">
     <include
         layout="@layout/toolbar_about_barcode_scanner"
@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/text_to_discribe_app"
+                android:text="@string/appDescription"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="12dp"

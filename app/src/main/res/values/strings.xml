@@ -15,19 +15,19 @@
     mainActivity items
     -->
     <string name="selectAll">انتخاب همه</string>
-    <string name="savethisBarcodes">ذخیره</string>
+    <string name="saveThisIDs">ذخیره</string>
     <string name="no_file_saved">تاکنون فایلی روی گوشی شما ذخیره نشده است .</string>
     <string name="sure_to_exit">برای خروج کلید بازگشت را مجددا فشار دهید</string>
     <string name="barcode_scanner">برنامه ی بارکد خوان حرفه ایی را در بازار اندروید ببینید:</string>
-    <string name="text_to_discribe_app">این برنامه به شما کمک میکند تا بارکد های خود را به سرعت اسکن کرده و آنها را به راحتی به صورت فایل ذخیره کنید </string>
+    <string name="appDescription">این برنامه به شما کمک میکند تا بارکد های خود را به سرعت اسکن کرده و آنها را به راحتی به صورت فایل ذخیره کنید </string>
     <!--
-     actionbar titeles and activity names are here
+     actionbar titles and activity names are here
     -->
     <string name="title_activity_display_barcode">بارکدهای اسکن شده</string>
     <string name="app_name">بارکدخوان حرفه ای</string>
     <string name="title_activity_shered_files">فایل های ارسال شده</string>
 
-    <string name="allfiles">همه فایل ها</string>
+    <string name="allFiles">همه فایل ها</string>
     <string name="showExcelFilesOnly">فایل های اکسل</string>
     <string name="showTextFilesOnly">فایل های متنی</string>
 
@@ -48,13 +48,14 @@
     <string name="undo">انصراف</string>
 
     <!--
-    there strings are for barcode displayer activity
+    there strings are for barcode Indicative activity
     -->
-    <string name="barcode_displayer">نمایش بارکدها</string>
+    <string name="barcode_indicative">نمایش بارکدها</string>
     <string name="title_activity_choose_name">تایید نهایی فایل</string>
     <string name="file_name">نام فایل:</string>
-    <string name="title_activity_barcode_displayer">نمایش بارکدها</string>
+    <string name="title_activity_barcode_indicative">نمایش بارکدها</string>
     <string name="title_activity_about_bar_code_scanner">درباره بارکد خوان</string>
     <string name="no_item_scaned">هیچ بارکدی ثبت نشده</string>
     <string name="title_activity_file_editor">FileEditor</string>
+    <string name="title_activity_test">Test</string>
 </resources>

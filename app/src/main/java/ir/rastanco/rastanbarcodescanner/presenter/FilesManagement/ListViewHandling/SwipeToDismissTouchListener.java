@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling;
+package ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -202,7 +202,7 @@ public class SwipeToDismissTouchListener<SomeCollectionView extends ViewAdapter>
                 }
                 if (dismiss && mDownPosition != ListView.INVALID_POSITION) {
                     // dismiss
-                    final RowContainer downView = mRowContainer; // mDownView gets null'd before animation ends
+                    final RowContainer downView = mRowContainer;
                     final int downPosition = mDownPosition;
                     mRowContainer.getCurrentSwipingView()
                             .animate()

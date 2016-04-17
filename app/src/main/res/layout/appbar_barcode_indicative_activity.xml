@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="16dp"
-            android:text="@string/title_activity_barcode_displayer"
+            android:text="@string/title_activity_barcode_indicative"
             android:textColor="@color/white"
             android:background="@color/actionbar"/>
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:src="@mipmap/ic_check"
-            android:id="@+id/appbar_barcode_displayer_check_btn"
+            android:id="@+id/appbar_barcode_Indicative_check_btn"
             android:background="@color/actionbar"/>
 
 

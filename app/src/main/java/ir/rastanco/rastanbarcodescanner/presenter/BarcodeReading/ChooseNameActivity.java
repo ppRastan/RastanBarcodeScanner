@@ -33,7 +33,7 @@ import ir.rastanco.rastanbarcodescanner.R;
 import ir.rastanco.rastanbarcodescanner.dataModel.Barcode;
 import ir.rastanco.rastanbarcodescanner.dataModel.DataBaseHandler;
 import ir.rastanco.rastanbarcodescanner.dataModel.FileInfo;
-import ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.MainActivity;
+import ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.MainActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ChooseNameActivity extends AppCompatActivity implements OnItemSelectedListener {
@@ -41,7 +41,6 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     private ListView fileNamesListView;
     private AutoCompleteTextView activeFileName;
     private DataBaseHandler dbHandler;
-    private String fileContent;
     private ImageButton camera_btn;
     private Typeface font;
 //    private FileInfo fileInfoSave;
@@ -64,13 +63,13 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         super.attachBaseContext(new CalligraphyContextWrapper(newBase));
     }
     private void addClickedListViewItemFileNameToTextView() {
-         //textViewFileName = (AutoCompleteTextView)findViewById(R.id.actv_fileName);
+         //textViewFileName = (AutoCompleteTextView)findViewById(R.id.CurrentFile);
          //textViewFileName.setText();
     }
 
     private void setToolbar() {
 
-        btnSave = (ImageButton) findViewById(R.id.appbar_barcode_displayer_check_btn);
+        btnSave = (ImageButton) findViewById(R.id.appbar_barcode_Indicative_check_btn);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,7 +128,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     }
 
     private void handleListView(ArrayList<String> fileNamesList) {
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fileNamesList);
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, fileNamesList);
         this.fileNamesListView.setAdapter(listAdapter);
 
         activeFileName.setAdapter(listAdapter);
@@ -174,7 +173,7 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
 
     private ArrayList<String> getAllFileNamesFromDB() {
         ArrayList<FileInfo> allFilesInfoList = dbHandler.selectAllFileInfo();
-        final ArrayList<String> fileNamesList = new ArrayList<String>();
+        final ArrayList<String> fileNamesList = new ArrayList<>();
         for (int i = 0; i < allFilesInfoList.size(); i++)
             fileNamesList.add(allFilesInfoList.get(i).getFileName() + allFilesInfoList.get(i).getFileType());
 
@@ -185,10 +184,10 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     private void addSpinner() {
         final Spinner spinner = (Spinner) findViewById(R.id.spin_fileType);
         spinner.setOnItemSelectedListener(this);
-        List<String> categories = new ArrayList<String>();
+        List<String> categories = new ArrayList<>();
         categories.add(".txt");
         categories.add(".xls");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
 
@@ -235,13 +234,13 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
     }
     private void saveToFile(String name, String fileContent) {
 
-        File file = null;
+        //File file = null;
         File root = Environment.getExternalStorageDirectory();
         if (root.canWrite()) {
             File dir = new File(root.getAbsolutePath() + "/BarcodeScanner");
             dir.mkdirs();
             String fileName = name;
-            file = new File(dir, fileName);
+            File file = new File(dir, fileName);
             FileOutputStream out = null;
             try {
                 out = new FileOutputStream(file);
@@ -261,12 +260,11 @@ public class ChooseNameActivity extends AppCompatActivity implements OnItemSelec
         }
     }
 
-    public void setAllBarcodesList(ArrayList<Barcode> allBarcode) {
+    public void setListOfIDs(ArrayList<Barcode> allBarcode) {
         for(int i=0; i<allBarcode.size(); i++) {
-            this.fileContent = allBarcode.get(i) + "\n";
+            String fileContent = allBarcode.get(i) + "\n";
 
         }
-        //Log.v("all barcodes", fileContent);
     }
 
 }

@@ -33,7 +33,7 @@
         android:id="@+id/txt_counterScan"
         android:textColor="@color/light_green"
         android:background="@color/actionbar"
-        android:textSize="20dp"
+        android:textSize="@dimen/textSize"
         android:layout_gravity="center_horizontal"
         />
 

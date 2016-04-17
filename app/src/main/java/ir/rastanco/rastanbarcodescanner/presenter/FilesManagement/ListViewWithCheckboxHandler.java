@@ -1,10 +1,8 @@
-package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment;
+package ir.rastanco.rastanbarcodescanner.presenter.FilesManagement;
 
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.View;
@@ -12,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,12 +17,10 @@ import java.util.ArrayList;
 import ir.rastanco.rastanbarcodescanner.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class CheckBoxHandler extends ListActivity {
+public class ListViewWithCheckboxHandler extends ListActivity {
     private ArrayList<String> files;
-    private ImageButton toolbarShareButton;
-    private ImageButton toolbarDeleteButton;
     private ImageButton toolbarFinishedChecking;
-    ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +38,13 @@ public class CheckBoxHandler extends ListActivity {
 
     private void addToolbarActionListener() {
 
-        toolbarFinishedChecking = (ImageButton)findViewById(R.id.appbar_barcode_displayer_check_btn);
-        toolbarShareButton = (ImageButton)findViewById(R.id.checkbox_content_layout_share_btn);
-        toolbarDeleteButton = (ImageButton)findViewById(R.id.checkbox_content_layout_delete_btn);
+        toolbarFinishedChecking = (ImageButton)findViewById(R.id.appbar_barcode_Indicative_check_btn);
+        ImageButton toolbarShareButton = (ImageButton)findViewById(R.id.checkbox_content_layout_share_btn);
+        ImageButton toolbarDeleteButton = (ImageButton)findViewById(R.id.checkbox_content_layout_delete_btn);
         toolbarShareButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"share button clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"share button clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -72,7 +67,7 @@ public class CheckBoxHandler extends ListActivity {
             @Override
             public void onClick(View v) {
                  toolbarFinishedChecking.setImageResource(R.mipmap.ic_green_check_mark);
-                startActivity(new Intent(CheckBoxHandler.this, MainActivity.class));
+                startActivity(new Intent(ListViewWithCheckboxHandler.this, MainActivity.class));
             }
         });
     }
@@ -111,12 +106,12 @@ public class CheckBoxHandler extends ListActivity {
     }
 
     private void setAdapterAndFillListView() {
-        files = new ArrayList<String>();
+        files = new ArrayList<>();
         files.add("file 1");
         files.add("file 2");
         files.add("file 3");
         files.add("file 4");
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, files);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, files);
         getListView().setAdapter(adapter);
     }
 

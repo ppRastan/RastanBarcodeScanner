@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling;
+package ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling;
 
 import android.view.View;
 
@@ -7,6 +7,7 @@ import android.view.View;
  * clicked.
  */
 public interface OnItemClickListener {
+    void onItemClick(View view, int position);
 
     /**
      * Callback method to be invoked when an item in this AdapterView has
@@ -19,5 +20,5 @@ public interface OnItemClickListener {
      *             by the adapter)
      * @param position The position of the view in the adapter.
      */
-    public void onItemClick(View view, int position);
+    //public void onItemClick(View view, int position);
 }

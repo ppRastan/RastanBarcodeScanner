@@ -1,4 +1,4 @@
-package ir.rastanco.rastanbarcodescanner.presenter.FilesManagment.ListViewHandling;
+package ir.rastanco.rastanbarcodescanner.presenter.FilesManagement.ListViewHandling;
 
 import android.content.Context;
 import android.view.MotionEvent;

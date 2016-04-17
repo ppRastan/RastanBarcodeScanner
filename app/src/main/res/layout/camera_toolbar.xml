@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_height="wrap_content"
-            android:id="@+id/imgb_rScan"
+            android:id="@+id/imageButton_scanIds"
             android:src="@mipmap/camera"
             android:background="@color/actionbar"
             />
